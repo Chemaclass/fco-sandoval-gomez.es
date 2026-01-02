@@ -50,6 +50,7 @@ En el interior se proyectaron los forjados cuyas viguetas resultaban imposibles 
 {% gallery(id="proyecto-futuro") %}
 images/trabajos/casa-san-juan-cruz/2-b-1024x701.jpg
 images/trabajos/casa-san-juan-cruz/infografia-4-1024x737.jpg
+images/trabajos/casa-san-juan-cruz/sando-trabajo-san-juan-2.jpg
 {% end %}
 
 ## Más información
