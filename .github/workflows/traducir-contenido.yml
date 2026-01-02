@@ -20,6 +20,7 @@ env:
 
 permissions:
   contents: write
+  actions: write
 
 jobs:
   translate:
@@ -89,6 +90,7 @@ jobs:
             }
 
       - name: Commit translations
+        id: commit
         if: steps.changed.outputs.has_files == 'true'
         run: |
           git config --local user.email "action@github.com"
@@ -96,7 +98,21 @@ jobs:
           git add content/
           if git diff --staged --quiet; then
             echo "No translation changes to commit"
+            echo "has_changes=false" >> $GITHUB_OUTPUT
           else
             git commit -m "feat: auto-translate content to EN and IT [skip-translate]"
             git push
+            echo "has_changes=true" >> $GITHUB_OUTPUT
           fi
+
+      - name: Trigger build workflow
+        if: steps.commit.outputs.has_changes == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.actions.createWorkflowDispatch({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              workflow_id: 'main.yml',
+              ref: 'main'
+            });
