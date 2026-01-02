@@ -38,7 +38,7 @@ El resultado de la intervención muestra el cuidado puesto en preservar la esenc
 
 La recuperación de los espacios interiores ha permitido crear un recorrido museístico que conecta al visitante con la vida cotidiana del siglo XVI, respetando la escala humilde del edificio original y su atmósfera de recogimiento espiritual.
 
-Los materiales empleados —cal, yeso, madera— dialogan con la arquitectura preexistente, creando una continuidad visual y táctil que refuerza la autenticidad del conjunto.
+De esta manera, en la planta baja se encuentra una pequeña oficina fuera del recorrido museístico y el resto del espacio recrea una vivienda humilde del siglo XVI. Para ello se proponía recuperar la chimenea y dotar en la estancia principal de un mobiliario acorde. En el habitáculo donde se guardaban los animales se dejó la mitad del suelo de tierra, sin pavimentar, tal y como había llegado hasta nuestros días.
 {% end %}
 
 El programa establecido por la Fundación Conde Santa Ana de las Torres, propietaria del edificio, consistía en reproducir en planta baja los valores históricos y etnográficos del inmueble, generar salas expositivas en planta primera que acercasen la vida de San Juan de la Cruz y su relación con Caravaca al visitante, y una biblioteca y sala de meditación en la última planta.
