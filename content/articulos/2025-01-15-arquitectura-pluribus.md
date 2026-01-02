@@ -4,7 +4,7 @@ description = "Un análisis de las decisiones arquitectónicas en la serie Pluri
 date = 2025-01-15
 [extra]
 category = "REFLEXIONES"
-image = "images/articulos/arquitectura-pluribus/main.jpg"
+image = "https://github.com/user-attachments/assets/768ead4f-976c-4c91-afca-7bb1f21b10a4"
 +++
 
 A estas alturas de la película, resulta indudable que la fotografía y los escenarios en las series de Vince Gilligan están especialmente cuidados (Breaking Bad y Better Call Saul son buenas muestras de ello). Su última creación, la intrigante distopía de Pluribus, ofrece un panorama inspirado por los avances tecnológicos de la sociedad contemporánea que se apoya en la ciencia como pilar fundamental, lo que hace posible en la trama la detección de una señal extraterrestre a 600 años luz o los trabajos con el genoma en avanzados laboratorios. La arquitectura de vanguardia o con tintes futuristas suele acompañar a las tramas de esta índole para reforzar esa sensación de palpitante novedad. Así se observa en películas como Passengers, Ex Machina o en muchos episodios de Black Mirror.
