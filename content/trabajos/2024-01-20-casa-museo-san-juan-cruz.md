@@ -48,7 +48,6 @@ Para llevar esto a cabo, se edificó un volumen de nueva planta junto al patio p
 En el interior se proyectaron los forjados cuyas viguetas resultaban imposibles de aprovechar con rollizos y revoltón de yeso de la misma forma que durante siglos se han construido en la zona los forjados de este tipo de viviendas. Destaca el espacio en planta baja dedicado a cocina y sala de estar que reproduce la forma de vida de un inmueble humilde del siglo XVI.
 
 {% gallery(id="proyecto-futuro") %}
-images/trabajos/casa-san-juan-cruz/1-b-1024x888.jpg
 images/trabajos/casa-san-juan-cruz/2-b-1024x701.jpg
 images/trabajos/casa-san-juan-cruz/infografia-4-1024x737.jpg
 {% end %}
