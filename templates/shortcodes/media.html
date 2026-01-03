@@ -1,8 +1,18 @@
 {% set alignment = align | default(value="left") %}
-{% set content = body | markdown %}
-{% set first_p_end = content | split(pat="</p>") | first %}
-{% set image_part = first_p_end ~ "</p>" %}
-{% set text_part = content | replace(from=image_part, to="") %}
+{% set content = body | markdown | trim %}
+{% set before_first_p = content | split(pat="<p>") | first %}
+
+{% if before_first_p == "" %}
+    {# Format B: Markdown image ![alt](url) - wrapped in <p> #}
+    {% set first_p_end = content | split(pat="</p>") | first %}
+    {% set image_part = first_p_end ~ "</p>" %}
+    {% set text_part = content | replace(from=image_part, to="") | trim %}
+{% else %}
+    {# Format A: HTML <img.../> - not wrapped in <p> #}
+    {% set image_part = before_first_p | trim %}
+    {% set text_part = content | replace(from=before_first_p, to="") | trim %}
+{% endif %}
+
 <div class="media-block media-{{ alignment }}">
     <div class="media-image">{{ image_part | safe }}</div>
     <div class="media-text">{{ text_part | safe }}</div>

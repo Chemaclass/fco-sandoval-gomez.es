@@ -14,7 +14,7 @@ A estas alturas de la película, resulta indudable que la fotografía y los esce
 Sin embargo, no sucede así en Pluribus, o no al menos en el ambiente doméstico de la protagonista. Carol Sturka, una escritora de novelas románticas y fantásticas, vive en una urbanización a las afueras de Albuquerque donde las viviendas comparten una estética basada en los tonos térreos que muestra hacia el exterior sus estructuras leñosas, totalmente alejada del concepto futurista. Carol vive al final del fondo de saco, la última vivienda de la urbanización, lo que de algún modo le da la singularidad necesaria del protagonista de la serie, pero que en realidad no deja de ser una casa más en serie del modelo de urbanización de extrarradio. En el interior se observan vigas de madera apoyadas en ménsulas con volutas. Las paredes, entre arcos de medio punto, presentan tonos tierra claros con aristas atenuadas y redondeadas más propias de la arquitectura tradicional que de los afilados y rectilíneos trazos de las formas futuristas, y sus materiales reproducen revocos y estucos en vez de blancos puros y modernos metalizados.
 
 {% media(align="left") %}
-![fotogramapluribus4](https://github.com/user-attachments/assets/8663f018-b62b-418f-9677-890bec5474d6)
+<img alt="fotogramapluribusbaño" src="https://github.com/user-attachments/assets/8663f018-b62b-418f-9677-890bec5474d6" />
 
 En efecto, la casa de la protagonista es del estilo que los estadounidenses convinieron en llamar colonial. Concretamente, se asemeja a las viviendas castellanas cuyo modelo reprodujeron los españoles en América desde finales del siglo XV. Esta vivienda en Nuevo Mexico bebe de los modelos del pasado al reproducir sus elementos estéticos que la identifican. Sin embargo, la estructura organizativa y la distribución es ajena a esos modelos tradicionales, por lo que en el fondo este estilo colonial en la vivienda de Carol podría verse como un artificio, un revestimiento de tinte historicista en una contemporánea casa de urbanización.
 
@@ -24,7 +24,7 @@ Esto puede interpretarse como una disonancia buscada por Gilligan, un toque de o
 
 <img width="1852" height="795" alt="fotogramapluribus2" src="https://github.com/user-attachments/assets/218e0486-671c-4932-ad94-e6aed9b67259" />
 
-{% media(align="left") %}
+{% media(align="right") %}
 ![fotogramapluribusbaño](https://github.com/user-attachments/assets/72c4e6e7-7335-4566-83d7-a7ed1bf6e89b)
 
 También hay una intención por mostrar determinados pavimentos aplicados en espacios que no consideraríamos precisamente los más nobles de la casa. Así, en el baño de Carol aparece un suelo de baldosa hidráulica muy interesante. Recordemos que este tipo de baldosa surgió en España a mediados del siglo XIX y enriqueció salones y estancias diversas con sus coloridos y varidos patrones.
