@@ -55,19 +55,31 @@
             }
         });
 
-        // Lightbox functionality
-        let currentGallery = null;
+        // Lightbox functionality for all article images
         let currentIndex = 0;
-        let galleryImages = [];
+        let articleImages = [];
 
-        function openLightbox(galleryId, index) {
-            const gallery = document.querySelector(`[data-gallery-id="${galleryId}"]`);
-            if (!gallery) return;
+        function initArticleLightbox() {
+            const article = document.querySelector('.article-page');
+            if (!article) return;
 
-            currentGallery = galleryId;
-            galleryImages = Array.from(gallery.querySelectorAll('.gallery-item img'));
+            // Find all images in the article (hero, body, media blocks, gallery)
+            articleImages = Array.from(article.querySelectorAll('img'));
+
+            // Make each image clickable
+            articleImages.forEach((img, index) => {
+                img.style.cursor = 'pointer';
+                img.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    openLightbox(index);
+                });
+            });
+        }
+
+        function openLightbox(index) {
+            if (articleImages.length === 0) return;
+
             currentIndex = index;
-
             updateLightboxImage();
             document.getElementById('lightbox').classList.add('active');
             document.body.style.overflow = 'hidden';
@@ -84,19 +96,21 @@
         function navigateLightbox(event, direction) {
             event.stopPropagation();
             currentIndex += direction;
-            if (currentIndex < 0) currentIndex = galleryImages.length - 1;
-            if (currentIndex >= galleryImages.length) currentIndex = 0;
+            if (currentIndex < 0) currentIndex = articleImages.length - 1;
+            if (currentIndex >= articleImages.length) currentIndex = 0;
             updateLightboxImage();
         }
 
         function updateLightboxImage() {
-            const img = galleryImages[currentIndex];
+            const img = articleImages[currentIndex];
             document.getElementById('lightbox-img').src = img.src;
             document.getElementById('lightbox-img').alt = img.alt;
-            document.getElementById('lightbox-caption').textContent = img.alt || '';
             document.getElementById('lightbox-counter').textContent =
-                `${currentIndex + 1} / ${galleryImages.length}`;
+                `${currentIndex + 1} / ${articleImages.length}`;
         }
+
+        // Initialize lightbox for article images
+        initArticleLightbox();
 
         // Keyboard navigation
         document.addEventListener('keydown', function(e) {
