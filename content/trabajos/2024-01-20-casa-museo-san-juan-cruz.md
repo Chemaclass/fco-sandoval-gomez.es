@@ -1,6 +1,8 @@
 +++
 title = "Casa Museo de San Juan de la Cruz"
-description = "Proyecto de rehabilitación de un edificio del siglo XVI en la Plaza del Templete de Caravaca de la Cruz para su conversión en la Casa Museo de San Juan de la Cruz, aplicando criterios de máximo respeto al interior y técnicas de bajo impacto ambiental."
+description = "Proyecto de intervención en una vivienda de origen humilde para su conversión en la Casa Museo de San Juan de la Cruz.
+Proyecto: Francisco Sandoval Gómez y Javier Guerrero Brotons
+Dirección facultativa: Javier Guerrero -director de obra- y Severiano Arias -director de ejecución y coordinador de seguridad y salud"
 date = 2024-01-20
 [extra]
 category = "Rehabilitación"
@@ -49,13 +51,23 @@ De esta manera, en la planta baja se encuentra una pequeña oficina fuera del re
 
 En el muro que separa la primera de la segunda crujía se abrió un hueco y en el que separa la segunda de la tercera se aprovechó un antiguo hueco que había sido cegado de tal manera que pudiese garantizarse un recorrido claro y sin obstáculos para personas con movilidad reducida.
 
-Una cuestión fundamental que se enfatizó en el proyecto fue el respeto a la fábrica original, con sus irregularidades y su geometría voluble, de modo que se evitasen los guardavivos y las aristas perfiladas. En definitva, se trataba de conservar la esencia del inmueble.
+Una cuestión fundamental que se enfatizó en el proyecto fue el respeto a la fábrica original, con sus irregularidades y su geometría voluble, de modo que se evitasen los guardavivos y las aristas perfiladas. Esto se logra con una cuidada ejecución y la aplicación de materiales tradicionales. Las terminaciones de las paredes en planta baja son de mortero de cal y de yeso en las plantas superiores. En definitiva, se trataba de conservar la esencia del inmueble.
 
 {% end %}
 
+Por otra parte, las viguetas se encontraban tan deterioradas y con evidentes signos de pudrición que no resultaban aprovechables. Por ello, se proyectó un nuevo forjado de rollizos y revoltones de yeso, la técnica tradicional con la que se habían realizado tiempo atrás y que ha perdurado durante siglos en las viviendas humildes. Esto supuso un gran reto, ya que la empresa constructora no había ejecutado este sistema y recurrió en un principio a bovedillas de hormigón. Sin embargo, se asesoró a la dirección facultativa para que orientase la ejecución de los forjados de acuerdo con el proyecto y las técnicas tradicionales previstas. He de agradecer la ayuda del arquitecto técnico Pedro Antonio Robles, quien me compartió su experiencia con un sistema de encofrado a base de pvc reutilizado sobre el cual se vertía el yeso del entrevigado. De esta manera, no solo se pudieron realizar los forjados de acuerdo con las técnicas tradicionales, sino que también la constructora “re-aprendió” la forma de construir de antaño y que resulta mucho más sostenible.
+
+En la galería inferior se pueden observar tres imágenes: 1. Estado en el que estaban las viguetas / 2. Bovedillas de hormigón colocadas por la constructora / 3. Encofrado de pvc ya colocado tras retirar las bovedillas de hormigón / 4. Forjado con el yeso ya vertido, obsérvese al fondo los encofrados de pvc donde aún no se ha vertido el yeso. Todas las imágenes son de mi autoría. Puede apreciarse entre las fotos 2 y 3 la diferente curvatura de una y otra solución, es decir, con las bovedillas de hormigón hubiese resultado un forjado con mayor canto y, por ello, de mayor peso.
+
+![proceso de obra forjados](https://github.com/user-attachments/assets/aff5c476-6c68-4211-a4e3-d78d18c7c637)
+
+En cuanto al volumen de nueva planta, se proyectó con sencillez para que resultase respetuoso con el edificio histórico. Se debía generar una nueva fachada sobre la cuesta de la Cruz entre medianeras: de un lado, la vivienda histórica, de otro, un edificio de viviendas contemporáneo de mucha mayor altura. Se diseñó una fachada blanca a base de mortero de cal que resultase neutra en su entorno, sin hueco alguno ya que los servicios del interior, que se abrían hacia el patio, no lo precisaban. Se reprodujo la cornisa de triple hilada de teja del edificio histórico para otorgar unidad compositiva, de tal manera que el nuevo volumen se diferencia de la prexistencia en el color de la fachada pero facilita la comprensión del conjunto como un todo mediante el remate superior. Esto es de gran importancia ya que el ladrillo de tejar presente en muchas cornisas restauradas en las últimas décadas no está constatado en ninguna edificación anterior al siglo XVIII, mientras que las construcciones humildes hasta el siglo XX en la zona se realizaban en su gran mayoría solo con teja curva. Al paño de fachada no se añadió ningún elemento adicional ni ornamento de tal manera que sea la propia Fundación la que tenga la oportunidad en un futuro de tratarlo de acuerdo con sus necesidades y pueda ubicar un eventual rótulo que identifique la Casa Museo de San Juan de la Cruz sin afección a los muros de la casa histórica.
+
+![IMG_20260102_145650](https://github.com/user-attachments/assets/cb4eec6b-a72f-4ea8-a08a-e48347211e93)
+
 {% gallery(id="proyecto-futuro") %}
 images/trabajos/casa-san-juan-cruz/2-b-1024x701.jpg
-images/trabajos/casa-san-juan-cruz/infografia-4-1024x737.jpg
+![plantas](https://github.com/user-attachments/assets/24dade3a-baf5-429f-b826-f7ff38e9b132)
 images/trabajos/casa-san-juan-cruz/sando-trabajo-san-juan-2.jpg
 {% end %}
 
