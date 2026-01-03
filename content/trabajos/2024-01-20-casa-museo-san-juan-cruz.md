@@ -9,6 +9,9 @@ year = "2021-2023"
 image = "images/trabajos/casa-san-juan-cruz/sando-trabajo-san-juan.jpeg"
 +++
 
+Proyecto: Francisco Sandoval Gómez y Javier Guerrero Brotons
+Dirección facultativa: Javier Guerrero -director de obra- y Severiano Arias -director de ejecución y coordinador de seguridad y salud-
+
 Esta edificación de origen humilde se encuentra en la plaza del Templete de Caravaca de la Cruz (Murcia) y según la tradición oral fue la vivienda que San Juan de la Cruz habitó durante sus viajes a la localidad para la fundación del convento de Carmelitas Descalzos. La documentación histórica señala que el santo místico alquiló "una casita a unos moriscos" en 1586 en las proximidades de la iglesia de la Purísima Concepción.
 
 ## El edificio
@@ -49,7 +52,7 @@ De esta manera, en la planta baja se encuentra una pequeña oficina fuera del re
 
 En el muro que separa la primera de la segunda crujía se abrió un hueco y en el que separa la segunda de la tercera se aprovechó un antiguo hueco que había sido cegado de tal manera que pudiese garantizarse un recorrido claro y sin obstáculos para personas con movilidad reducida.
 
-Una cuestión fundamental que se enfatizó en el proyecto fue el respeto a la fábrica original, con sus irregularidades y su geometría voluble, de modo que se evitasen los guardavivos y las aristas perfiladas. Esto se logra con una cuidada ejecución y la aplicación de materiales tradicionales. Las terminaciones de las paredes en planta baja son de mortero de cal y de yeso en las plantas superiores. En definitiva, se trataba de conservar la esencia del inmueble.
+Una cuestión fundamental que se enfatizó en el proyecto fue el respeto a la fábrica original, con sus irregularidades y su geometría voluble, de modo que se evitasen los guardavivos y las aristas perfiladas. Las terminaciones de las paredes en planta baja son de mortero de cal y en las plantas superiores de yeso. En definitiva, se trataba de conservar la esencia del inmueble.
 
 {% end %}
 
