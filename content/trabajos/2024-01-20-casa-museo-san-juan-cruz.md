@@ -13,7 +13,7 @@ Esta edificación de origen humilde se encuentra en la plaza del Templete de Car
 
 ## El edificio
 
-El inmueble se encuentra catalogado en el Plan General de Ordenación Urbana de Caravaca de la Cruz con grado 2: conservación estructural. Posee tres plantas y es un buen ejemplo de arquitectura residencial humilde que no ha sufrido cambios significativos desde el siglo XVIII: permanecen las carpinterías de madera de cuarterones y el único balcón en voladizo de madera que se conserva en Caravaca de la Cruz.
+El inmueble se encuentra catalogado en el Plan General de Ordenación Urbana de Caravaca de la Cruz con grado 2: conservación estructural. En la ficha de catálogo se indica lo siguiente en observaciones: "casa donde vivió San Juan de la Cruz". Posee tres plantas y es un buen ejemplo de arquitectura residencial humilde que no ha sufrido cambios significativos desde el siglo XVIII: permanecen las carpinterías de madera de cuarterones y el único balcón en voladizo de madera que se conserva en Caravaca de la Cruz.
 
 {% gallery(id="estado-interior") %}
 images/trabajos/casa-san-juan-cruz/1a-1024x577.jpg
@@ -32,8 +32,11 @@ images/trabajos/casa-san-juan-cruz/9c-1024x577.jpg
 {% media(align="left") %}
 ![proyecto 1](https://github.com/user-attachments/assets/00746d3d-5b8e-4636-835e-b4b169fbcafe)
 
-En el año 2020 se intervinieron las fachadas y la cubierta, pero el interior se encontraba en muy mal estado. En el año 2021 se inició el proyecto para rehabilitar el inmueble y convertirlo en la Casa Museo de San Juan de la Cruz en Caravaca. Los criterios aplicados fueron el máximo respeto al interior del edificio y sus valores históricos y culturales, y el empleo de técnicas y materiales de bajo impacto ambiental. El programa establecido por la Fundación Conde Santa Ana de las Torres, propietaria del edificio, consistía en reproducir en planta baja los valores históricos y etnográficos del inmueble, generar salas expositivas en planta primera que acercasen la vida de San Juan de la Cruz y su relación con Caravaca al visitante, y una biblioteca y sala de meditación en la última planta. Para llevar esto a cabo, se edificó un volumen de nueva planta junto al patio para albergar ascensor, escalera de evacuación y aseos, de tal manera que el edificio histórico tuviese la mínima afección de nuevas instalaciones. 
+En el año 2020 se intervinieron las fachadas y la cubierta, pero el interior se encontraba en muy mal estado. En el año 2021 se inició el proyecto para rehabilitar el inmueble y convertirlo en la Casa Museo de San Juan de la Cruz en Caravaca. Los criterios aplicados fueron el máximo respeto al interior del edificio y sus valores históricos y culturales, y el empleo de técnicas y materiales de bajo impacto ambiental. 
+
 {% end %}
+
+El programa establecido por la Fundación Conde Santa Ana de las Torres, propietaria del edificio, consistía en reproducir en planta baja los valores históricos y etnográficos del inmueble, generar salas expositivas en planta primera que acercasen la vida de San Juan de la Cruz y su relación con Caravaca al visitante, y una biblioteca y sala de meditación en la última planta. Para llevar esto a cabo, se edificó un volumen de nueva planta junto al patio para albergar ascensor, escalera de evacuación y aseos, de tal manera que el edificio histórico tuviese la mínima afección de nuevas instalaciones. 
 
 {% media(align="right") %}
 ![interior 1](https://github.com/user-attachments/assets/624159a2-8a33-43de-b1c3-6ef4c0628dda)
