@@ -14,6 +14,6 @@
 {% endif %}
 
 <div class="media-block media-{{ alignment }}">
-    <div class="media-image">{{ image_part | safe }}</div>
-    <div class="media-text">{{ text_part | safe }}</div>
+    <figure class="media-image">{{ image_part | safe }}</figure>
+    {{ text_part | safe }}
 </div>

@@ -1890,55 +1890,57 @@ blockquote {
     }
 }
 
-// Media Block - Image + Text layouts
+// Media Block - Image + Text layouts (float-based for natural text flow)
 .media-block {
-    display: flex;
-    gap: 2rem;
+    overflow: hidden; // clearfix
     margin: 2rem 0;
-    align-items: flex-start;
 
     .media-image {
-        flex: 0 0 40%;
+        float: left;
+        width: 40%;
+        max-width: 400px;
+        margin: 0 2rem 0.5rem 0;
+        padding: 0; // reset figure defaults
 
         img {
             width: 100%;
             border-radius: 4px;
+            display: block;
             margin: 0;
         }
 
         p {
             margin: 0;
+            line-height: 0; // remove any line-height space around img
         }
     }
 
-    .media-text {
-        flex: 1;
+    // Text aligns with top of image
+    > p {
+        margin: 0;
 
-        p {
-            margin: 0;
-
-            &:not(:first-child) {
-                margin-top: 1rem;
-            }
+        &:not(:first-of-type) {
+            margin-top: 1rem;
         }
     }
 
-    &.media-right {
-        flex-direction: row-reverse;
+    &.media-right .media-image {
+        float: right;
+        margin: 0 0 0.5rem 2rem;
     }
 }
 
 @media (max-width: 768px) {
     .media-block {
-        flex-direction: column;
-
         .media-image {
-            flex: none;
+            float: none;
             width: 100%;
+            max-width: none;
+            margin: 0 0 1.5rem 0;
         }
 
-        &.media-right {
-            flex-direction: column;
+        &.media-right .media-image {
+            margin: 0 0 1.5rem 0;
         }
     }
 }
