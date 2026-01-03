@@ -29,23 +29,26 @@ images/trabajos/casa-san-juan-cruz/9c-1024x577.jpg
 
 ## La intervención
 
-En el año 2020 se intervinieron las fachadas y la cubierta, pero el interior se encontraba en muy mal estado. En el año 2021 se inició el proyecto para rehabilitar el inmueble y convertirlo en la Casa Museo de San Juan de la Cruz en Caravaca. Los criterios aplicados fueron el máximo respeto al interior del edificio y sus valores históricos y culturales, y el empleo de técnicas y materiales de bajo impacto ambiental.
+{% media(align="left") %}
+![proyecto 1](https://github.com/user-attachments/assets/00746d3d-5b8e-4636-835e-b4b169fbcafe)
+
+En el año 2020 se intervinieron las fachadas y la cubierta, pero el interior se encontraba en muy mal estado. En el año 2021 se inició el proyecto para rehabilitar el inmueble y convertirlo en la Casa Museo de San Juan de la Cruz en Caravaca. Los criterios aplicados fueron el máximo respeto al interior del edificio y sus valores históricos y culturales, y el empleo de técnicas y materiales de bajo impacto ambiental. El programa establecido por la Fundación Conde Santa Ana de las Torres, propietaria del edificio, consistía en reproducir en planta baja los valores históricos y etnográficos del inmueble, generar salas expositivas en planta primera que acercasen la vida de San Juan de la Cruz y su relación con Caravaca al visitante, y una biblioteca y sala de meditación en la última planta. Para llevar esto a cabo, se edificó un volumen de nueva planta junto al patio para albergar ascensor, escalera de evacuación y aseos, de tal manera que el edificio histórico tuviese la mínima afección de nuevas instalaciones. 
+{% end %}
+
+{% media(align="right") %}
+![interior 1](https://github.com/user-attachments/assets/624159a2-8a33-43de-b1c3-6ef4c0628dda)
+
+De esta manera, en la planta baja se encuentra una pequeña oficina fuera del recorrido museístico y el resto del espacio recrea una vivienda humilde del siglo XVI. Para ello se proponía recuperar la chimenea y dotar en la estancia principal de un mobiliario acorde. En el habitáculo donde se guardaban los animales se dejó la mitad del suelo de tierra, sin pavimentar, tal y como había llegado hasta nuestros días. La escalera original sigue el modelo de vivienda humilde de la zona: ubicada en un lateral tras un tabique y realizada íntegramente en yeso, una terminación que se respetó en el proyecto, ya que una nueva escalera en el volumen adicional sería la que conduce a las plantas superiores.
+{% end %}
 
 {% media(align="left") %}
 ![Interior rehabilitado de la Casa Museo](/images/trabajos/casa-san-juan-cruz/sando-trabajo-san-juan-2.jpg)
 
-El resultado de la intervención muestra el cuidado puesto en preservar la esencia del edificio histórico, manteniendo los elementos originales como las vigas de madera y los acabados de cal tradicionales.
+En el muro que separa la primera de la segunda crujía se abrió un hueco y en el que separa la segunda de la tercera se aprovechó un antiguo hueco que había sido cegado de tal manera que pudiese garantizarse un recorrido claro y sin obstáculos para personas con movilidad reducida.
 
-La recuperación de los espacios interiores ha permitido crear un recorrido museístico que conecta al visitante con la vida cotidiana del siglo XVI, respetando la escala humilde del edificio original y su atmósfera de recogimiento espiritual.
+Una cuestión fundamental que se enfatizó en el proyecto fue el respeto a la fábrica original, con sus irregularidades y su geometría voluble, de modo que se evitasen los guardavivos y las aristas perfiladas. En definitva, se trataba de conservar la esencia del inmueble.
 
-De esta manera, en la planta baja se encuentra una pequeña oficina fuera del recorrido museístico y el resto del espacio recrea una vivienda humilde del siglo XVI. Para ello se proponía recuperar la chimenea y dotar en la estancia principal de un mobiliario acorde. En el habitáculo donde se guardaban los animales se dejó la mitad del suelo de tierra, sin pavimentar, tal y como había llegado hasta nuestros días.
 {% end %}
-
-El programa establecido por la Fundación Conde Santa Ana de las Torres, propietaria del edificio, consistía en reproducir en planta baja los valores históricos y etnográficos del inmueble, generar salas expositivas en planta primera que acercasen la vida de San Juan de la Cruz y su relación con Caravaca al visitante, y una biblioteca y sala de meditación en la última planta.
-
-Para llevar esto a cabo, se edificó un volumen de nueva planta junto al patio para albergar ascensor, escalera de evacuación y aseos, de tal manera que el edificio histórico tuviese la mínima afección de nuevas instalaciones. Dicho volumen se diseñó con una fachada blanca a base de mortero de cal de forma que resultase neutra en relación con el edificio histórico anexo y garantizase una lectura contemporánea que se diferenciase de la fachada anexa preexistente, al tiempo que se reproducía el alero de triple hilada de teja para lograr una integración adecuada.
-
-En el interior se proyectaron los forjados cuyas viguetas resultaban imposibles de aprovechar con rollizos y revoltón de yeso de la misma forma que durante siglos se han construido en la zona los forjados de este tipo de viviendas. Destaca el espacio en planta baja dedicado a cocina y sala de estar que reproduce la forma de vida de un inmueble humilde del siglo XVI.
 
 {% gallery(id="proyecto-futuro") %}
 images/trabajos/casa-san-juan-cruz/2-b-1024x701.jpg
