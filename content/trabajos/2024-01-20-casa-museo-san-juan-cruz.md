@@ -67,7 +67,6 @@ En cuanto al volumen de nueva planta, se proyectó con sencillez para que result
 
 {% gallery(id="proyecto-futuro") %}
 images/trabajos/casa-san-juan-cruz/2-b-1024x701.jpg
-![plantas](https://github.com/user-attachments/assets/24dade3a-baf5-429f-b826-f7ff38e9b132)
 images/trabajos/casa-san-juan-cruz/sando-trabajo-san-juan-2.jpg
 {% end %}
 
