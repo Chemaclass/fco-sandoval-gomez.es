@@ -16,7 +16,7 @@ Esta edificación de origen humilde se encuentra en la plaza del Templete de Car
 
 ## El edificio
 
-El inmueble se encuentra catalogado en el Plan General de Ordenación Urbana de Caravaca de la Cruz con grado 2: conservación estructural. En la ficha de catálogo se indica lo siguiente en observaciones: "casa donde vivió San Juan de la Cruz". Posee tres plantas y es un buen ejemplo de arquitectura residencial humilde que no ha sufrido cambios significativos desde el siglo XVIII: permanecen las carpinterías de madera de cuarterones y el único balcón en voladizo de madera que se conserva en Caravaca de la Cruz.
+El inmueble se encuentra catalogado en el Plan General de Ordenación Urbana de Caravaca de la Cruz con grado 2: conservación estructural. En la ficha de catálogo se indica lo siguiente en observaciones: "casa donde vivió San Juan de la Cruz". Posee tres plantas y es un buen ejemplo de arquitectura residencial humilde que no ha sufrido cambios significativos desde el siglo XVIII: permanecen las carpinterías de madera de cuarterones y el único balcón en voladizo de madera que se conserva en Caravaca de la Cruz. Las siguientes imágenes muestran el estado en el que se encontraba el interior del edificio en 2021:
 
 {% gallery(id="estado-interior") %}
 images/trabajos/casa-san-juan-cruz/1a-1024x577.jpg
@@ -69,7 +69,6 @@ En cuanto al volumen de nueva planta, se proyectó con sencillez para que result
 
 {% gallery(id="proyecto-futuro") %}
 images/trabajos/casa-san-juan-cruz/2-b-1024x701.jpg
-![plantas](https://github.com/user-attachments/assets/c43edb26-7094-4747-ad46-b07220938b1c)
 {% end %}
 
 ## Más información
