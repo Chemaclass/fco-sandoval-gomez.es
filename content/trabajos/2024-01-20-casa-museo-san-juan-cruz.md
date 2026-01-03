@@ -20,14 +20,8 @@ El inmueble se encuentra catalogado en el Plan General de Ordenación Urbana de 
 
 {% gallery(id="estado-interior") %}
 images/trabajos/casa-san-juan-cruz/1a-1024x577.jpg
-images/trabajos/casa-san-juan-cruz/1c-1024x577.jpg
-images/trabajos/casa-san-juan-cruz/2a-1024x577.jpg
 images/trabajos/casa-san-juan-cruz/4a-1024x577.jpg
-images/trabajos/casa-san-juan-cruz/4c-1024x577.jpg
 images/trabajos/casa-san-juan-cruz/5b-1024x577.jpg
-images/trabajos/casa-san-juan-cruz/5c-1024x577.jpg
-images/trabajos/casa-san-juan-cruz/5d-1024x577.jpg
-images/trabajos/casa-san-juan-cruz/9c-1024x577.jpg
 {% end %}
 
 ## La intervención
@@ -56,7 +50,14 @@ Una cuestión fundamental que se enfatizó en el proyecto fue el respeto a la f�
 
 {% end %}
 
-Por otra parte, las viguetas se encontraban tan deterioradas y con evidentes signos de pudrición que no resultaban aprovechables. Por ello, se proyectó un nuevo forjado de rollizos y revoltones de yeso, la técnica tradicional con la que se habían realizado tiempo atrás y que ha perdurado durante siglos en las viviendas humildes. Esto supuso un gran reto, ya que la empresa constructora no había ejecutado este sistema y recurrió en un principio a bovedillas de hormigón. Sin embargo, se asesoró a la dirección facultativa para que orientase la ejecución de los forjados de acuerdo con el proyecto y las técnicas tradicionales previstas. He de agradecer la ayuda del arquitecto técnico Pedro Antonio Robles, quien me compartió su experiencia con un sistema de encofrado a base de pvc reutilizado sobre el cual se vertía el yeso del entrevigado. De esta manera, no solo se pudieron realizar los forjados de acuerdo con las técnicas tradicionales, sino que también la constructora “re-aprendió” la forma de construir de antaño y que resulta mucho más sostenible.
+{% media(align="right") %}
+![IMG_20241026_120808](https://github.com/user-attachments/assets/d4b5bf4f-8677-4a91-b063-9a24d221e877)
+
+Por otra parte, las viguetas se encontraban tan deterioradas y con evidentes signos de pudrición que no resultaban aprovechables. Por ello, se proyectó un nuevo forjado de rollizos y revoltones de yeso, la técnica tradicional con la que se habían realizado tiempo atrás y que ha perdurado durante siglos en las viviendas humildes. Esto supuso un gran reto, ya que la empresa constructora no había ejecutado este sistema y recurrió en un principio a bovedillas de hormigón. Sin embargo, se asesoró a la dirección facultativa para que orientase la ejecución de los forjados de acuerdo con el proyecto y las técnicas tradicionales previstas. 
+
+{% end %}
+
+He de agradecer la ayuda del arquitecto técnico Pedro Antonio Robles, quien me compartió su experiencia con un sistema de encofrado a base de pvc reutilizado sobre el cual se vertía el yeso del entrevigado. De esta manera, no solo se pudieron realizar los forjados de acuerdo con las técnicas tradicionales, sino que también la constructora “re-aprendió” la forma de construir de antaño y que resulta mucho más sostenible.
 
 En la galería inferior se pueden observar tres imágenes: 1. Estado en el que estaban las viguetas / 2. Bovedillas de hormigón colocadas por la constructora / 3. Encofrado de pvc ya colocado tras retirar las bovedillas de hormigón / 4. Forjado con el yeso ya vertido, obsérvese al fondo los encofrados de pvc donde aún no se ha vertido el yeso. Todas las imágenes son de mi autoría. Puede apreciarse entre las fotos 2 y 3 la diferente curvatura de una y otra solución, es decir, con las bovedillas de hormigón hubiese resultado un forjado con mayor canto y, por ello, de mayor peso.
 
