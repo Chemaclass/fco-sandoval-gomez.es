@@ -73,4 +73,5 @@ images/trabajos/casa-san-juan-cruz/2-b-1024x701.jpg
 
 ## Más información
 
-- [Casa de San Juan de la Cruz de Caravaca](https://www.casasanjuandelacruzdecaravaca.com/) — Web oficial del proyecto de rehabilitación
+- [Presentación del proyecto](https://www.laopiniondemurcia.es/municipios/2024/04/04/casa-san-juan-cruz-convertira-caravaca-100630224.html/)
+- [Asociación de San Juan de la Cruz y Santa Teresa en Caravaca](https://www.casasanjuandelacruzdecaravaca.com/)
