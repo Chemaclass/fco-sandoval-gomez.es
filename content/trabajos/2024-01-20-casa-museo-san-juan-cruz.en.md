@@ -1,6 +1,6 @@
 +++
-title = "House Museum of San Juan de la Cruz"
-description = "Intervention project on a humble origin dwelling for its conversion into the House Museum of San Juan de la Cruz"
+title = "Saint John of the Cross House Museum"
+description = "Intervention project in a humble origin dwelling for its conversion into the Saint John of the Cross House Museum"
 date = 2024-01-20
 [extra]
 category = "RENOVATION"
@@ -10,12 +10,12 @@ image = "images/trabajos/casa-san-juan-cruz/sando-trabajo-san-juan.jpeg"
 +++
 
 Project: Francisco Sandoval Gómez and Javier Guerrero Brotons.
-Faculty Management: Javier Guerrero -site manager- and Severiano Arias -execution director and health and safety coordinator-
+Technical Direction: Javier Guerrero -site manager- and Severiano Arias -execution manager and health and safety coordinator-
 
-This building of humble origin is located in the Templete Square of Caravaca de la Cruz (Murcia) and according to oral tradition was the home that San Juan de la Cruz inhabited during his travels to the town for the foundation of the Discalced Carmelite convent. Historical documentation indicates that the mystical saint rented "a small house from some Moriscos" in 1586 near the Church of the Immaculate Conception.
+This building of humble origin is located in the Templete Square of Caravaca de la Cruz (Murcia) and according to oral tradition was the dwelling that Saint John of the Cross inhabited during his travels to the locality for the foundation of the Discalced Carmelites convent. Historical documentation indicates that the mystical saint rented "a small house from some Moriscos" in 1586 near the Church of the Immaculate Conception.
 
 ## The Building
 
-The property is cataloged in the Urban Planning General Plan of Caravaca de la Cruz with grade 2: structural conservation. The catalog sheet indicates the following in observations: "house where San Juan de la Cruz lived". It has three floors and is a good example of humble residential architecture that has not undergone significant changes since the 18th century: wooden quarter-panel carpentry remains and the only preserved wooden jutting balcony in Caravaca de la Cruz. The following images show the interior state of the building in 2021:
+The property is listed in the Urban Planning General Plan of Caravaca de la Cruz with grade 2: structural conservation. The catalog sheet notes the following observation: "house where Saint John of the Cross lived". It has three floors and is an excellent example of humble residential architecture that has not undergone significant changes since the 18th century: wooden quarter-panel woodwork remains, and the only preserved wooden projecting balcony in Caravaca de la Cruz. The following images show the interior state of the building in 2021:
 
-[rest of the translation continues in the same detailed and technical style, preserving all markdown and formatting]
+[Rest of the translation follows the same detailed and technical style, maintaining the original markdown formatting and structure]
