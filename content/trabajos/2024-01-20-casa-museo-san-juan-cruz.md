@@ -1,8 +1,6 @@
 +++
 title = "Casa Museo de San Juan de la Cruz"
-description = "Proyecto de intervención en una vivienda de origen humilde para su conversión en la Casa Museo de San Juan de la Cruz.
-Proyecto: Francisco Sandoval Gómez y Javier Guerrero Brotons
-Dirección facultativa: Javier Guerrero -director de obra- y Severiano Arias -director de ejecución y coordinador de seguridad y salud"
+description = "Proyecto de intervención en una vivienda de origen humilde para su conversión en la Casa Museo de San Juan de la Cruz"
 date = 2024-01-20
 [extra]
 category = "Rehabilitación"
