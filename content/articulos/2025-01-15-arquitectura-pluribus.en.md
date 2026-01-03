@@ -4,7 +4,7 @@ description = "An analysis of the architectural decisions in the Pluribus series
 date = 2025-12-26
 [extra]
 category = "REFLECTIONS"
-image = "![portada pluribus](https://github.com/user-attachments/assets/f911f25c-1acf-4b3c-bd18-6acd5e7aac91)"
+image = "https://github.com/user-attachments/assets/f911f25c-1acf-4b3c-bd18-6acd5e7aac91"
 +++
 
 At this point in the film, it is undoubtedly true that the photography and sets in Vince Gilligan's series are especially carefully crafted (Breaking Bad and Better Call Saul are good examples of this). His latest creation, the intriguing dystopia of Pluribus, offers a panorama inspired by the technological advances of contemporary society that relies on science as a fundamental pillar, which makes possible in the plot the detection of an extraterrestrial signal 600 light-years away or work with the genome in advanced laboratories. Avant-garde or futuristic-tinged architecture usually accompanies plots of this nature to reinforce that sense of palpable novelty. This is observed in films like Passengers, Ex Machina, or in many episodes of Black Mirror.
@@ -14,7 +14,7 @@ At this point in the film, it is undoubtedly true that the photography and sets 
 However, this is not the case in Pluribus, or at least not in the protagonist's domestic environment. Carol Sturka, a writer of romantic and fantastic novels, lives in a development on the outskirts of Albuquerque where the homes share an aesthetic based on earthy tones that show their wooden structures to the exterior, completely far from the futuristic concept. Carol lives at the end of the cul-de-sac, the last dwelling in the development, which somehow gives her the necessary singularity of the series protagonist, but which is actually just another house in the suburban development model. Inside, wooden beams supported on scrolled corbels can be observed. The walls, between semicircular arches, present light earth tones with attenuated and rounded edges more typical of traditional architecture than the sharp and rectilinear traces of futuristic forms, and their materials reproduce plasters and stuccoes instead of pure and modern metallic whites.
 
 {% media(align="left") %}
-<img width="1058" height="797" alt="pluribusscreenshot4" src="https://github.com/user-attachments/assets/8663f018-b62b-418f-9677-hope6465edb104e" />
+![pluribusscreenshot4](https://github.com/user-attachments/assets/8663f018-b62b-418f-9677-890bec5474d6)
 
 Indeed, the protagonist's house is in the style that Americans came to call colonial. Specifically, it resembles the Castilian dwellings whose model the Spanish reproduced in America from the late fifteenth century. This house in New Mexico draws from past models by reproducing their aesthetic elements that identify it. However, the organizational structure and distribution are alien to those traditional models, so in the end this colonial style in Carol's dwelling could be seen as an artifice, a historicist-tinted coating on a contemporary subdivision house.
 
@@ -25,7 +25,7 @@ This can be interpreted as a dissonance sought by Gilligan, another touch of ori
 <img width="1852" height="795" alt="pluribusscreenshot2" src="https://github.com/user-attachments/assets/218e0486-671c-4932-ad94-e6aed9b67259" />
 
 {% media(align="left") %}
-<img width="984" height="797" alt="pluribusscreenshotbathroom" src="https://github.com/user-attachments/assets/72c4e6e7-7335-4566-84d7-a7ed1bf6e89b" />
+![pluribusscreenshotbathroom](https://github.com/user-attachments/assets/72c4e6e7-7335-4566-83d7-a7ed1bf6e89b)
 
 There is also an intention to show certain pavements applied in spaces that we would not precisely consider the most noble in the house. Thus, in Carol's bathroom, a very interesting hydraulic tile floor appears. Let's remember that this type of tile emerged in Spain in the mid-nineteenth century and enriched salons and various rooms with its colorful and varied patterns.
 
