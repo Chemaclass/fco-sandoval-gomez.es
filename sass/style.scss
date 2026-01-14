@@ -2642,10 +2642,17 @@ blockquote {
         }
     }
 
-    // Mobile search
+    // Mobile header icons - uniform spacing
     .search-container {
         margin-left: auto;
-        margin-right: 0.5rem;
+    }
+
+    .theme-toggle {
+        margin-left: 0.75rem;
+    }
+
+    .menu-toggle {
+        margin-left: 0.75rem;
     }
 
     .search-box {

@@ -76,6 +76,8 @@
             this.classList.toggle('active');
             const expanded = mainNav.classList.contains('active');
             this.setAttribute('aria-expanded', expanded);
+            // Prevent body scroll when menu is open
+            document.body.style.overflow = expanded ? 'hidden' : '';
         });
 
         // Close menu when clicking outside
@@ -86,6 +88,7 @@
                 mainNav.classList.remove('active');
                 menuToggle.classList.remove('active');
                 menuToggle.setAttribute('aria-expanded', 'false');
+                document.body.style.overflow = '';
             }
         });
 
