@@ -55,6 +55,10 @@
                     <span>{% if lang == 'en' %}Switch language{% elif lang == 'it' %}Cambia lingua{% else %}Cambiar idioma{% endif %}</span>
                 </div>
                 <div class="shortcut-item">
+                    <kbd>J</kbd> / <kbd>K</kbd>
+                    <span>{% if lang == 'en' %}Next / Previous post{% elif lang == 'it' %}Post successivo / precedente{% else %}Post siguiente / anterior{% endif %}</span>
+                </div>
+                <div class="shortcut-item">
                     <kbd>?</kbd>
                     <span>{% if lang == 'en' %}Show help{% elif lang == 'it' %}Mostra aiuto{% else %}Mostrar ayuda{% endif %}</span>
                 </div>
@@ -257,8 +261,27 @@
                     switchLanguage();
                     e.preventDefault();
                     break;
+                case 'j':
+                case 'J':
+                    navigatePost('next');
+                    e.preventDefault();
+                    break;
+                case 'k':
+                case 'K':
+                    navigatePost('prev');
+                    e.preventDefault();
+                    break;
             }
         });
+
+        // Post navigation shortcuts
+        function navigatePost(direction) {
+            const selector = direction === 'next' ? '.nav-next' : '.nav-prev';
+            const link = document.querySelector('.post-navigation ' + selector);
+            if (link) {
+                window.location.href = link.href;
+            }
+        }
 
         // Language switcher: cycle through ES → EN → IT → ES
         function switchLanguage() {
