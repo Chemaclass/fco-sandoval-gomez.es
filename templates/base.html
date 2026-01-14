@@ -32,6 +32,32 @@
         <button class="lightbox-next" onclick="navigateLightbox(event, 1)" aria-label="{% if lang == 'en' %}Next{% elif lang == 'it' %}Successivo{% else %}Siguiente{% endif %}">&#10095;</button>
     </div>
 
+    <!-- Help Modal -->
+    <div id="help-modal" class="help-modal" onclick="closeHelpModal(event)">
+        <div class="help-modal-content" onclick="event.stopPropagation()">
+            <button class="help-modal-close" onclick="closeHelpModal(event)" aria-label="{% if lang == 'en' %}Close{% elif lang == 'it' %}Chiudi{% else %}Cerrar{% endif %}">&times;</button>
+            <h2>{% if lang == 'en' %}Keyboard Shortcuts{% elif lang == 'it' %}Scorciatoie da Tastiera{% else %}Atajos de Teclado{% endif %}</h2>
+            <div class="shortcuts-list">
+                <div class="shortcut-item">
+                    <kbd>H</kbd>
+                    <span>{% if lang == 'en' %}Home{% elif lang == 'it' %}Home{% else %}Inicio{% endif %}</span>
+                </div>
+                <div class="shortcut-item">
+                    <kbd>S</kbd> / <kbd>/</kbd>
+                    <span>{% if lang == 'en' %}Search{% elif lang == 'it' %}Cerca{% else %}Buscar{% endif %}</span>
+                </div>
+                <div class="shortcut-item">
+                    <kbd>?</kbd>
+                    <span>{% if lang == 'en' %}Show help{% elif lang == 'it' %}Mostra aiuto{% else %}Mostrar ayuda{% endif %}</span>
+                </div>
+                <div class="shortcut-item">
+                    <kbd>Esc</kbd>
+                    <span>{% if lang == 'en' %}Close{% elif lang == 'it' %}Chiudi{% else %}Cerrar{% endif %}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         const menuToggle = document.querySelector('.menu-toggle');
         const mainNav = document.querySelector('.main-nav');
@@ -112,7 +138,7 @@
         // Initialize lightbox for article images
         initArticleLightbox();
 
-        // Keyboard navigation
+        // Keyboard navigation for lightbox
         document.addEventListener('keydown', function(e) {
             const lightbox = document.getElementById('lightbox');
             if (!lightbox.classList.contains('active')) return;
@@ -124,6 +150,80 @@
                 navigateLightbox(e, -1);
             } else if (e.key === 'ArrowRight') {
                 navigateLightbox(e, 1);
+            }
+        });
+
+        // Help modal functions
+        function openHelpModal() {
+            document.getElementById('help-modal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeHelpModal(event) {
+            if (!event || event.target.classList.contains('help-modal') ||
+                event.target.classList.contains('help-modal-close')) {
+                document.getElementById('help-modal').classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+
+        // Get home URL based on current language
+        function getHomeUrl() {
+            const path = window.location.pathname;
+            if (path.startsWith('/en/') || path === '/en') return '/en/';
+            if (path.startsWith('/it/') || path === '/it') return '/it/';
+            return '/';
+        }
+
+        // Global keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            // Ignore if typing in input/textarea
+            if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.isContentEditable) return;
+
+            // Ignore if modifier keys are pressed
+            if (e.metaKey || e.ctrlKey || e.altKey) return;
+
+            // Check if any modal is open
+            const lightbox = document.getElementById('lightbox');
+            const helpModal = document.getElementById('help-modal');
+            const searchBox = document.querySelector('.search-box');
+            const isSearchOpen = searchBox && searchBox.classList.contains('active');
+
+            // If lightbox is open, let its handler deal with it
+            if (lightbox.classList.contains('active')) return;
+
+            // Handle help modal
+            if (helpModal.classList.contains('active')) {
+                if (e.key === 'Escape') {
+                    closeHelpModal();
+                    e.preventDefault();
+                }
+                return;
+            }
+
+            // Handle search being open
+            if (isSearchOpen) return;
+
+            // Global shortcuts
+            switch (e.key) {
+                case '?':
+                    openHelpModal();
+                    e.preventDefault();
+                    break;
+                case 'h':
+                case 'H':
+                    window.location.href = getHomeUrl();
+                    e.preventDefault();
+                    break;
+                case 's':
+                case 'S':
+                case '/':
+                    const searchToggle = document.querySelector('.search-toggle');
+                    if (searchToggle) {
+                        searchToggle.click();
+                        e.preventDefault();
+                    }
+                    break;
             }
         });
 

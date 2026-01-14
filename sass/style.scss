@@ -2047,6 +2047,88 @@ blockquote {
     }
 }
 
+// Help Modal
+.help-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+
+    &.active {
+        display: flex;
+    }
+
+    .help-modal-content {
+        background: $color-bg-light;
+        border-radius: 8px;
+        padding: 2rem;
+        max-width: 400px;
+        width: 90%;
+        position: relative;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+
+        h2 {
+            margin: 0 0 1.5rem 0;
+            font-size: 1.25rem;
+            color: $color-primary;
+            text-align: center;
+        }
+    }
+
+    .help-modal-close {
+        position: absolute;
+        top: 0.5rem;
+        right: 0.75rem;
+        background: none;
+        border: none;
+        font-size: 1.75rem;
+        cursor: pointer;
+        color: $color-text;
+        opacity: 0.6;
+        transition: opacity 0.2s;
+        line-height: 1;
+
+        &:hover {
+            opacity: 1;
+        }
+    }
+
+    .shortcuts-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .shortcut-item {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+
+        kbd {
+            display: inline-block;
+            min-width: 2rem;
+            padding: 0.25rem 0.5rem;
+            font-family: monospace;
+            font-size: 0.85rem;
+            background: white;
+            border: 1px solid $color-border;
+            border-radius: 4px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        span {
+            color: $color-text;
+        }
+    }
+}
+
 // External Links
 .external-link {
     &::after {
