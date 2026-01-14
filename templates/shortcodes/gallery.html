@@ -10,6 +10,7 @@
                 src="{{ get_url(path=img_path | trim) }}"
                 alt=""
                 loading="lazy"
+                decoding="async"
                 onclick="openLightbox('{{ gallery_id }}', {{ loop.index0 }})"
             >
         </figure>

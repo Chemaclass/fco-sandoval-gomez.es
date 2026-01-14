@@ -293,6 +293,12 @@
                 }
             }
         });
+
+        // Optimize images in article content (markdown images)
+        document.querySelectorAll('.prose img').forEach(function(img) {
+            if (!img.hasAttribute('loading')) img.loading = 'lazy';
+            if (!img.hasAttribute('decoding')) img.decoding = 'async';
+        });
     </script>
 </body>
 </html>

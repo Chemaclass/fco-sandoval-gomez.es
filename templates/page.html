@@ -8,9 +8,9 @@
     {% if page.extra.image %}
     <div class="article-hero">
         {% if page.extra.image is starting_with("http") %}
-        <img src="{{ page.extra.image }}" alt="{{ page.title }}" loading="eager">
+        <img src="{{ page.extra.image }}" alt="{{ page.title }}" loading="eager" decoding="async">
         {% else %}
-        <img src="{{ get_url(path=page.extra.image) }}" alt="{{ page.title }}" loading="eager">
+        <img src="{{ get_url(path=page.extra.image) }}" alt="{{ page.title }}" loading="eager" decoding="async">
         {% endif %}
     </div>
     {% endif %}
@@ -65,7 +65,7 @@
         <div class="article-gallery">
             {% for image in page.extra.gallery %}
             <figure>
-                <img src="{{ get_url(path=image.src) }}" alt="{{ image.alt | default(value='') }}" loading="lazy">
+                <img src="{{ get_url(path=image.src) }}" alt="{{ image.alt | default(value='') }}" loading="lazy" decoding="async">
                 {% if image.caption %}
                 <figcaption>{{ image.caption }}</figcaption>
                 {% endif %}

@@ -6,6 +6,11 @@
 {# Favicon #}
 <link rel="icon" type="image/x-icon" href="{{ get_url(path='images/sando-navbar.ico') }}">
 
+{# Preconnect to external image hosts for faster loading #}
+<link rel="preconnect" href="https://github.com" crossorigin>
+<link rel="preconnect" href="https://user-images.githubusercontent.com" crossorigin>
+<link rel="preconnect" href="https://raw.githubusercontent.com" crossorigin>
+
 {# SEO Meta Tags #}
 <meta name="description" content="{{ description | default(value=config.description) }}">
 <meta name="author" content="{{ config.extra.author }}">
