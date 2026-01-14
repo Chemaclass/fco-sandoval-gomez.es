@@ -51,6 +51,10 @@
                     <span>{% if lang == 'en' %}Toggle dark mode{% elif lang == 'it' %}Attiva/disattiva tema scuro{% else %}Alternar modo oscuro{% endif %}</span>
                 </div>
                 <div class="shortcut-item">
+                    <kbd>L</kbd>
+                    <span>{% if lang == 'en' %}Switch language{% elif lang == 'it' %}Cambia lingua{% else %}Cambiar idioma{% endif %}</span>
+                </div>
+                <div class="shortcut-item">
                     <kbd>?</kbd>
                     <span>{% if lang == 'en' %}Show help{% elif lang == 'it' %}Mostra aiuto{% else %}Mostrar ayuda{% endif %}</span>
                 </div>
@@ -245,8 +249,27 @@
                     toggleTheme();
                     e.preventDefault();
                     break;
+                case 'l':
+                case 'L':
+                    switchLanguage();
+                    e.preventDefault();
+                    break;
             }
         });
+
+        // Language switcher: cycle through ES → EN → IT → ES
+        function switchLanguage() {
+            const path = window.location.pathname;
+            const basePath = path.replace(/^\/(en|it)\//, '/').replace(/^\/(en|it)$/, '/');
+
+            if (path.startsWith('/en/') || path === '/en') {
+                window.location.href = '/it' + basePath;
+            } else if (path.startsWith('/it/') || path === '/it') {
+                window.location.href = basePath;
+            } else {
+                window.location.href = '/en' + basePath;
+            }
+        }
 
         // External links: open in new tab with icon
         document.querySelectorAll('a[href^="http"]').forEach(function(link) {
