@@ -24,7 +24,7 @@ Este sitio web utiliza los siguientes servicios de terceros:
 ### Datos que NO recopilamos
 
 - No utilizamos formularios de contacto ni recopilamos datos personales directamente
-- No utilizamos Google Analytics ni otros servicios de seguimiento
+- No utilizamos Google Analytics ni servicios de seguimiento con fines publicitarios
 - No vendemos ni compartimos datos con terceros
 
 ## Uso de cookies
@@ -35,6 +35,3 @@ Este sitio web puede utilizar cookies técnicas necesarias para su funcionamient
 
 Dado que este sitio web no recopila datos personales directamente, no hay información que gestionar. Para los datos recopilados por servicios de terceros (Cronitor, YouTube), consulta sus respectivas políticas de privacidad. Si lo deseas, puedes bloquear estos servicios mediante extensiones de navegador.
 
----
-
-*Última actualización: Diciembre de 2025*

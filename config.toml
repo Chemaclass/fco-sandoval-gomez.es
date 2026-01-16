@@ -28,9 +28,8 @@ paths = "on"
 taxonomies = "on"
 anchors = "on"
 
-[markdown]
-highlight_code = true
-highlight_theme = "css"
+[markdown.highlighting]
+theme = "github-dark"
 
 # Multilingual configuration
 [languages.en]

@@ -136,6 +136,43 @@ img {
     display: block;
 }
 
+// Image Skeleton Loading
+@keyframes skeleton-pulse {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+.img-skeleton {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(
+        90deg,
+        var(--color-bg-light) 0%,
+        var(--color-border) 50%,
+        var(--color-bg-light) 100%
+    );
+    background-size: 200% 100%;
+    animation: skeleton-pulse 1.5s ease-in-out infinite;
+
+    img {
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    &.loaded {
+        animation: none;
+        background: transparent;
+
+        img {
+            opacity: 1;
+        }
+    }
+}
+
 a {
     color: inherit;
     text-decoration: none;
@@ -1897,17 +1934,25 @@ blockquote {
 
     figure {
         margin: 0;
+    }
+
+    &__img {
+        aspect-ratio: 16/10;
+        overflow: hidden;
+        border-radius: 4px;
 
         img {
-            border-radius: 4px;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
+    }
 
-        figcaption {
-            margin-top: 0.5rem;
-            font-size: 0.85rem;
-            color: var(--color-text-light);
-            text-align: center;
-        }
+    figcaption {
+        margin-top: 0.5rem;
+        font-size: 0.85rem;
+        color: var(--color-text-light);
+        text-align: center;
     }
 }
 
@@ -1968,9 +2013,12 @@ blockquote {
         max-width: 400px;
         margin: 0 2rem 0.5rem 0;
         padding: 0; // reset figure defaults
+        aspect-ratio: 4/3;
 
         img {
             width: 100%;
+            height: 100%;
+            object-fit: cover;
             border-radius: 4px;
             display: block;
             margin: 0;
@@ -1979,6 +2027,11 @@ blockquote {
         p {
             margin: 0;
             line-height: 0; // remove any line-height space around img
+
+            img {
+                height: auto;
+                object-fit: contain;
+            }
         }
     }
 

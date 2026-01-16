@@ -5,13 +5,14 @@
     <div class="gallery-grid">
         {% for img_path in image_list %}
         {% if img_path | trim != "" %}
-        <figure class="gallery-item" data-index="{{ loop.index0 }}">
+        <figure class="gallery-item img-skeleton" data-index="{{ loop.index0 }}">
             <img
                 src="{{ get_url(path=img_path | trim) }}"
                 alt=""
                 loading="lazy"
                 decoding="async"
                 onclick="openLightbox('{{ gallery_id }}', {{ loop.index0 }})"
+                onload="this.parentElement.classList.add('loaded')"
             >
         </figure>
         {% endif %}

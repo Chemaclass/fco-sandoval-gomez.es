@@ -24,7 +24,7 @@ Questo sito web utilizza i seguenti servizi di terze parti:
 ### Dati che NON raccogliamo
 
 - Non utilizziamo moduli di contatto né raccogliamo dati personali direttamente
-- Non utilizziamo Google Analytics o altri servizi di tracciamento
+- Non utilizziamo Google Analytics o servizi di tracciamento pubblicitario
 - Non vendiamo né condividiamo dati con terze parti
 
 ## Uso dei cookie
@@ -35,6 +35,3 @@ Questo sito web può utilizzare cookie tecnici necessari per il suo funzionament
 
 Poiché questo sito web non raccoglie dati personali direttamente, non ci sono informazioni da gestire. Per i dati raccolti da servizi di terze parti (Cronitor, YouTube), consulta le rispettive informative sulla privacy. Se lo desideri, puoi bloccare questi servizi tramite estensioni del browser.
 
----
-
-*Ultimo aggiornamento: Dicembre 2025*

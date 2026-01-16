@@ -322,6 +322,27 @@
             if (!img.hasAttribute('loading')) img.loading = 'lazy';
             if (!img.hasAttribute('decoding')) img.decoding = 'async';
         });
+
+        // Image skeleton loading: handle cached images and dynamically loaded content
+        function initImageSkeletons() {
+            document.querySelectorAll('.img-skeleton').forEach(function(skeleton) {
+                const img = skeleton.querySelector('img');
+                if (img) {
+                    // If image is already loaded (cached), mark as loaded immediately
+                    if (img.complete && img.naturalHeight !== 0) {
+                        skeleton.classList.add('loaded');
+                    } else {
+                        // Add onload handler
+                        img.addEventListener('load', function() {
+                            skeleton.classList.add('loaded');
+                        });
+                    }
+                }
+            });
+        }
+
+        // Run on DOM ready
+        initImageSkeletons();
     </script>
 </body>
 </html>

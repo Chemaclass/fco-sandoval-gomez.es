@@ -5,11 +5,11 @@
 <article class="post-card">
     <a href="{{ post.permalink }}">
         {% if post.extra.image %}
-        <div class="post-image">
+        <div class="post-image img-skeleton">
             {% if post.extra.image is starting_with("http") %}
-            <img src="{{ post.extra.image }}" alt="{{ post.title }}" loading="lazy">
+            <img src="{{ post.extra.image }}" alt="{{ post.title }}" loading="lazy" onload="this.parentElement.classList.add('loaded')">
             {% else %}
-            <img src="{{ get_url(path=post.extra.image) }}" alt="{{ post.title }}" loading="lazy">
+            <img src="{{ get_url(path=post.extra.image) }}" alt="{{ post.title }}" loading="lazy" onload="this.parentElement.classList.add('loaded')">
             {% endif %}
         </div>
         {% endif %}
@@ -36,11 +36,11 @@
 <article class="post-card post-card--horizontal">
     <a href="{{ post.permalink }}">
         {% if post.extra.image %}
-        <div class="post-image">
+        <div class="post-image img-skeleton">
             {% if post.extra.image is starting_with("http") %}
-            <img src="{{ post.extra.image }}" alt="{{ post.title }}" loading="lazy">
+            <img src="{{ post.extra.image }}" alt="{{ post.title }}" loading="lazy" onload="this.parentElement.classList.add('loaded')">
             {% else %}
-            <img src="{{ get_url(path=post.extra.image) }}" alt="{{ post.title }}" loading="lazy">
+            <img src="{{ get_url(path=post.extra.image) }}" alt="{{ post.title }}" loading="lazy" onload="this.parentElement.classList.add('loaded')">
             {% endif %}
         </div>
         {% endif %}
@@ -67,11 +67,11 @@
 <article class="article-featured">
     <a href="{{ article.permalink }}">
         {% if article.extra.image %}
-        <div class="article-featured__image">
+        <div class="article-featured__image img-skeleton">
             {% if article.extra.image is starting_with("http") %}
-            <img src="{{ article.extra.image }}" alt="{{ article.title }}" loading="lazy">
+            <img src="{{ article.extra.image }}" alt="{{ article.title }}" loading="lazy" onload="this.parentElement.classList.add('loaded')">
             {% else %}
-            <img src="{{ get_url(path=article.extra.image) }}" alt="{{ article.title }}" loading="lazy">
+            <img src="{{ get_url(path=article.extra.image) }}" alt="{{ article.title }}" loading="lazy" onload="this.parentElement.classList.add('loaded')">
             {% endif %}
         </div>
         {% endif %}
@@ -96,11 +96,11 @@
 <article class="article-card">
     <a href="{{ article.permalink }}">
         {% if article.extra.image %}
-        <div class="article-card__image">
+        <div class="article-card__image img-skeleton">
             {% if article.extra.image is starting_with("http") %}
-            <img src="{{ article.extra.image }}" alt="{{ article.title }}" loading="lazy">
+            <img src="{{ article.extra.image }}" alt="{{ article.title }}" loading="lazy" onload="this.parentElement.classList.add('loaded')">
             {% else %}
-            <img src="{{ get_url(path=article.extra.image) }}" alt="{{ article.title }}" loading="lazy">
+            <img src="{{ get_url(path=article.extra.image) }}" alt="{{ article.title }}" loading="lazy" onload="this.parentElement.classList.add('loaded')">
             {% endif %}
         </div>
         {% endif %}
@@ -125,11 +125,11 @@
 <article class="trabajo-card">
     <a href="{{ trabajo.permalink }}">
         {% if trabajo.extra.image %}
-        <div class="trabajo-card__image">
+        <div class="trabajo-card__image img-skeleton">
             {% if trabajo.extra.image is starting_with("http") %}
-            <img src="{{ trabajo.extra.image }}" alt="{{ trabajo.title }}" loading="lazy">
+            <img src="{{ trabajo.extra.image }}" alt="{{ trabajo.title }}" loading="lazy" onload="this.parentElement.classList.add('loaded')">
             {% else %}
-            <img src="{{ get_url(path=trabajo.extra.image) }}" alt="{{ trabajo.title }}" loading="lazy">
+            <img src="{{ get_url(path=trabajo.extra.image) }}" alt="{{ trabajo.title }}" loading="lazy" onload="this.parentElement.classList.add('loaded')">
             {% endif %}
         </div>
         {% endif %}
@@ -216,11 +216,11 @@
 <article class="post-card">
     <a href="{{ item.permalink }}">
         {% if item.extra.image %}
-        <div class="post-image">
+        <div class="post-image img-skeleton">
             {% if item.extra.image is starting_with("http") %}
-            <img src="{{ item.extra.image }}" alt="{{ item.title }}" loading="lazy">
+            <img src="{{ item.extra.image }}" alt="{{ item.title }}" loading="lazy" onload="this.parentElement.classList.add('loaded')">
             {% else %}
-            <img src="{{ get_url(path=item.extra.image) }}" alt="{{ item.title }}" loading="lazy">
+            <img src="{{ get_url(path=item.extra.image) }}" alt="{{ item.title }}" loading="lazy" onload="this.parentElement.classList.add('loaded')">
             {% endif %}
         </div>
         {% endif %}
