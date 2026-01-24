@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% import "macros/dates.html" as dates %}
+{% import "macros/images.html" as images %}
 
 {% block title %}{{ page.title }} | Francisco Sandoval Gómez{% endblock %}
 
@@ -7,11 +8,7 @@
 <article class="article-page">
     {% if page.extra.image %}
     <div class="article-hero img-skeleton">
-        {% if page.extra.image is starting_with("http") %}
-        <img src="{{ page.extra.image }}" alt="{{ page.title }}" loading="eager" decoding="async" fetchpriority="high" onload="this.parentElement.classList.add('loaded')">
-        {% else %}
-        <img src="{{ get_url(path=page.extra.image) }}" alt="{{ page.title }}" loading="eager" decoding="async" fetchpriority="high" onload="this.parentElement.classList.add('loaded')">
-        {% endif %}
+        {{ images::hero_image(url=page.extra.image, alt=page.title) }}
     </div>
     {% endif %}
 
@@ -66,7 +63,7 @@
             {% for image in page.extra.gallery %}
             <figure>
                 <div class="article-gallery__img img-skeleton">
-                    <img src="{{ get_url(path=image.src) }}" alt="{{ image.alt | default(value='') }}" loading="lazy" decoding="async" onload="this.parentElement.classList.add('loaded')">
+                    {{ images::gallery_image(url=image.src, alt=image.alt | default(value='')) }}
                 </div>
                 {% if image.caption %}
                 <figcaption>{{ image.caption }}</figcaption>

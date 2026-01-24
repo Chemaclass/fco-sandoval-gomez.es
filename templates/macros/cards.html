@@ -1,4 +1,5 @@
 {% import "macros/dates.html" as dates %}
+{% import "macros/images.html" as images %}
 
 {# Blog post card - used in grids on homepage #}
 {% macro post_card(post) %}
@@ -6,11 +7,7 @@
     <a href="{{ post.permalink }}">
         {% if post.extra.image %}
         <div class="post-image img-skeleton">
-            {% if post.extra.image is starting_with("http") %}
-            <img src="{{ post.extra.image }}" alt="{{ post.title }}" loading="lazy" decoding="async" onload="this.parentElement.classList.add('loaded')">
-            {% else %}
-            <img src="{{ get_url(path=post.extra.image) }}" alt="{{ post.title }}" loading="lazy" decoding="async" onload="this.parentElement.classList.add('loaded')">
-            {% endif %}
+            {{ images::card_image(url=post.extra.image, alt=post.title) }}
         </div>
         {% endif %}
         <div class="post-content">
@@ -37,11 +34,7 @@
     <a href="{{ post.permalink }}">
         {% if post.extra.image %}
         <div class="post-image img-skeleton">
-            {% if post.extra.image is starting_with("http") %}
-            <img src="{{ post.extra.image }}" alt="{{ post.title }}" loading="lazy" decoding="async" onload="this.parentElement.classList.add('loaded')">
-            {% else %}
-            <img src="{{ get_url(path=post.extra.image) }}" alt="{{ post.title }}" loading="lazy" decoding="async" onload="this.parentElement.classList.add('loaded')">
-            {% endif %}
+            {{ images::card_image(url=post.extra.image, alt=post.title) }}
         </div>
         {% endif %}
         <div class="post-content">
@@ -68,11 +61,7 @@
     <a href="{{ article.permalink }}">
         {% if article.extra.image %}
         <div class="article-featured__image img-skeleton">
-            {% if article.extra.image is starting_with("http") %}
-            <img src="{{ article.extra.image }}" alt="{{ article.title }}" loading="lazy" decoding="async" onload="this.parentElement.classList.add('loaded')">
-            {% else %}
-            <img src="{{ get_url(path=article.extra.image) }}" alt="{{ article.title }}" loading="lazy" decoding="async" onload="this.parentElement.classList.add('loaded')">
-            {% endif %}
+            {{ images::card_image(url=article.extra.image, alt=article.title, sizes="(max-width: 1024px) 100vw, 60vw") }}
         </div>
         {% endif %}
         <div class="article-featured__content">
@@ -97,11 +86,7 @@
     <a href="{{ article.permalink }}">
         {% if article.extra.image %}
         <div class="article-card__image img-skeleton">
-            {% if article.extra.image is starting_with("http") %}
-            <img src="{{ article.extra.image }}" alt="{{ article.title }}" loading="lazy" decoding="async" onload="this.parentElement.classList.add('loaded')">
-            {% else %}
-            <img src="{{ get_url(path=article.extra.image) }}" alt="{{ article.title }}" loading="lazy" decoding="async" onload="this.parentElement.classList.add('loaded')">
-            {% endif %}
+            {{ images::card_image(url=article.extra.image, alt=article.title) }}
         </div>
         {% endif %}
         <div class="article-card__content">
@@ -126,11 +111,7 @@
     <a href="{{ trabajo.permalink }}">
         {% if trabajo.extra.image %}
         <div class="trabajo-card__image img-skeleton">
-            {% if trabajo.extra.image is starting_with("http") %}
-            <img src="{{ trabajo.extra.image }}" alt="{{ trabajo.title }}" loading="lazy" decoding="async" onload="this.parentElement.classList.add('loaded')">
-            {% else %}
-            <img src="{{ get_url(path=trabajo.extra.image) }}" alt="{{ trabajo.title }}" loading="lazy" decoding="async" onload="this.parentElement.classList.add('loaded')">
-            {% endif %}
+            {{ images::card_image(url=trabajo.extra.image, alt=trabajo.title) }}
         </div>
         {% endif %}
         <div class="trabajo-card__content">
@@ -218,11 +199,7 @@
     <a href="{{ item.permalink }}">
         {% if item.extra.image %}
         <div class="post-image img-skeleton">
-            {% if item.extra.image is starting_with("http") %}
-            <img src="{{ item.extra.image }}" alt="{{ item.title }}" loading="lazy" decoding="async" onload="this.parentElement.classList.add('loaded')">
-            {% else %}
-            <img src="{{ get_url(path=item.extra.image) }}" alt="{{ item.title }}" loading="lazy" decoding="async" onload="this.parentElement.classList.add('loaded')">
-            {% endif %}
+            {{ images::card_image(url=item.extra.image, alt=item.title) }}
         </div>
         {% endif %}
         <div class="post-content">
