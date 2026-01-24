@@ -10,6 +10,12 @@
 <link rel="preconnect" href="https://github.com" crossorigin>
 <link rel="preconnect" href="https://user-images.githubusercontent.com" crossorigin>
 <link rel="preconnect" href="https://raw.githubusercontent.com" crossorigin>
+<link rel="dns-prefetch" href="https://rum.cronitor.io">
+<link rel="dns-prefetch" href="https://www.youtube.com">
+
+{# Preload critical fonts for faster text rendering #}
+<link rel="preload" href="{{ get_url(path='fonts/inter-v20-latin-regular.woff2') }}" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="{{ get_url(path='fonts/libre-baskerville-v24-latin-regular.woff2') }}" as="font" type="font/woff2" crossorigin>
 
 {# SEO Meta Tags #}
 <meta name="description" content="{{ description | default(value=config.description) }}">
@@ -83,13 +89,14 @@
 
 {# JSON-LD Structured Data #}
 {% if page %}
+{# Article Schema #}
 <script type="application/ld+json">
 {
     "@context": "https://schema.org",
     "@type": "Article",
     "headline": "{{ page.title }}",
     "description": "{{ page.description | default(value='') }}",
-    {% if page.extra.image %}"image": "{{ get_url(path=page.extra.image) }}",{% endif %}
+    {% if page.extra.image %}"image": "{% if page.extra.image is starting_with('http') %}{{ page.extra.image }}{% else %}{{ get_url(path=page.extra.image) }}{% endif %}",{% endif %}
     "author": {
         "@type": "Person",
         "name": "{{ config.extra.author }}",
@@ -107,6 +114,39 @@
     }
 }
 </script>
+{# Breadcrumb Schema for better SERP appearance #}
+{% set ancestors = page.ancestors | default(value=[]) %}
+{% if ancestors | length > 0 %}
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "{{ config.title }}",
+            "item": "{{ config.base_url }}"
+        }
+        {% for ancestor_path in ancestors %}
+        {% set ancestor = get_section(path=ancestor_path) %}
+        ,{
+            "@type": "ListItem",
+            "position": {{ loop.index + 1 }},
+            "name": "{{ ancestor.title }}",
+            "item": "{{ ancestor.permalink }}"
+        }
+        {% endfor %}
+        ,{
+            "@type": "ListItem",
+            "position": {{ ancestors | length + 2 }},
+            "name": "{{ page.title }}",
+            "item": "{{ page.permalink }}"
+        }
+    ]
+}
+</script>
+{% endif %}
 {% else %}
 <script type="application/ld+json">
 {
@@ -115,6 +155,15 @@
     "name": "{{ config.title }}",
     "description": "{{ config.description }}",
     "url": "{{ config.base_url }}",
+    "inLanguage": ["es", "en", "it"],
+    "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "{{ config.base_url }}/?q={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+    },
     "author": {
         "@type": "Person",
         "name": "{{ config.extra.author }}",

@@ -7,9 +7,9 @@
         {% if post.extra.image %}
         <div class="post-image img-skeleton">
             {% if post.extra.image is starting_with("http") %}
-            <img src="{{ post.extra.image }}" alt="{{ post.title }}" loading="lazy" onload="this.parentElement.classList.add('loaded')">
+            <img src="{{ post.extra.image }}" alt="{{ post.title }}" loading="lazy" decoding="async" onload="this.parentElement.classList.add('loaded')">
             {% else %}
-            <img src="{{ get_url(path=post.extra.image) }}" alt="{{ post.title }}" loading="lazy" onload="this.parentElement.classList.add('loaded')">
+            <img src="{{ get_url(path=post.extra.image) }}" alt="{{ post.title }}" loading="lazy" decoding="async" onload="this.parentElement.classList.add('loaded')">
             {% endif %}
         </div>
         {% endif %}
@@ -38,9 +38,9 @@
         {% if post.extra.image %}
         <div class="post-image img-skeleton">
             {% if post.extra.image is starting_with("http") %}
-            <img src="{{ post.extra.image }}" alt="{{ post.title }}" loading="lazy" onload="this.parentElement.classList.add('loaded')">
+            <img src="{{ post.extra.image }}" alt="{{ post.title }}" loading="lazy" decoding="async" onload="this.parentElement.classList.add('loaded')">
             {% else %}
-            <img src="{{ get_url(path=post.extra.image) }}" alt="{{ post.title }}" loading="lazy" onload="this.parentElement.classList.add('loaded')">
+            <img src="{{ get_url(path=post.extra.image) }}" alt="{{ post.title }}" loading="lazy" decoding="async" onload="this.parentElement.classList.add('loaded')">
             {% endif %}
         </div>
         {% endif %}
@@ -69,9 +69,9 @@
         {% if article.extra.image %}
         <div class="article-featured__image img-skeleton">
             {% if article.extra.image is starting_with("http") %}
-            <img src="{{ article.extra.image }}" alt="{{ article.title }}" loading="lazy" onload="this.parentElement.classList.add('loaded')">
+            <img src="{{ article.extra.image }}" alt="{{ article.title }}" loading="lazy" decoding="async" onload="this.parentElement.classList.add('loaded')">
             {% else %}
-            <img src="{{ get_url(path=article.extra.image) }}" alt="{{ article.title }}" loading="lazy" onload="this.parentElement.classList.add('loaded')">
+            <img src="{{ get_url(path=article.extra.image) }}" alt="{{ article.title }}" loading="lazy" decoding="async" onload="this.parentElement.classList.add('loaded')">
             {% endif %}
         </div>
         {% endif %}
@@ -98,9 +98,9 @@
         {% if article.extra.image %}
         <div class="article-card__image img-skeleton">
             {% if article.extra.image is starting_with("http") %}
-            <img src="{{ article.extra.image }}" alt="{{ article.title }}" loading="lazy" onload="this.parentElement.classList.add('loaded')">
+            <img src="{{ article.extra.image }}" alt="{{ article.title }}" loading="lazy" decoding="async" onload="this.parentElement.classList.add('loaded')">
             {% else %}
-            <img src="{{ get_url(path=article.extra.image) }}" alt="{{ article.title }}" loading="lazy" onload="this.parentElement.classList.add('loaded')">
+            <img src="{{ get_url(path=article.extra.image) }}" alt="{{ article.title }}" loading="lazy" decoding="async" onload="this.parentElement.classList.add('loaded')">
             {% endif %}
         </div>
         {% endif %}
@@ -127,9 +127,9 @@
         {% if trabajo.extra.image %}
         <div class="trabajo-card__image img-skeleton">
             {% if trabajo.extra.image is starting_with("http") %}
-            <img src="{{ trabajo.extra.image }}" alt="{{ trabajo.title }}" loading="lazy" onload="this.parentElement.classList.add('loaded')">
+            <img src="{{ trabajo.extra.image }}" alt="{{ trabajo.title }}" loading="lazy" decoding="async" onload="this.parentElement.classList.add('loaded')">
             {% else %}
-            <img src="{{ get_url(path=trabajo.extra.image) }}" alt="{{ trabajo.title }}" loading="lazy" onload="this.parentElement.classList.add('loaded')">
+            <img src="{{ get_url(path=trabajo.extra.image) }}" alt="{{ trabajo.title }}" loading="lazy" decoding="async" onload="this.parentElement.classList.add('loaded')">
             {% endif %}
         </div>
         {% endif %}
@@ -183,6 +183,7 @@
         <div class="investigacion-card__video">
             <iframe src="https://www.youtube.com/embed/{{ item.extra.youtube }}"
                     title="{{ item.title }}" frameborder="0"
+                    loading="lazy"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowfullscreen></iframe>
         </div>
@@ -218,9 +219,9 @@
         {% if item.extra.image %}
         <div class="post-image img-skeleton">
             {% if item.extra.image is starting_with("http") %}
-            <img src="{{ item.extra.image }}" alt="{{ item.title }}" loading="lazy" onload="this.parentElement.classList.add('loaded')">
+            <img src="{{ item.extra.image }}" alt="{{ item.title }}" loading="lazy" decoding="async" onload="this.parentElement.classList.add('loaded')">
             {% else %}
-            <img src="{{ get_url(path=item.extra.image) }}" alt="{{ item.title }}" loading="lazy" onload="this.parentElement.classList.add('loaded')">
+            <img src="{{ get_url(path=item.extra.image) }}" alt="{{ item.title }}" loading="lazy" decoding="async" onload="this.parentElement.classList.add('loaded')">
             {% endif %}
         </div>
         {% endif %}
