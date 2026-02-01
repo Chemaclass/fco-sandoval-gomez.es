@@ -8,4 +8,6 @@ category = "Patrimonio"
 image = "https://github.com/user-attachments/assets/d1b948eb-71ff-467e-ab0e-cf3e21d9fe15"
 +++
 
+San Miniato al Monte es una basílica de origen románico que ha ido experimentando el paso del tiempo desde un promontorio privilegiado. Este edificio fue testigo de la construcción de la enorme cúpula de Santa María del Fiore y de la transformación general de la ciudad.
+
 
