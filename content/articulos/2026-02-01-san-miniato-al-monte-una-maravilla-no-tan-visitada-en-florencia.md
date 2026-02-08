@@ -1,7 +1,7 @@
 +++
 title = "San Miniato al monte, una maravilla no tan visitada en Florencia"
 description = "Mucha gente sube al mirador Michelangelo a contemplar las vistas de la ciudad, pero no todos caminan algo más allá, donde se encuentra una de las basílicas más bonitas de Italia"
-date = 2026-02-01
+date = 2026-02-08
 
 [extra]
 category = "Patrimonio"
