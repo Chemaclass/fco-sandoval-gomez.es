@@ -104,8 +104,8 @@
             const article = document.querySelector('.article-page');
             if (!article) return;
 
-            // Find all images in the article (hero, body, media blocks, gallery)
-            articleImages = Array.from(article.querySelectorAll('img'));
+            // Find all images in the article (body, media blocks, gallery) but exclude hero image
+            articleImages = Array.from(article.querySelectorAll('img')).filter(img => !img.closest('.article-hero'));
 
             // Make each image clickable
             articleImages.forEach((img, index) => {
