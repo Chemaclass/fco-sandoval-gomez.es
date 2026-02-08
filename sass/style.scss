@@ -1094,6 +1094,7 @@ main {
         min-height: 130px;
         margin-top: 0;
         margin-bottom: 0;
+        background: transparent;
     }
 
     .education-degree {
@@ -2302,6 +2303,13 @@ blockquote {
         background: rgba(255, 255, 255, 0.9);
         padding: 0.5rem;
         border-radius: 8px;
+    }
+
+    @media (max-width: 768px) {
+        .education-logo {
+            background: transparent;
+            padding: 0;
+        }
     }
 
     // Lighter hero text for dark mode readability
