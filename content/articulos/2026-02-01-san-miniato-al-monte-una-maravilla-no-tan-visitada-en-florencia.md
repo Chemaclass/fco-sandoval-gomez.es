@@ -24,4 +24,4 @@ Esto que digo no es ningún misterio para muchos, pero créanme que a los millen
 
 ![IMG_20260201_172407](https://github.com/user-attachments/assets/1685d174-1121-48d9-a3e4-7c365e92d2d7)
 
-Y ahí está la cuestión: no solo construimos, también reparamos, y no seremos los últimos en hacerlo, porque nuestra intervención tendrá vocación duradera, pero no será eterna. Habrá quien deba intervenir de nuevo en el futuro.
+Y ahí está la cuestión: no solo construimos, también reparamos, y no seremos los últimos en hacerlo, porque nuestra intervención tendrá vocación duradera, pero no será eterna. Habrá quien deba intervenir de nuevo en el futuro, con unas u otras herramientas, adscrito o no a un estilo. Lo que tengo claro es que la lectura e interpretación de sus antecesores enriquecerá el trabajo de quien tenga la fortuna de añadir un grano más de arena a la historia de su arquitectura.
