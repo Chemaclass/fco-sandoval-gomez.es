@@ -10,7 +10,7 @@ image = "https://github.com/user-attachments/assets/d1b948eb-71ff-467e-ab0e-cf3e
 
 San Miniato al Monte es una basílica de origen románico que ha ido experimentando el paso del tiempo desde un promontorio privilegiado. Este edificio fue testigo de la construcción de la enorme cúpula de Santa María del Fiore y de la transformación general de la ciudad. 
 
-Él mismo cambió con el tiempo, y aunque en su interior podemos percibir esa sensación característica de las basílicas paleocristianas en el que destaca el mosaico del pantocrátor, se le fueron añadiendo otros ornamentos. 
+Él mismo cambió con el tiempo, y aunque en su interior podemos percibir esa sensación característica de las basílicas paleocristianas donde destaca el mosaico del pantocrátor, se le fueron añadiendo otros ornamentos. 
 
 En estos momentos (febrero 2026) la fachada y el pavimento del interior no se pueden apreciar porque el edificio está inmerso en obras de restauración, aunque afortunadamente tengo alguna foto de la primera vez que visité este lugar, en julio de 2018. La combinación de mármol verde y blanco es característica de Florencia y no queda relegada a edificios del quattrocento. Se dice que Alberti tomó referencias de esta fachada al diseñar la de Santa María Novella (hacia 1460). 
 
@@ -20,7 +20,7 @@ Es curiosa la leyenda acerca de la advocación de este templo. Parece ser que Sa
 
 <img width="1852" height="795" alt="San Miniato al Monte" src="https://github.com/user-attachments/assets/d1b948eb-71ff-467e-ab0e-cf3e21d9fe15" />
 
-Esto que digo no es ningún misterio para muchos, pero créanme que a los millenials (o milenaristas, para quienes han castellanizado el término), quienes hemos crecido bajo el imperativo de una creatividad que parece haber olvidado la tradición, no nos resulta sencillo mirar a la Historia como un eslabón más de la cadena. Y es por eso que estos muros con los mechinales a la vista, que tanto abundan en Italia, me resultan tan evocadores. Los mechinales son huecos en los muros donde se anclaban los andamios mientras se construía o se reparaba. 
+Esto que digo no es ningún misterio para muchos, pero créanme que a los millenials (o milenaristas, término castellanizado), quienes hemos crecido bajo el imperativo de una creatividad que parece haber olvidado la tradición, no nos resulta sencillo mirar a la Historia como un eslabón más de la cadena. Y es por eso que estos muros con los mechinales a la vista, que tanto abundan en Italia, me resultan tan evocadores. Los mechinales son huecos en los muros donde se anclaban los andamios mientras se construía o se reparaba. 
 
 ![IMG_20260201_172407](https://github.com/user-attachments/assets/1685d174-1121-48d9-a3e4-7c365e92d2d7)
 
