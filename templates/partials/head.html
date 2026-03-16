@@ -2,6 +2,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#2c4a6e">
 <meta name="mobile-web-app-capable" content="yes">
+<meta name="google" content="notranslate">
 
 {# Favicon #}
 <link rel="icon" type="image/x-icon" href="{{ get_url(path='images/sando-navbar.ico') }}">
@@ -44,6 +45,8 @@
 {% else %}
 <meta property="og:image" content="{{ get_url(path='images/sando-homepage.jpeg') }}">
 {% endif %}
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 
 {# Twitter Card #}
 <meta name="twitter:card" content="summary_large_image">
@@ -64,12 +67,40 @@
 {% endif %}
 {% if page.updated %}
 <meta property="article:modified_time" content="{{ page.updated | date(format='%Y-%m-%dT%H:%M:%S') }}">
+{% elif page.date %}
+<meta property="article:modified_time" content="{{ page.date | date(format='%Y-%m-%dT%H:%M:%S') }}">
 {% endif %}
 <meta property="article:author" content="{{ config.extra.author }}">
 {% endif %}
 
-{# Stylesheet #}
-<link rel="stylesheet" href="{{ get_url(path='style.css') }}">
+{# Critical CSS inline for faster first paint #}
+<style>
+@font-face{font-family:'Inter';font-style:normal;font-weight:400;font-display:swap;src:url('/fonts/inter-v20-latin-regular.woff2') format('woff2')}
+@font-face{font-family:'Libre Baskerville';font-style:normal;font-weight:400;font-display:swap;src:url('/fonts/libre-baskerville-v24-latin-regular.woff2') format('woff2')}
+:root{--color-primary:#2c4a6e;--color-primary-dark:#1e3450;--color-primary-light:#4a6a8e;--color-accent:#c5883a;--color-accent-light:#d4a05c;--color-bg:#fff;--color-bg-light:#f5f3ef;--color-text:#333;--color-text-light:#666;--color-border:#e5e5e5;--color-shadow:rgba(0,0,0,.1)}
+.theme-dark{--color-primary:#7da4c9;--color-primary-dark:#5a8ab8;--color-primary-light:#9dbee0;--color-accent:#d4a05c;--color-accent-light:#e0b87a;--color-bg:#1a1a2e;--color-bg-light:#252542;--color-text:#e8e8e8;--color-text-light:#b0b0b0;--color-border:#3a3a5a;--color-shadow:rgba(0,0,0,.3)}
+*,*::before,*::after{box-sizing:border-box}
+html{font-size:16px}
+body{margin:0;padding:0;font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;font-size:1rem;line-height:1.6;color:var(--color-text);background-color:var(--color-bg)}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit;text-decoration:none}
+h1,h2,h3,h4,h5,h6{font-family:'Libre Baskerville',Georgia,serif;font-weight:400;line-height:1.3;margin:0 0 1rem}
+.container{width:100%;max-width:800px;margin:0 auto;padding:0 2rem}
+.site-header{position:fixed;top:0;left:0;right:0;height:80px;background:var(--color-bg);z-index:1000;border-bottom:1px solid var(--color-border)}
+.site-header .container{max-width:900px;display:flex;align-items:center;justify-content:space-between;height:100%}
+.skip-link{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;z-index:10000}
+.article-hero{height:50vh;overflow:hidden}
+.article-hero img{width:100%;height:100%;object-fit:cover}
+.img-skeleton{position:relative;overflow:hidden;background:linear-gradient(90deg,var(--color-bg-light) 0%,var(--color-border) 50%,var(--color-bg-light) 100%);background-size:200% 100%;animation:skeleton-pulse 1.5s ease-in-out infinite}
+.img-skeleton img{opacity:0;transition:opacity .3s ease}
+.img-skeleton.loaded{animation:none;background:transparent}
+.img-skeleton.loaded img{opacity:1}
+@keyframes skeleton-pulse{0%{background-position:200% 0}100%{background-position:-200% 0}}
+</style>
+
+{# Full stylesheet loaded async for non-critical styles #}
+<link rel="preload" href="{{ get_url(path='style.css') }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="{{ get_url(path='style.css') }}"></noscript>
 
 {# Theme flash prevention - must run synchronously before page renders #}
 <script>
@@ -107,7 +138,8 @@
         "name": "{{ config.extra.author }}"
     },
     {% if page.date %}"datePublished": "{{ page.date | date(format='%Y-%m-%d') }}",{% endif %}
-    {% if page.updated %}"dateModified": "{{ page.updated | date(format='%Y-%m-%d') }}",{% endif %}
+    {% if page.updated %}"dateModified": "{{ page.updated | date(format='%Y-%m-%d') }}",{% elif page.date %}"dateModified": "{{ page.date | date(format='%Y-%m-%d') }}",{% endif %}
+    "wordCount": "{{ page.content | striptags | wordcount }}",
     "mainEntityOfPage": {
         "@type": "WebPage",
         "@id": "{{ page.permalink }}"

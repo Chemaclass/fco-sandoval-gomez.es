@@ -1926,6 +1926,14 @@ blockquote {
     }
 }
 
+// Performance: skip rendering off-screen sections until needed
+.article-gallery,
+.cta-section,
+.site-footer {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 300px;
+}
+
 // Article Gallery
 .article-gallery {
     display: grid;
