@@ -1,0 +1,5 @@
+name: pre-push-check
+description: Run `zola check` before any `git push` so broken content or dead links never reach CI.
+event: PreToolUse
+matcher: "Bash"
+command: "input=$(cat); if printf '%s' \"$input\" | grep -q 'git push'; then zola check || { echo 'zola check failed — fix content before pushing' >&2; exit 2; }; fi; exit 0"
