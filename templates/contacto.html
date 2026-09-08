@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 {% import "macros/sections.html" as sections %}
 
-{% block title %}Contacto | Francisco Sandoval Gómez{% endblock %}
+{% block title %}{{ config.extra.i18n[lang].contact_title }} | Francisco Sandoval Gómez{% endblock %}
 
 {% block content %}
 <section class="contact-page">
     <div class="container">
-        {{ sections::page_header_styled(title="Contacto", description="Para consultas profesionales, colaboraciones o simplemente para intercambiar ideas sobre arquitectura, patrimonio o cualquier tema que te haya interesado de esta web.") }}
+        {{ sections::page_header_styled(title=config.extra.i18n[lang].contact_title, description=config.extra.i18n[lang].contact_description) }}
 
         <div class="contact-content">
             <div class="contact-main">
@@ -18,9 +18,9 @@
                         </svg>
                     </div>
                     <div class="contact-details">
-                        <span class="contact-label">Correo electrónico</span>
+                        <span class="contact-label">{{ config.extra.i18n[lang].email_label }}</span>
                         <span class="contact-value">{{ config.extra.email }}</span>
-                        <span class="contact-cta">Enviar mensaje <span class="arrow">→</span></span>
+                        <span class="contact-cta">{{ config.extra.i18n[lang].send_message }} <span class="arrow">→</span></span>
                     </div>
                 </a>
             </div>
@@ -63,7 +63,7 @@
                     </div>
                     <div class="contact-details">
                         <span class="contact-label">ResearchGate</span>
-                        <span class="contact-value">Perfil académico</span>
+                        <span class="contact-value">{{ config.extra.i18n[lang].academic_profile }}</span>
                     </div>
                 </a>
             </div>

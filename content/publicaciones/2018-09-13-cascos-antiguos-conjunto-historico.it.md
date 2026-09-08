@@ -1,6 +1,6 @@
 +++
-title = "La comarca del Nord-Ovest e Rio Mula ha tre centri storici dichiarati Complesso Storico Artistico"
-description = "La comarca del Nord-Ovest e Rio Mula ha tre centri storici con questa importante dichiarazione patrimoniale."
+title = "La comarca del Nord-Ovest e Río Mula ha tre centri storici dichiarati Complesso Storico Artistico"
+description = "La comarca del Nord-Ovest e Río Mula ha tre centri storici con questa importante dichiarazione patrimoniale."
 date = 2018-09-13
 [extra]
 source = "El Noroeste Digital"

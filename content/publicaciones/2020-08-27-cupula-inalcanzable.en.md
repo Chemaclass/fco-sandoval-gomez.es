@@ -1,6 +1,6 @@
 +++
 title = "The unreachable dome"
-description = "Disorder is the delight of imagination, said Paul Valery, a reflection on architecture and cosmos."
+description = "Disorder is the delight of imagination, said Paul Valéry, a reflection on architecture and cosmos."
 date = 2020-08-27
 [extra]
 source = "El Noroeste Digital"

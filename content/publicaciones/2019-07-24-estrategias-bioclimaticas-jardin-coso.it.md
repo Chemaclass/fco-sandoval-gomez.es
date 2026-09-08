@@ -1,6 +1,6 @@
 +++
 title = "Strategie bioclimatiche nell'urbanistica: il giardino del Coso"
-description = "La preoccupazione per citta piu sostenibili puo sembrare recente, ma l'urbanistica tradizionale applicava gia queste strategie."
+description = "La preoccupazione per città più sostenibili può sembrare recente, ma l'urbanistica tradizionale applicava già queste strategie."
 date = 2019-07-24
 [extra]
 source = "El Noroeste Digital"

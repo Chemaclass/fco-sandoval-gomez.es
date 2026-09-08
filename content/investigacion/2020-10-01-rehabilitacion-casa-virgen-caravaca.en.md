@@ -1,6 +1,6 @@
 +++
 title = "Rehabilitation of Casa de la Virgen in Caravaca de la Cruz"
-description = "The house built by don Andres de Quesada, popularly known as Casa de la Virgen, stands out as one of the most important and unique buildings of civil Baroque architecture in Caravaca. XXVI Heritage Conference of the Region of Murcia."
+description = "The house built by don Andrés de Quesada, popularly known as Casa de la Virgen, stands out as one of the most important and unique buildings of civil Baroque architecture in Caravaca. XXVI Heritage Conference of the Region of Murcia."
 date = 2020-10-01
 [extra]
 category = "Article"

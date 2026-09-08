@@ -1,6 +1,6 @@
 +++
 title = "L'architettura scomparsa degli anni venti a Caravaca"
-description = "Ho parlato in alcuni articoli dell'architettura degli anni venti, un patrimonio che purtroppo e in gran parte scomparso."
+description = "Ho parlato in alcuni articoli dell'architettura degli anni venti, un patrimonio che purtroppo è in gran parte scomparso."
 date = 2019-10-24
 [extra]
 source = "El Noroeste Digital"

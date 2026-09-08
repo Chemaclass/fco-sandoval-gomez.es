@@ -27,9 +27,9 @@ images/trabajos/casa-san-juan-cruz/5b-1024x577.jpg
 ## The intervention
 
 {% media(align="left") %}
-![proyecto 1](https://github.com/user-attachments/assets/00746d3d-5b8e-4636-835e-b4b169fbcafe)
+![Project plan 1](https://github.com/user-attachments/assets/00746d3d-5b8e-4636-835e-b4b169fbcafe)
 
-In 2020 the facades and roof were intervened upon, but the interior was in very poor condition. In 2021 the project began to rehabilitate the property and convert it into the Casa Museo de San Juan de la Cruz in Caravaca. The criteria applied were maximum respect for the building's interior and its historical and cultural values, and the use of low environmental impact techniques and materials. 
+In 2020 the facades and roof underwent restoration, but the interior was in very poor condition. In 2021 the project began to rehabilitate the property and convert it into the Casa Museo de San Juan de la Cruz in Caravaca. The criteria applied were maximum respect for the building's interior and its historical and cultural values, and the use of low environmental impact techniques and materials.
 
 {% end %}
 
@@ -42,7 +42,7 @@ Thus, on the ground floor there is a small office outside the museum route and t
 {% end %}
 
 {% media(align="left") %}
-![Interior rehabilitado de la Casa Museo](/images/trabajos/casa-san-juan-cruz/sando-trabajo-san-juan-2.jpg)
+![Restored interior of the house museum](/images/trabajos/casa-san-juan-cruz/sando-trabajo-san-juan-2.jpg)
 
 An opening was made in the wall separating the first from the second bay and in the one separating the second from the third bay an old opening that had been blocked up was utilized so that a clear and unobstructed route could be guaranteed for people with reduced mobility.
 
@@ -53,7 +53,7 @@ A fundamental issue emphasized in the project was respect for the original fabri
 {% media(align="right") %}
 ![IMG_20241026_120808](https://github.com/user-attachments/assets/d4b5bf4f-8677-4a91-b063-9a24d221e877)
 
-On the other hand, the beams were so deteriorated and with evident signs of rot that they were not salvageable. Therefore, a new floor structure of round timbers and plaster vaults was designed, the traditional technique with which they had been made long ago and which has endured for centuries in humble dwellings. This posed a great challenge, as the construction company had not executed this system and initially resorted to concrete vault blocks. However, advice was provided to the project management to guide the execution of the floor structures according to the project and the planned traditional techniques. 
+On the other hand, the beams were so deteriorated and with evident signs of rot that they were not salvageable. Therefore, a new floor structure of round timbers and plaster vaults was designed, the traditional technique with which they had been made long ago and which has endured for centuries in humble dwellings. This posed a great challenge, as the construction company had not executed this system and initially resorted to concrete vault blocks. However, advice was provided to the project management to guide the execution of the floor structures according to the project and the planned traditional techniques.
 
 {% end %}
 
@@ -61,9 +61,9 @@ I must thank the technical architect Pedro Antonio Robles, who shared his experi
 
 In the gallery below you can see three images: 1. The state of the beams / 2. Concrete vault blocks placed by the construction company / 3. PVC formwork already in place after removing the concrete vault blocks / 4. Floor structure with plaster already poured, note the PVC formwork in the background where plaster has not yet been poured. All images are my own. You can appreciate between photos 2 and 3 the different curvature of one solution and the other, that is, with the concrete vault blocks the floor structure would have resulted in a greater depth and, therefore, greater weight.
 
-![proceso de obra forjados](https://github.com/user-attachments/assets/aff5c476-6c68-4211-a4e3-d78d18c7c637)
+![Floor construction process](https://github.com/user-attachments/assets/aff5c476-6c68-4211-a4e3-d78d18c7c637)
 
-As for the new-build volume, it was designed with simplicity to be respectful of the historic building. A new facade needed to be created on the Cuesta de la Cruz between party walls: on one side, the historic dwelling, on the other, a contemporary residential building of much greater height. A white facade was designed based on lime mortar that would be neutral in its environment, without any openings as the interior services, which opened onto the courtyard, did not require them. The triple-row tile cornice of the historic building was reproduced to provide compositional unity, so that the new volume differs from the pre-existing one in the facade color but facilitates understanding of the whole as a unit through the upper finish. This is of great importance as the tile brick present in many cornices restored in recent decades is not documented in any building prior to the 18th century, while humble constructions up to the 20th century in the area were mostly made only with curved tiles. No additional element or ornament was added to the facade panel so that the Foundation itself has the opportunity in the future to treat it according to its needs and can place any signage identifying the Casa Museo de San Juan de la Cruz without affecting the walls of the historic house.
+As for the new-build volume, it was designed with simplicity to be respectful of the historic building. A new facade needed to be created on the Cuesta de la Cruz between party walls: on one side, the historic dwelling, on the other, a contemporary residential building of much greater height. A white facade was designed based on lime mortar that would be neutral in its environment, without any openings as the interior services, which opened onto the courtyard, did not require them. The triple-row tile cornice of the historic building was reproduced to provide compositional unity, so that the new volume differs from the pre-existing one in the facade color but facilitates understanding of the whole as a unit through the upper finish. This is of great importance as the handmade brick present in many cornices restored in recent decades is not documented in any building prior to the 18th century, while humble constructions up to the 20th century in the area were mostly made only with curved tiles. No additional element or ornament was added to the facade panel so that the Foundation itself has the opportunity in the future to treat it according to its needs and can place any signage identifying the Casa Museo de San Juan de la Cruz without affecting the walls of the historic house.
 
 ![IMG_20260102_145650](https://github.com/user-attachments/assets/cb4eec6b-a72f-4ea8-a08a-e48347211e93)
 

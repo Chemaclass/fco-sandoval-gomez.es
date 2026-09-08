@@ -1,6 +1,6 @@
 +++
-title = "Una torre tagliata nel castello di Caravaca e lo stemma del Maestro Suarez de Figueroa"
-description = "Le mura del castello di Caravaca presentano un'eterogeneita frutto di secoli di storia."
+title = "Una torre tagliata nel castello di Caravaca e lo stemma del Maestro Suárez de Figueroa"
+description = "Le mura del castello di Caravaca presentano un'eterogeneità frutto di secoli di storia."
 date = 2020-11-12
 [extra]
 source = "El Noroeste Digital"

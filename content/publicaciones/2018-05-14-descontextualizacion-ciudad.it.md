@@ -1,6 +1,6 @@
 +++
-title = "La decontestualizzazione della citta"
-description = "Come un animale a cui e stato cambiato l'habitat, la citta soffre quando perde il suo contesto originale."
+title = "La decontestualizzazione della città"
+description = "Come un animale a cui è stato cambiato l'habitat, la città soffre quando perde il suo contesto originale."
 date = 2018-05-14
 [extra]
 source = "El Noroeste Digital"

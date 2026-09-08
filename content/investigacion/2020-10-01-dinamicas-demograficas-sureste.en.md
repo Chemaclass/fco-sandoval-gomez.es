@@ -4,7 +4,7 @@ description = "The depopulation of rural areas is the main demographic challenge
 date = 2020-10-01
 [extra]
 category = "Paper"
-coauthors = "Victor Ruiz Alvarez, Javier Marti Talavera, Ruben Gimenez Garcia"
+coauthors = "Víctor Ruiz Álvarez, Javier Martí Talavera, Rubén Giménez García"
 [[extra.links]]
 name = "ResearchGate"
 url = "https://www.researchgate.net/publication/348678849_Dinamicas_demograficas_en_el_nodo_inter-provincial_del_sureste_de_la_peninsula_iberica_iniciativas_y_propuestas_de_actuacion"

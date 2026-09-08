@@ -1,5 +1,5 @@
 +++
-title = "Conflitto e trasformazione: prospettive storiche del patrimonio architettonico nelle comunita Achuar (Ecuador)"
+title = "Conflitto e trasformazione: prospettive storiche del patrimonio architettonico nelle comunità Achuar (Ecuador)"
 description = "Questo contributo analizza gli elementi architettonici e le tecniche costruttive dell'architettura vernacolare del popolo Achuar, concentrandosi sui componenti fisici delle abitazioni in risposta alle dinamiche sociali e culturali."
 date = 2025-09-01
 [extra]

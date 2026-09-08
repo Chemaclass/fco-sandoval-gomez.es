@@ -43,7 +43,7 @@
 </section>
 {% endif %}
 
-{{ sections::quote(text=config.extra.quote.text, author=config.extra.quote.author) }}
+{{ sections::quote(text=config.extra.i18n[lang].quote_text, author=config.extra.quote.author) }}
 
 {% if lang == "en" %}
 {% set trabajos = get_section(path="trabajos/_index.md", lang="en") %}

@@ -1,6 +1,6 @@
 +++
 title = "Le campane e la Festa"
-description = "Recentemente e stato dichiarato Patrimonio Culturale il suono tradizionale delle campane, elemento essenziale delle nostre celebrazioni."
+description = "Recentemente è stato dichiarato Patrimonio Culturale il suono tradizionale delle campane, elemento essenziale delle nostre celebrazioni."
 date = 2019-04-29
 [extra]
 source = "El Noroeste Digital"

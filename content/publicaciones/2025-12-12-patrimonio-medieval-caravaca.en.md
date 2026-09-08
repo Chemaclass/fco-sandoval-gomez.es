@@ -1,6 +1,6 @@
 +++
 title = "The medieval heritage of Caravaca de la Cruz: how a gate and a square tell us about our past"
-description = "In these days of the so-called 'December bridge', a propitious time to reflect on our historical heritage."
+description = "In these days of the so-called December public holiday long weekend, a propitious time to reflect on our historical heritage."
 date = 2025-12-12
 [extra]
 source = "El Noroeste Digital"

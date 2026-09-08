@@ -1,5 +1,5 @@
 +++
-title = "The Templete Banadero of Caravaca de la Cruz: an unusual monument of a centuries-old rite"
+title = "The Templete Bañadero of Caravaca de la Cruz: an unusual monument of a centuries-old rite"
 description = "The design of the chapel with six arches has characterized the ancestral rite in the Contemporary Age."
 date = 2024-04-29
 [extra]

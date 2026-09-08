@@ -1,5 +1,5 @@
 +++
-title = "One hundred years since the start of Gran Via works in Caravaca"
+title = "One hundred years since the start of Gran Vía works in Caravaca"
 description = "On November 12, 1921, the municipal plenary approved the project that would transform the city."
 date = 2021-11-12
 [extra]

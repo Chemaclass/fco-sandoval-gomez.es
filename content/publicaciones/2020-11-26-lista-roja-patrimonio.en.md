@@ -1,5 +1,5 @@
 +++
-title = "The architectural heritage on the Red List in the Northwest and Rio Mula regions"
+title = "The architectural heritage on the Red List in the Northwest and Río Mula regions"
 description = "The Heritage Red List is an initiative that points out assets in danger of disappearing."
 date = 2020-11-26
 [extra]

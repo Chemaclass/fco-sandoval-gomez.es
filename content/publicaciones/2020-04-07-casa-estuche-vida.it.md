@@ -1,5 +1,5 @@
 +++
-title = "La casa: custodia della vita e macchina della felicita"
+title = "La casa: custodia della vita e macchina della felicità"
 description = "Con questa frase Le Corbusier si riferiva all'abitazione, un concetto ancora valido nell'architettura contemporanea."
 date = 2020-04-07
 [extra]

@@ -4,5 +4,3 @@ description = "Collaborazioni e articoli pubblicati su media specializzati e di 
 sort_by = "date"
 paginate_by = 15
 +++
-
-*Il contenuto completo è disponibile nel link esterno.*

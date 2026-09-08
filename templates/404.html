@@ -1,52 +1,42 @@
 {% extends "base.html" %}
 
-{% block title %}Página no encontrada | Francisco Sandoval Gómez{% endblock %}
+{% block title %}{{ config.extra.i18n[lang].error_title }} | Francisco Sandoval Gómez{% endblock %}
+{% block head %}
+<meta name="robots" content="noindex">
+{# GitHub Pages serves the root 404 for every locale. Open the localized fallback. #}
+{% if not page %}
+<script>
+(function () {
+    var locale = location.pathname.split('/')[1];
+    if (locale === 'en' || locale === 'it') location.replace('/' + locale + '/404/');
+})();
+</script>
+{% endif %}
+{% endblock %}
 
 {% block content %}
 <section class="error-page">
     <div class="container">
         <div class="error-content">
             <h1>404</h1>
-            <h2 class="error-title" data-es="Página no encontrada" data-en="Page not found" data-it="Pagina non trovata">Página no encontrada</h2>
-            <p class="error-message" data-es="Lo sentimos, la página que buscas no existe o ha sido movida." data-en="Sorry, the page you're looking for doesn't exist or has been moved." data-it="Siamo spiacenti, la pagina che stai cercando non esiste o è stata spostata.">Lo sentimos, la página que buscas no existe o ha sido movida.</p>
+            <h2 class="error-title">{{ config.extra.i18n[lang].error_title }}</h2>
+            <p class="error-message">{{ config.extra.i18n[lang].error_message }}</p>
             <div class="error-actions">
-                <a href="/" id="error-home-link" class="btn btn-primary" data-es="Volver al inicio" data-en="Back to home" data-it="Torna alla home">Volver al inicio</a>
+                <a href="{{ get_url(path='/', lang=lang) }}" id="error-home-link" class="btn btn-primary">{{ config.extra.i18n[lang].error_home }}</a>
             </div>
             <div class="error-links">
-                <p class="error-suggestions" data-es="Quizás te interese:" data-en="You might be interested in:" data-it="Potrebbe interessarti:">Quizás te interese:</p>
+                <p class="error-suggestions">{{ config.extra.i18n[lang].error_suggestions }}</p>
                 <ul>
-                    <li><a href="/articulos" class="error-link" data-path="articulos" data-es="Artículos" data-en="Articles" data-it="Articoli">Artículos</a></li>
-                    <li><a href="/trabajos" class="error-link" data-path="trabajos" data-es="Trabajos" data-en="Works" data-it="Lavori">Trabajos</a></li>
-                    <li><a href="/investigacion" class="error-link" data-path="investigacion" data-es="Investigación" data-en="Research" data-it="Ricerca">Investigación</a></li>
-                    <li><a href="/sobre-mi" class="error-link" data-path="sobre-mi" data-es="Sobre mí" data-en="About me" data-it="Chi sono">Sobre mí</a></li>
+                    {% for section_name in ['articulos', 'trabajos', 'investigacion', 'publicaciones', 'sobre-mi'] %}
+                    {% set key = 'nav_' ~ section_name | replace(from='-', to='_') %}
+                    <li><a href="{{ get_url(path=section_name ~ '/', lang=lang) }}" class="error-link">{{ config.extra.i18n[lang][key] }}</a></li>
+                    {% endfor %}
                 </ul>
             </div>
+            <noscript><p><a href="/en/404/" lang="en">English</a> · <a href="/it/404/" lang="it">Italiano</a> · <a href="/404/" lang="es">Español</a></p></noscript>
         </div>
     </div>
 </section>
-<script>
-(function() {
-    var path = window.location.pathname;
-    var lang = 'es';
-    if (path.startsWith('/en/') || path === '/en') lang = 'en';
-    else if (path.startsWith('/it/') || path === '/it') lang = 'it';
-
-    var prefix = lang === 'es' ? '' : '/' + lang;
-
-    document.querySelectorAll('[data-' + lang + ']').forEach(function(el) {
-        el.textContent = el.getAttribute('data-' + lang);
-    });
-
-    document.getElementById('error-home-link').href = prefix + '/';
-
-    document.querySelectorAll('.error-link').forEach(function(el) {
-        el.href = prefix + '/' + el.getAttribute('data-path');
-    });
-
-    document.documentElement.lang = lang;
-    document.title = document.querySelector('.error-title').textContent + ' | Francisco Sandoval Gómez';
-})();
-</script>
 {% endblock %}
 
 {% block cta %}{% endblock %}

@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="{{ lang }}">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="refresh" content="0; url={{ page.extra.redirect_to }}">
     <link rel="canonical" href="{{ page.extra.redirect_to }}">
-    <title>Redirigiendo...</title>
+    <title>{{ config.extra.i18n[lang].redirecting }}</title>
 </head>
 <body>
-    <p>Redirigiendo a <a href="{{ page.extra.redirect_to }}">{{ page.extra.redirect_to }}</a></p>
+    <p>{{ config.extra.i18n[lang].redirect_to }} <a href="{{ page.extra.redirect_to }}">{{ page.extra.redirect_to }}</a></p>
 </body>
 </html>

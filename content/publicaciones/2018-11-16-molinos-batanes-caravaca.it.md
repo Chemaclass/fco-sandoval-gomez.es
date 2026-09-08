@@ -1,6 +1,6 @@
 +++
 title = "Mulini e gualchiere a Caravaca: l'influenza dell'acqua sull'architettura"
-description = "Tra il 25 e il 27 ottobre si e tenuto un congresso sull'influenza dell'acqua sull'architettura tradizionale."
+description = "Tra il 25 e il 27 ottobre si è tenuto un congresso sull'influenza dell'acqua sull'architettura tradizionale."
 date = 2018-11-16
 [extra]
 source = "El Noroeste Digital"

@@ -17,7 +17,7 @@ The property is listed in the General Urban Planning Plan of Caravaca de la Cruz
 
 ## The intervention
 
-First, a preliminary study of the building was drafted consisting of a script with six actions whose objective is to update the property to meet current safety and accessibility needs and requirements in such a way that preserves its cultural value. The basic project develops the first action which consists of providing the building with an elevator, reorganizing the spaces to enhance its most relevant historical and artistic elements, and providing use to the second floor through the design of a games and reading room.
+First, a preliminary study of the building was drafted setting out a programme of six interventions whose objective is to update the property to meet current safety and accessibility needs and requirements in such a way that preserves its cultural value. The basic project develops the first action which consists of providing the building with an elevator, reorganizing the spaces to enhance its most relevant historical and artistic elements, and providing use to the second floor through the design of a games and reading room.
 
 Among the main challenges of the project were generating two celebration halls on the first floor that would reconcile the diversity of events that the property might host and respond to the intergenerational nature of its users, or creating restrooms for people with reduced mobility in an intricate space that currently lacks them.
 

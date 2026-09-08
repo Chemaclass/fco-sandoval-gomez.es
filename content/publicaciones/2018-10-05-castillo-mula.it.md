@@ -1,6 +1,6 @@
 +++
-title = "Il castello guardo a Mula come sostenitore dei suoi privilegi, ora e Mula che guarda al suo castello"
-description = "La piattaforma Mula Por Su Castillo e nata nel 2015 con l'obiettivo di recuperare questo patrimonio unico."
+title = "Il castello guardò a Mula come sostenitore dei suoi privilegi, ora è Mula che guarda al suo castello"
+description = "La piattaforma Mula Por Su Castillo è nata nel 2015 con l'obiettivo di recuperare questo patrimonio unico."
 date = 2018-10-05
 [extra]
 source = "El Noroeste Digital"

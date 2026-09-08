@@ -28,7 +28,7 @@
                 <span class="category">{{ page.extra.category | upper }}</span>
                 {% endif %}
                 {% if page.date %}
-                <span class="date">{{ dates::fecha_completa(date=page.date) }}</span>
+                <span class="date">{{ dates::fecha_completa(date=page.date, lang=page.lang) }}</span>
                 {% endif %}
             </div>
             <h1>{{ page.title }}</h1>

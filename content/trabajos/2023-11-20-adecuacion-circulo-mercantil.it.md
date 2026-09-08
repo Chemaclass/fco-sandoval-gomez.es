@@ -3,7 +3,7 @@ title = "Adeguamento dello storico edificio del Circolo Mercantile"
 description = "Progetto di massima per l'adeguamento dell'edificio del Circolo Mercantile di Caravaca de la Cruz, in occasione del primo centenario della sua fondazione, per aggiornare l'immobile alle attuali esigenze di sicurezza e accessibilità."
 date = 2023-11-20
 [extra]
-category = "RIABILITAZIONE"
+category = "RECUPERO"
 location = "Caravaca de la Cruz, Murcia"
 year = "2023"
 image = "images/trabajos/circulo-mercantil/sandot2-0.jpeg"

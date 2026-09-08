@@ -1,5 +1,5 @@
 +++
-title = "The architecture of hermitages: la Encarnacion in Caravaca"
+title = "The architecture of hermitages: la Encarnación in Caravaca"
 description = "The Schola Gregoriana de Murcia concert held in the hermitage prompted this reflection on its architecture."
 date = 2018-07-05
 [extra]

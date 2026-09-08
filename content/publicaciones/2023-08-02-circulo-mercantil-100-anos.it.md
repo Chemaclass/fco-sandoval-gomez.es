@@ -1,6 +1,6 @@
 +++
-title = "Il Circulo Mercantil di Caravaca compie 100 anni"
-description = "Con l'obiettivo di 'sviluppo e prosperita' nacque un secolo fa questa istituzione emblematica di Caravaca."
+title = "Il Círculo Mercantil di Caravaca compie 100 anni"
+description = "Con l'obiettivo di 'sviluppo e prosperità' nacque un secolo fa questa istituzione emblematica di Caravaca."
 date = 2023-08-02
 [extra]
 source = "El Noroeste Digital"

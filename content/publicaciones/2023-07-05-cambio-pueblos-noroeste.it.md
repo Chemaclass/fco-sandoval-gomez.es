@@ -1,6 +1,6 @@
 +++
 title = "Come sono cambiati i nostri paesi: un breve percorso dagli anni novanta ad oggi"
-description = "Il giorno in cui qualcuno cerco nella sua tasca cambio per sempre il modo in cui viviamo i nostri paesi."
+description = "Il giorno in cui qualcuno cercò nella sua tasca cambiò per sempre il modo in cui viviamo i nostri paesi."
 date = 2023-07-05
 [extra]
 source = "El Noroeste Digital"

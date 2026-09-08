@@ -1,5 +1,5 @@
 +++
-title = "A truncated tower in Caravaca castle and the coat of arms of Master Suarez de Figueroa"
+title = "A truncated tower in Caravaca castle and the coat of arms of Master Suárez de Figueroa"
 description = "The walls of Caravaca castle present a heterogeneity resulting from centuries of history."
 date = 2020-11-12
 [extra]

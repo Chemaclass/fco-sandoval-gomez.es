@@ -1,6 +1,6 @@
 +++
 title = "Una breve storia di Caravaca attraverso la via dello scrittore Gregorio Javier"
-description = "Il segno indelebile che siamo capaci di lasciare puo vedersi riflesso nella storia di una strada."
+description = "Il segno indelebile che siamo capaci di lasciare può vedersi riflesso nella storia di una strada."
 date = 2021-04-14
 [extra]
 source = "El Noroeste Digital"

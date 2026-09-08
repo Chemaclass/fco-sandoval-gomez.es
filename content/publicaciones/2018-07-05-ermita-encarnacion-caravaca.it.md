@@ -1,5 +1,5 @@
 +++
-title = "L'architettura degli eremi: l'Encarnacion di Caravaca"
+title = "L'architettura degli eremi: l'Encarnación di Caravaca"
 description = "Il concerto della Schola Gregoriana di Murcia celebrato nell'eremo ha motivato questa riflessione sulla sua architettura."
 date = 2018-07-05
 [extra]

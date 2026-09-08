@@ -1,6 +1,6 @@
 +++
-title = "Il Templete Banadero di Caravaca de la Cruz: un insolito monumento di un rito centenario"
-description = "Il design della cappella con sei archi ha caratterizzato l'ancestrale rito nell'Eta Contemporanea."
+title = "Il Templete Bañadero di Caravaca de la Cruz: un insolito monumento di un rito centenario"
+description = "Il design della cappella con sei archi ha caratterizzato l'ancestrale rito nell'Età Contemporanea."
 date = 2024-04-29
 [extra]
 source = "El Noroeste Digital"

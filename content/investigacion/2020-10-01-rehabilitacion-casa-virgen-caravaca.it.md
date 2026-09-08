@@ -1,6 +1,6 @@
 +++
-title = "Riabilitazione della Casa de la Virgen a Caravaca de la Cruz"
-description = "La casa edificata da don Andres de Quesada, popolarmente conosciuta come Casa de la Virgen, si distingue come uno degli edifici piu importanti e singolari dell'architettura barocca civile di Caravaca. XXVI Giornate del Patrimonio della Regione di Murcia."
+title = "Recupero della Casa de la Virgen a Caravaca de la Cruz"
+description = "La casa edificata da don Andrés de Quesada, popolarmente conosciuta come Casa de la Virgen, si distingue come uno degli edifici più importanti e singolari dell'architettura barocca civile di Caravaca. XXVI Giornate del Patrimonio della Regione di Murcia."
 date = 2020-10-01
 [extra]
 category = "Articolo"

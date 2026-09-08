@@ -1,6 +1,6 @@
 +++
-title = "Sfide per la citta del XXI secolo"
-description = "Abbiamo inaugurato quello che sara l'epilogo della seconda decade del XXI secolo con nuove sfide urbane."
+title = "Sfide per la città del XXI secolo"
+description = "Abbiamo inaugurato quello che sarà l'epilogo della seconda decade del XXI secolo con nuove sfide urbane."
 date = 2019-01-24
 [extra]
 source = "El Noroeste Digital"

@@ -1,6 +1,6 @@
 +++
 title = "Il mistero dell'acustica che condividono Caravaca e New York"
-description = "Che l'architettura e la musica mantengano una stretta relazione e qualcosa che si manifesta in luoghi inaspettati."
+description = "Che l'architettura e la musica mantengano una stretta relazione è qualcosa che si manifesta in luoghi inaspettati."
 date = 2018-04-05
 [extra]
 source = "El Noroeste Digital"

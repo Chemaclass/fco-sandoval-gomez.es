@@ -14,14 +14,14 @@ It itself changed over time, and although inside we can perceive that characteri
 
 At the moment (February 2026) the facade and interior pavement cannot be appreciated because the building is immersed in restoration work, although fortunately I have some photos from the first time I visited this place, in July 2018. The combination of green and white marble is characteristic of Florence and is not relegated to quattrocento buildings. It is said that Alberti took references from this facade when designing Santa Maria Novella (around 1460).
 
-[images remain the same]
+![_DSC0612](https://github.com/user-attachments/assets/b7dc274e-c31a-4091-8a7d-0b9b4b041be8)
 
 The legend about the dedication of this temple is curious. It seems that San Miniato was the first martyr of Florence, around the year 250, who was decapitated for declaring his faith in Christ. However, he took his head in his arms and ran to this hill, where he expressed his desire to be buried. Even more curious is that an identical legend exists about Saint Denis in Montmartre (Paris), although 22 years after San Miniato. In any case, whether we listen to the legend or observe the facade, we will perceive that history tends to repeat itself, and the iconic Romanesque facade of this basilica is full of classical elements, among which I want to highlight the window's pediment.
 
-[images remain the same]
+<img width="1852" height="795" alt="San Miniato al Monte" src="https://github.com/user-attachments/assets/d1b948eb-71ff-467e-ab0e-cf3e21d9fe15" />
 
-What I'm saying is no mystery to many, but believe me that for millennials (or millenarians, Castilianized term), who have grown up under the imperative of a creativity that seems to have forgotten tradition, it is not easy to look at History as just another link in the chain. And that is why these walls with visible scaffolding holes, which are so abundant in Italy, are so evocative to me. Scaffolding holes are gaps in the walls where scaffolds were anchored while building or repairing.
+What I'm saying is no mystery to many, but believe me that for millennials (or “milenaristas”, the Spanish variant used here), who have grown up under the imperative of a creativity that seems to have forgotten tradition, it is not easy to look at History as just another link in the chain. And that is why these walls with visible scaffolding holes, which are so abundant in Italy, are so evocative to me. Scaffolding holes are gaps in the walls where scaffolds were anchored while building or repairing.
 
-[images remain the same]
+![IMG_20260201_172407](https://github.com/user-attachments/assets/1685d174-1121-48d9-a3e4-7c365e92d2d7)
 
 And there is the question: we not only build, we also repair, and we will not be the last to do so, because our intervention will have a lasting vocation, but it will not be eternal. There will be someone who must intervene again in the future, with one tool or another, attached or not to a style. What I am clear about is that the reading and interpretation of their predecessors will enrich the work of whoever has the fortune to add one more grain of sand to the history of their architecture.

@@ -1,6 +1,6 @@
 +++
 title = "Goccia fredda: causa ed effetto sulle zone urbanizzate"
-description = "I disastri si verificano quando la minaccia incontra la vulnerabilita. Analisi dell'impatto sulle aree urbane."
+description = "I disastri si verificano quando la minaccia incontra la vulnerabilità. Analisi dell'impatto sulle aree urbane."
 date = 2019-09-25
 [extra]
 source = "El Noroeste Digital"

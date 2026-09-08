@@ -196,7 +196,7 @@ h1,h2,h3,h4,h5,h6{font-family:'Libre Baskerville',Georgia,serif;font-weight:400;
   "author": {
     "@type": "Person",
     "name": {{ config.extra.author | json_encode() | replace(from="<", to="\\u003c") | safe }},
-    "jobTitle": "Arquitecto",
+    "jobTitle": {{ config.extra.i18n[lang].job_title | json_encode() | safe }},
     "sameAs": [
       {{ config.extra.social.linkedin | json_encode() | replace(from="<", to="\\u003c") | safe }},
       {{ config.extra.social.instagram | json_encode() | replace(from="<", to="\\u003c") | safe }},
