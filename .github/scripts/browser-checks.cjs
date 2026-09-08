@@ -15,7 +15,7 @@ function asset(url) {
 const server = http.createServer((req, res) => {
   const file = asset(`http://localhost${req.url}`);
   res.setHeader('Content-Type', types[path.extname(file)] || 'application/octet-stream');
-  if (fs.existsSync(file)) res.end(fs.readFileSync(file)); else { res.statusCode = 404; res.end(); }
+  if (fs.existsSync(file)) res.end(fs.readFileSync(file)); else { res.statusCode = 404; res.setHeader('Content-Type', 'text/html'); res.end(fs.readFileSync(path.join(root, '404.html'))); }
 });
 (async () => {
   await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
@@ -100,6 +100,28 @@ const server = http.createServer((req, res) => {
     await errorPage.locator('.search-toggle').click();
     await errorPage.waitForFunction(() => document.querySelector('#search-status').textContent.includes('No se pudo'));
 
+    // Locale navigation, dates, pagination, redirects and the shared 404 chrome.
+    for (const [locale, previous, next, month, missing, contact] of [
+      ['en', 'Previous', 'Next', 'February', 'Page not found', 'contact'],
+      ['it', 'Precedente', 'Successivo', 'febbraio', 'Pagina non trovata', 'contatto'],
+    ]) {
+      await page.goto(origin + '/' + locale + '/publicaciones/', { waitUntil: 'networkidle' });
+      assert((await page.locator('.pagination').textContent()).includes(previous));
+      assert((await page.locator('.pagination').textContent()).includes(next));
+      assert(!/Página|Anterior|Siguiente/.test(await page.locator('.pagination').textContent()));
+      await page.goto(origin + '/' + locale + '/articulos/', { waitUntil: 'networkidle' });
+      assert((await page.locator('.article-featured .date').textContent()).includes(month));
+      await page.goto(origin + '/' + locale + '/contacto/', { waitUntil: 'networkidle' });
+      await page.waitForURL('**/' + locale + '/sobre-mi/#' + contact);
+      assert.equal(await page.locator('#' + contact).count(), 1);
+      await page.goto(origin + '/' + locale + '/missing-page/', { waitUntil: 'networkidle' });
+      await page.waitForURL('**/' + locale + '/404/');
+      assert.equal(await page.locator('html').getAttribute('lang'), locale);
+      assert.equal(await page.locator('.error-title').textContent(), missing);
+      assert.equal(new URL(await page.locator('#error-home-link').getAttribute('href')).pathname, '/' + locale + '/');
+      assert.equal(await page.locator('.search-toggle').getAttribute('aria-label'), locale === 'en' ? 'Toggle search' : 'Attiva ricerca');
+    }
+
     if (process.env.SCREENSHOT_DIR) {
       fs.mkdirSync(process.env.SCREENSHOT_DIR, { recursive: true });
       await phone.screenshot({ path: path.join(process.env.SCREENSHOT_DIR, 'mobile.png'), fullPage: true });
@@ -107,6 +129,6 @@ const server = http.createServer((req, res) => {
       await page.screenshot({ path: path.join(process.env.SCREENSHOT_DIR, 'desktop-dark.png'), fullPage: true });
     }
     assert.deepEqual(errors, [], 'No uncaught browser errors');
-    console.log('Browser checks passed: search, dialogs, shortcuts, mobile, responsive images, no-JS images, loading failure.');
+    console.log('Browser checks passed: search, dialogs, shortcuts, mobile, responsive images, no-JS images, loading failure, EN/IT navigation and 404.');
   } finally { await browser.close(); }
 })().catch(error => { console.error(error); process.exitCode = 1; }).finally(() => server.close());

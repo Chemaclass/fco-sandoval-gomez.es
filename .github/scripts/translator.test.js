@@ -33,3 +33,33 @@ test('reports provider failures without saving a translation', async () => {
   global.fetch = jest.fn().mockResolvedValue({ ok: false, status: 429, text: async () => 'Rate limit' });
   await expect(translateContent(source, 'en', 'test-key')).rejects.toThrow('429');
 });
+
+test.each([
+  ['missing image', '![](https://example.com/photo.jpg)', '[images remain the same]'],
+  ['changed image URL', '![](https://example.com/photo.jpg)', '![](https://example.com/other.jpg)'],
+  ['missing repeated image', '![](https://example.com/a.jpg)\n![](https://example.com/a.jpg)', '![](https://example.com/a.jpg)'],
+  ['changed gallery path', '{% gallery(id="a") %}\nimages/a.jpg\n{% end %}', '{% gallery(id="a") %}\nimages/b.jpg\n{% end %}'],
+  ['changed shortcode', '{{ youtube(id="original") }}', '{{ youtube(id="changed") }}'],
+])('never saves a translation with %s', async (_name, body, translatedBody) => {
+  const content = `+++\ntitle = "Título"\n+++\n\n${body}`;
+  mockResponse(`TITLE: Title\n\nBODY:\n${translatedBody}`);
+  const fs = { readFileSync: () => content, writeFileSync: jest.fn() };
+  await expect(translateAndSave('post.md', 'en', 'test-key', fs)).rejects.toThrow('Translation changed');
+  expect(fs.writeFileSync).not.toHaveBeenCalled();
+});
+
+test('preserves media while translating its alternative text', async () => {
+  mockResponse('TITLE: Title\n\nBODY:\n![Restored interior](/images/interior.jpg)');
+  await expect(translateContent('+++\ntitle = "Título"\n+++\n\n![Interior restaurado](/images/interior.jpg)', 'en', 'test-key')).resolves.toContain('![Restored interior]');
+});
+
+test.each([['Artículo', 'en', 'Article'], ['Capítulo de Libro', 'it', 'Capitolo di Libro'], ['Rehabilitación', 'it', 'RECUPERO']])('localizes category %s into %s', async (category, lang, expected) => {
+  mockResponse('TITLE: Title');
+  await expect(translateContent(`+++\ntitle = "Título"\n[extra]\ncategory = "${category}"\n+++\n`, lang, 'test-key')).resolves.toContain(`category = "${expected}"`);
+});
+
+test.each([['en', 'contact'], ['it', 'contatto']])('keeps the contact redirect in %s', async (lang, anchor) => {
+  mockResponse('TITLE: Contact');
+  const content = '+++\ntitle = "Contacto"\ntemplate = "redirect.html"\n[extra]\nredirect_to = "/sobre-mi/#contacto"\n+++\n';
+  await expect(translateContent(content, lang, 'test-key')).resolves.toContain(`redirect_to = "/${lang}/sobre-mi/#${anchor}"`);
+});

@@ -25,6 +25,7 @@ jobs:
         working-directory: .github/scripts
       - run: npm test -- --runInBand
         working-directory: .github/scripts
+      - run: python3 .github/scripts/check-translations.py
       - run: zola build
       - run: python3 .github/scripts/check-metadata.py
       - run: npx playwright install --with-deps chromium

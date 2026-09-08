@@ -11,6 +11,11 @@ const LANGUAGE_NAMES = {
 
 const CATEGORY_TRANSLATIONS = {
   en: {
+    'ARTÍCULO': 'Article',
+    'CAPÍTULO DE LIBRO': 'Book Chapter',
+    'LIBRO': 'Book',
+    'PONENCIA': 'Paper',
+    'CONFERENCIA': 'Lecture',
     'PATRIMONIO': 'HERITAGE',
     'REFLEXIONES': 'REFLECTIONS',
     'REHABILITACIÓN': 'RENOVATION',
@@ -19,9 +24,14 @@ const CATEGORY_TRANSLATIONS = {
     'URBANISMO': 'URBANISM'
   },
   it: {
+    'ARTÍCULO': 'Articolo',
+    'CAPÍTULO DE LIBRO': 'Capitolo di Libro',
+    'LIBRO': 'Libro',
+    'PONENCIA': 'Relazione',
+    'CONFERENCIA': 'Conferenza',
     'PATRIMONIO': 'PATRIMONIO',
     'REFLEXIONES': 'RIFLESSIONI',
-    'REHABILITACIÓN': 'RIABILITAZIONE',
+    'REHABILITACIÓN': 'RECUPERO',
     'INVESTIGACIÓN': 'RICERCA',
     'ARQUITECTURA': 'ARCHITETTURA',
     'URBANISMO': 'URBANISTICA'
@@ -102,7 +112,9 @@ async function callClaudeAPI(text, targetLang, apiKey, model = DEFAULT_MODEL) {
       messages: [{
         role: 'user',
         content: `Translate the following Spanish text to ${langName}.
-Keep the same tone and style. Preserve Markdown, URLs, code fences and Zola shortcodes exactly.
+Keep the same tone and style. Preserve Markdown, every image and URL, code fences and Zola shortcodes exactly.
+Preserve proper names and their accents. Use correct diacritics in the target language.
+Translate image alt text, but never replace images with placeholders.
 Keep the field markers TITLE:, DESCRIPTION: and BODY: unchanged, on their own field boundaries.
 Translate the values after these markers. Never omit any part of the body.
 Only respond with the translation, nothing else.
@@ -123,6 +135,11 @@ ${text}`
   const translatedText = data.content?.filter(block => block.type === 'text').map(block => block.text).join('\n').trim();
   if (!translatedText) throw new Error('Empty translation response');
   return translatedText;
+}
+
+// Reject missing or altered assets before a translation can overwrite a file.
+function protectedTokens(body) {
+  return (body.match(/https?:\/\/[^\s\)"<>]+|\/?images\/[^\s\)"<>]+|\{%.*?%\}|\{\{.*?\}\}/g) || []).sort();
 }
 
 /**
@@ -178,8 +195,18 @@ async function translateContent(content, targetLang, apiKey, model = DEFAULT_MOD
     newFrontmatter = replaceField(newFrontmatter, 'category', translatedCategory);
   }
 
+  // The legacy contact route points to a language-specific heading.
+  const contactRedirect = frontmatter.match(/^redirect_to\s*=\s*"\/sobre-mi\/#contacto"$/m);
+  if (contactRedirect) {
+    const anchor = targetLang === 'en' ? 'contact' : 'contatto';
+    newFrontmatter = replaceField(newFrontmatter, 'redirect_to', `/${targetLang}/sobre-mi/#${anchor}`);
+  }
+
   // Assemble final content
   const translatedBody = translated.body || body;
+  if (JSON.stringify(protectedTokens(body)) !== JSON.stringify(protectedTokens(translatedBody))) {
+    throw new Error('Translation changed URLs, media or shortcodes');
+  }
   return `+++\n${newFrontmatter}\n+++\n\n${translatedBody}\n`;
 }
 

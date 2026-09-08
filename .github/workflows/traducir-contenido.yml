@@ -29,13 +29,22 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          fetch-depth: 2
+          ref: main
+          fetch-depth: 0
 
       - name: Get changed Spanish files
         id: changed
+        env:
+          BEFORE: ${{ github.event.before }}
+          AFTER: ${{ github.sha }}
         run: |
           # Get list of changed .md files (excluding .en.md and .it.md)
-          CHANGED_FILES=$(git diff --name-only HEAD~1 HEAD -- 'content/**/*.md' | grep -v '\.en\.md$' | grep -v '\.it\.md$' || true)
+          if [[ "$BEFORE" =~ ^0+$ ]]; then
+            CANDIDATES=$(git ls-files 'content/**/*.md')
+          else
+            CANDIDATES=$(git diff --name-only --diff-filter=ACMR "$BEFORE" "$AFTER" -- 'content/**/*.md')
+          fi
+          CHANGED_FILES=$(printf '%s\n' "$CANDIDATES" | grep -vE '\.(en|it)\.md$|/_draft\.md$' || true)
 
           if [ -z "$CHANGED_FILES" ]; then
             echo "No Spanish content files changed"
@@ -54,23 +63,25 @@ jobs:
         env:
           CLAUDE_MODEL: ${{ vars.CLAUDE_MODEL }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          CHANGED_FILES: ${{ steps.changed.outputs.files }}
         uses: actions/github-script@v7
         with:
           script: |
             const { translateAndSave, DEFAULT_MODEL } = require('./.github/scripts/translator.js');
             const fs = require('fs');
 
-            const files = ${{ steps.changed.outputs.files }};
+            const files = JSON.parse(process.env.CHANGED_FILES);
             const model = DEFAULT_MODEL;
 
             if (!process.env.ANTHROPIC_API_KEY) {
-              console.log('ANTHROPIC_API_KEY not set, skipping translations');
+              core.setFailed('ANTHROPIC_API_KEY not set; translations were not updated');
               return;
             }
 
             console.log(`Using model: ${model}`);
             console.log(`Files to translate: ${files.length}`);
 
+            const failures = [];
             for (const file of files) {
               try {
                 // Check if file exists (might have been deleted)
@@ -83,9 +94,12 @@ jobs:
                 await translateAndSave(file, 'en', process.env.ANTHROPIC_API_KEY, fs, model);
                 await translateAndSave(file, 'it', process.env.ANTHROPIC_API_KEY, fs, model);
               } catch (error) {
+                failures.push(file);
                 console.error(`Failed to translate ${file}: ${error.message}`);
               }
             }
+
+            if (failures.length) core.setFailed(`Translations incomplete: ${failures.join(', ')}`);
 
       - name: Commit translations
         id: commit
