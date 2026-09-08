@@ -55,6 +55,9 @@ jobs:
         run: |
           zola build
 
+      - name: Check page metadata and language links
+        run: python3 .github/scripts/check-metadata.py
+
       - name: Verify requested page is in the artifact
         if: inputs.content_path != ''
         env:

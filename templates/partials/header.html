@@ -17,9 +17,7 @@
                 <li><a href="{{ lang_prefix }}/sobre-mi/" {% if full_path is containing("/sobre-mi") %}class="active"{% endif %}>{% if lang == "en" %}About me{% elif lang == "it" %}Chi sono{% else %}Sobre mí{% endif %}</a></li>
             </ul>
             <div class="lang-nav lang-nav--mobile">
-                <a href="/{{ path }}" {% if not lang or lang == "es" %}class="active"{% endif %}>ES</a>
-                <a href="/en/{{ path }}" {% if lang == "en" %}class="active"{% endif %}>EN</a>
-                <a href="/it/{{ path }}" {% if lang == "it" %}class="active"{% endif %}>IT</a>
+                {% include "partials/language-links.html" %}
             </div>
         </nav>
         {% include "partials/search.html" %}
@@ -40,9 +38,7 @@
             </svg>
         </button>
         <div class="lang-nav lang-nav--desktop">
-            <a href="/{{ path }}" {% if not lang or lang == "es" %}class="active"{% endif %}>ES</a>
-            <a href="/en/{{ path }}" {% if lang == "en" %}class="active"{% endif %}>EN</a>
-            <a href="/it/{{ path }}" {% if lang == "it" %}class="active"{% endif %}>IT</a>
+            {% include "partials/language-links.html" %}
         </div>
         <button class="menu-toggle" aria-label="{% if lang == 'en' %}Menu{% elif lang == 'it' %}Menu{% else %}Menú{% endif %}" aria-expanded="false" aria-controls="main-nav">
             <span></span>

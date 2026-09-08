@@ -1,0 +1,12 @@
+{% if page %}
+    {% set available_languages = page.translations %}
+{% elif section %}
+    {% set available_languages = section.translations %}
+{% else %}
+    {% set home = get_section(path="_index.md") %}
+    {% set available_languages = home.translations %}
+{% endif %}
+{% for translation in available_languages %}
+{% set translation_lang = translation.lang | default(value=config.default_language) %}
+<a href="{{ translation.permalink }}" lang="{{ translation_lang }}" hreflang="{{ translation_lang }}" {% if translation_lang == lang %}class="active" aria-current="page"{% endif %}>{{ translation_lang | upper }}</a>
+{% endfor %}

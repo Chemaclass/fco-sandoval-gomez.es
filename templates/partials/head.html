@@ -18,47 +18,61 @@
 <link rel="preload" href="{{ get_url(path='fonts/inter-v20-latin-regular.woff2') }}" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="{{ get_url(path='fonts/libre-baskerville-v24-latin-regular.woff2') }}" as="font" type="font/woff2" crossorigin>
 
-{# SEO Meta Tags #}
-<meta name="description" content="{{ description | default(value=config.description) }}">
+{# Resolve metadata from the page/section before falling back to site defaults. #}
+{% set meta_title = config.title %}
+{% set meta_description = config.description %}
+{% set meta_image = "images/sando-homepage.jpeg" %}
+{% set translations = [] %}
+{% if page %}
+    {% set meta_title = page.title | default(value=config.title) %}
+    {% set meta_description = page.description | default(value=config.description) %}
+    {% set meta_image = page.extra.image | default(value=meta_image) %}
+    {% set translations = page.translations %}
+{% elif section %}
+    {% set meta_title = section.title | default(value=config.title) %}
+    {% set meta_description = section.description | default(value=config.description) %}
+    {% set meta_image = section.extra.image | default(value=meta_image) %}
+    {% set translations = section.translations %}
+{% endif %}
+{% if not meta_image %}{% set meta_image = "images/sando-homepage.jpeg" %}{% endif %}
+{% if meta_image is starting_with("http") %}
+    {% set meta_image_url = meta_image %}
+{% else %}
+    {% set meta_image_url = get_url(path=meta_image) %}
+{% endif %}
+<meta name="description" content="{{ meta_description }}">
 <meta name="author" content="{{ config.extra.author }}">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="{{ current_url | default(value=config.base_url) }}">
 
-{# Hreflang for multilingual SEO #}
-{% set base_path = current_path | default(value="/") | trim_start_matches(pat="/en/") | trim_start_matches(pat="/it/") %}
-<link rel="alternate" hreflang="es" href="{{ config.base_url }}{{ base_path }}">
-<link rel="alternate" hreflang="en" href="{{ config.base_url }}/en{{ base_path }}">
-<link rel="alternate" hreflang="it" href="{{ config.base_url }}/it{{ base_path }}">
-<link rel="alternate" hreflang="x-default" href="{{ config.base_url }}{{ base_path }}">
+{# Pagination can differ between languages. Advertise only known equivalents. #}
+{% if not paginator or paginator.current_index == 1 %}
+{% for translation in translations %}
+{% set translation_lang = translation.lang | default(value=config.default_language) %}
+<link rel="alternate" hreflang="{{ translation_lang }}" href="{{ translation.permalink }}">
+{% if translation_lang == config.default_language %}
+<link rel="alternate" hreflang="x-default" href="{{ translation.permalink }}">
+{% endif %}
+{% endfor %}
+{% endif %}
 
-{# Open Graph / Facebook #}
-<meta property="og:type" content="{% if page %}article{% else %}website{% endif %}">
+<meta property="og:type" content="{% if page and page.date %}article{% else %}website{% endif %}">
 <meta property="og:url" content="{{ current_url | default(value=config.base_url) }}">
-<meta property="og:title" content="{{ title | default(value=config.title) }}">
-<meta property="og:description" content="{{ description | default(value=config.description) }}">
+<meta property="og:title" content="{{ meta_title }}">
+<meta property="og:description" content="{{ meta_description }}">
 <meta property="og:site_name" content="{{ config.title }}">
 <meta property="og:locale" content="{% if lang == 'en' %}en_US{% elif lang == 'it' %}it_IT{% else %}es_ES{% endif %}">
-{% if page.extra.image %}
-<meta property="og:image" content="{{ get_url(path=page.extra.image) }}">
-{% elif section.extra.image %}
-<meta property="og:image" content="{{ get_url(path=section.extra.image) }}">
-{% else %}
-<meta property="og:image" content="{{ get_url(path='images/sando-homepage.jpeg') }}">
+<meta property="og:image" content="{{ meta_image_url }}">
+{% if not (meta_image is starting_with("http")) %}
+{% set image_metadata = get_image_metadata(path=meta_image) %}
+<meta property="og:image:width" content="{{ image_metadata.width }}">
+<meta property="og:image:height" content="{{ image_metadata.height }}">
 {% endif %}
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
 
-{# Twitter Card #}
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="{{ title | default(value=config.title) }}">
-<meta name="twitter:description" content="{{ description | default(value=config.description) }}">
-{% if page.extra.image %}
-<meta name="twitter:image" content="{{ get_url(path=page.extra.image) }}">
-{% elif section.extra.image %}
-<meta name="twitter:image" content="{{ get_url(path=section.extra.image) }}">
-{% else %}
-<meta name="twitter:image" content="{{ get_url(path='images/sando-homepage.jpeg') }}">
-{% endif %}
+<meta name="twitter:title" content="{{ meta_title }}">
+<meta name="twitter:description" content="{{ meta_description }}">
+<meta name="twitter:image" content="{{ meta_image_url }}">
 
 {# Article specific meta for blog posts #}
 {% if page %}
@@ -116,97 +130,79 @@ h1,h2,h3,h4,h5,h6{font-family:'Libre Baskerville',Georgia,serif;font-weight:400;
 <script defer src="{{ get_url(path='js/search.js') }}"></script>
 
 {# RSS Feed #}
-<link rel="alternate" type="application/atom+xml" title="{{ config.title }}" href="{{ get_url(path='atom.xml') }}">
+<link rel="alternate" type="application/atom+xml" title="{{ config.title }}" href="{{ get_url(path='atom.xml', lang=lang) }}">
 
-{# JSON-LD Structured Data #}
-{% if page %}
-{# Article Schema #}
+{# JSON strings are serialized and '<' escaped for script raw-text safety. #}
+{% if page and page.date %}
 <script type="application/ld+json">
 {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    "headline": "{{ page.title }}",
-    "description": "{{ page.description | default(value='') }}",
-    {% if page.extra.image %}"image": "{% if page.extra.image is starting_with('http') %}{{ page.extra.image }}{% else %}{{ get_url(path=page.extra.image) }}{% endif %}",{% endif %}
-    "author": {
-        "@type": "Person",
-        "name": "{{ config.extra.author }}",
-        "url": "{{ config.base_url }}"
-    },
-    "publisher": {
-        "@type": "Person",
-        "name": "{{ config.extra.author }}"
-    },
-    {% if page.date %}"datePublished": "{{ page.date | date(format='%Y-%m-%d') }}",{% endif %}
-    {% if page.updated %}"dateModified": "{{ page.updated | date(format='%Y-%m-%d') }}",{% elif page.date %}"dateModified": "{{ page.date | date(format='%Y-%m-%d') }}",{% endif %}
-    "wordCount": "{{ page.content | striptags | wordcount }}",
-    "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": "{{ page.permalink }}"
-    }
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": {{ meta_title | json_encode() | replace(from="<", to="\\u003c") | safe }},
+  "description": {{ meta_description | json_encode() | replace(from="<", to="\\u003c") | safe }},
+  "image": {{ meta_image_url | json_encode() | replace(from="<", to="\\u003c") | safe }},
+  "author": {
+    "@type": "Person",
+    "name": {{ config.extra.author | json_encode() | replace(from="<", to="\\u003c") | safe }},
+    "url": {{ config.base_url | json_encode() | replace(from="<", to="\\u003c") | safe }}
+  },
+  "datePublished": {{ page.date | date(format="%Y-%m-%d") | json_encode() | replace(from="<", to="\\u003c") | safe }},
+  "dateModified": {{ page.updated | default(value=page.date) | date(format="%Y-%m-%d") | json_encode() | replace(from="<", to="\\u003c") | safe }},
+  "mainEntityOfPage": {{ page.permalink | json_encode() | replace(from="<", to="\\u003c") | safe }}
 }
 </script>
-{# Breadcrumb Schema for better SERP appearance #}
-{% set ancestors = page.ancestors | default(value=[]) %}
-{% if ancestors | length > 0 %}
+{% if page.ancestors | length > 0 %}
 <script type="application/ld+json">
 {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-        {
-            "@type": "ListItem",
-            "position": 1,
-            "name": "{{ config.title }}",
-            "item": "{{ config.base_url }}"
-        }
-        {% for ancestor_path in ancestors %}
-        {% set ancestor = get_section(path=ancestor_path) %}
-        ,{
-            "@type": "ListItem",
-            "position": {{ loop.index + 1 }},
-            "name": "{{ ancestor.title }}",
-            "item": "{{ ancestor.permalink }}"
-        }
-        {% endfor %}
-        ,{
-            "@type": "ListItem",
-            "position": {{ ancestors | length + 2 }},
-            "name": "{{ page.title }}",
-            "item": "{{ page.permalink }}"
-        }
-    ]
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {% for ancestor_path in page.ancestors %}
+    {% set ancestor = get_section(path=ancestor_path) %}
+    {
+      "@type": "ListItem",
+      "position": {{ loop.index }},
+      "name": {{ ancestor.title | default(value=config.title) | json_encode() | replace(from="<", to="\\u003c") | safe }},
+      "item": {{ ancestor.permalink | json_encode() | replace(from="<", to="\\u003c") | safe }}
+    },
+    {% endfor %}
+    {
+      "@type": "ListItem",
+      "position": {{ page.ancestors | length + 1 }},
+      "name": {{ meta_title | json_encode() | replace(from="<", to="\\u003c") | safe }},
+      "item": {{ page.permalink | json_encode() | replace(from="<", to="\\u003c") | safe }}
+    }
+  ]
 }
 </script>
 {% endif %}
+{% elif page %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": {{ meta_title | json_encode() | replace(from="<", to="\\u003c") | safe }},
+  "url": {{ page.permalink | json_encode() | replace(from="<", to="\\u003c") | safe }}
+}
+</script>
 {% else %}
 <script type="application/ld+json">
 {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "{{ config.title }}",
-    "description": "{{ config.description }}",
-    "url": "{{ config.base_url }}",
-    "inLanguage": ["es", "en", "it"],
-    "potentialAction": {
-        "@type": "SearchAction",
-        "target": {
-            "@type": "EntryPoint",
-            "urlTemplate": "{{ config.base_url }}/?q={search_term_string}"
-        },
-        "query-input": "required name=search_term_string"
-    },
-    "author": {
-        "@type": "Person",
-        "name": "{{ config.extra.author }}",
-        "jobTitle": "Arquitecto",
-        "url": "{{ config.base_url }}",
-        "sameAs": [
-            "{{ config.extra.social.linkedin }}",
-            "{{ config.extra.social.instagram }}",
-            "{{ config.extra.social.researchgate }}"
-        ]
-    }
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": {{ config.title | json_encode() | replace(from="<", to="\\u003c") | safe }},
+  "url": {{ config.base_url | json_encode() | replace(from="<", to="\\u003c") | safe }},
+  "inLanguage": {{ lang | default(value=config.default_language) | json_encode() | replace(from="<", to="\\u003c") | safe }},
+  "author": {
+    "@type": "Person",
+    "name": {{ config.extra.author | json_encode() | replace(from="<", to="\\u003c") | safe }},
+    "jobTitle": "Arquitecto",
+    "sameAs": [
+      {{ config.extra.social.linkedin | json_encode() | replace(from="<", to="\\u003c") | safe }},
+      {{ config.extra.social.instagram | json_encode() | replace(from="<", to="\\u003c") | safe }},
+      {{ config.extra.social.researchgate | json_encode() | replace(from="<", to="\\u003c") | safe }}
+    ]
+  }
 }
 </script>
 {% endif %}
