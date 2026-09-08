@@ -22,3 +22,11 @@ zola serve
 ```
 
 Open http://127.0.0.1:1111/ in your browser.
+
+### Translations
+
+The issue and content workflows use the shared model default in
+`.github/scripts/translator.js`. Set the GitHub repository variable `CLAUDE_MODEL`
+only to override that default, and configure `ANTHROPIC_API_KEY` as a repository
+secret. Incomplete responses are rejected instead of being saved as translations.
+The model lifecycle is documented in [Anthropic's model deprecations](https://platform.claude.com/docs/en/about-claude/model-deprecations).

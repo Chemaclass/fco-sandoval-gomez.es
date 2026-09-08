@@ -11,13 +11,6 @@ on:
 # ============================================================================
 # CONFIGURACIÓN
 # ============================================================================
-env:
-  # Claude model for translations. Options:
-  # - claude-3-5-haiku-20241022 (fastest, cheapest)
-  # - claude-3-5-sonnet-20241022 (balanced)
-  # - claude-3-opus-20240229 (best quality)
-  CLAUDE_MODEL: "claude-3-5-haiku-20241022"
-
 permissions:
   contents: write
   actions: write
@@ -55,15 +48,16 @@ jobs:
       - name: Translate changed files
         if: steps.changed.outputs.has_files == 'true'
         env:
+          CLAUDE_MODEL: ${{ vars.CLAUDE_MODEL }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         uses: actions/github-script@v7
         with:
           script: |
-            const { translateAndSave } = require('./.github/scripts/translator.js');
+            const { translateAndSave, DEFAULT_MODEL } = require('./.github/scripts/translator.js');
             const fs = require('fs');
 
             const files = ${{ steps.changed.outputs.files }};
-            const model = '${{ env.CLAUDE_MODEL }}';
+            const model = DEFAULT_MODEL;
 
             if (!process.env.ANTHROPIC_API_KEY) {
               console.log('ANTHROPIC_API_KEY not set, skipping translations');

@@ -11,12 +11,6 @@ env:
   # Usuarios autorizados para crear contenido (separados por coma)
   AUTHORIZED_USERS: "Chemaclass,fsangom"
 
-  # Claude model for translations. Options:
-  # - claude-3-5-haiku-20241022 (fastest, cheapest)
-  # - claude-3-5-sonnet-20241022 (balanced)
-  # - claude-3-opus-20240229 (best quality)
-  # See: https://docs.anthropic.com/en/docs/about-claude/models
-  CLAUDE_MODEL: "claude-3-5-haiku-20241022"
 
 permissions:
   contents: write
@@ -88,15 +82,16 @@ jobs:
       - name: Translate to EN and IT
         if: steps.auth.outputs.authorized == 'true'
         env:
+          CLAUDE_MODEL: ${{ vars.CLAUDE_MODEL }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         uses: actions/github-script@v7
         with:
           script: |
-            const { translateAndSave } = require('./.github/scripts/translator.js');
+            const { translateAndSave, DEFAULT_MODEL } = require('./.github/scripts/translator.js');
             const fs = require('fs');
 
             const filename = '${{ steps.create.outputs.filename }}';
-            const model = '${{ env.CLAUDE_MODEL }}';
+            const model = DEFAULT_MODEL;
 
             if (!process.env.ANTHROPIC_API_KEY) {
               core.warning('ANTHROPIC_API_KEY not set, skipping translations');

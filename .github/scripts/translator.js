@@ -2,6 +2,8 @@
  * Translator - Uses Claude API to translate Zola markdown content
  */
 
+const { tomlString } = require('./content-creator');
+
 const LANGUAGE_NAMES = {
   en: 'English',
   it: 'Italian'
@@ -53,8 +55,8 @@ function extractFields(frontmatter) {
   const categoryMatch = frontmatter.match(/^category\s*=\s*"(.*)"/m);
 
   return {
-    title: titleMatch ? titleMatch[1] : '',
-    description: descMatch ? descMatch[1] : '',
+    title: titleMatch ? JSON.parse(titleMatch[0].slice(titleMatch[0].indexOf('=') + 1).trim()) : '',
+    description: descMatch ? JSON.parse(descMatch[0].slice(descMatch[0].indexOf('=') + 1).trim()) : '',
     category: categoryMatch ? categoryMatch[1] : ''
   };
 }
@@ -67,13 +69,12 @@ function extractFields(frontmatter) {
  * @returns {string} Updated frontmatter
  */
 function replaceField(frontmatter, field, newValue) {
-  const escaped = newValue.replace(/"/g, '\\"');
   const regex = new RegExp(`^(${field}\\s*=\\s*)".*"`, 'm');
-  return frontmatter.replace(regex, `$1"${escaped}"`);
+  return frontmatter.replace(regex, (_match, prefix) => prefix + tomlString(newValue));
 }
 
 // Default model - can be overridden via workflow env
-const DEFAULT_MODEL = 'claude-3-5-haiku-20241022';
+const DEFAULT_MODEL = process.env.CLAUDE_MODEL || 'claude-haiku-4-5-20251001';
 
 /**
  * Call Claude API to translate text
@@ -85,9 +86,11 @@ const DEFAULT_MODEL = 'claude-3-5-haiku-20241022';
  */
 async function callClaudeAPI(text, targetLang, apiKey, model = DEFAULT_MODEL) {
   const langName = LANGUAGE_NAMES[targetLang];
+  if (!langName) throw new Error(`Unsupported translation language: ${targetLang}`);
 
   const response = await fetch('https://api.anthropic.com/v1/messages', {
     method: 'POST',
+    signal: AbortSignal.timeout(60000),
     headers: {
       'Content-Type': 'application/json',
       'x-api-key': apiKey,
@@ -99,7 +102,9 @@ async function callClaudeAPI(text, targetLang, apiKey, model = DEFAULT_MODEL) {
       messages: [{
         role: 'user',
         content: `Translate the following Spanish text to ${langName}.
-Keep the same tone and style. Preserve any markdown formatting.
+Keep the same tone and style. Preserve Markdown, URLs, code fences and Zola shortcodes exactly.
+Keep the field markers TITLE:, DESCRIPTION: and BODY: unchanged, on their own field boundaries.
+Translate the values after these markers. Never omit any part of the body.
 Only respond with the translation, nothing else.
 
 Text to translate:
@@ -114,7 +119,10 @@ ${text}`
   }
 
   const data = await response.json();
-  return data.content[0].text.trim();
+  if (data.stop_reason !== 'end_turn') throw new Error(`Incomplete translation: ${data.stop_reason}`);
+  const translatedText = data.content?.filter(block => block.type === 'text').map(block => block.text).join('\n').trim();
+  if (!translatedText) throw new Error('Empty translation response');
+  return translatedText;
 }
 
 /**
@@ -146,6 +154,9 @@ async function translateContent(content, targetLang, apiKey, model = DEFAULT_MOD
     const descMatch = translatedText.match(/DESCRIPTION:\s*(.+?)(?=\n\n|BODY:|$)/s);
     const bodyMatch = translatedText.match(/BODY:\s*([\s\S]+)$/);
 
+    if ((fields.title && !titleMatch) || (fields.description && !descMatch) || (body && !bodyMatch)) {
+      throw new Error('Translation is missing required fields');
+    }
     translated.title = titleMatch ? titleMatch[1].trim() : fields.title;
     translated.description = descMatch ? descMatch[1].trim() : fields.description;
     translated.body = bodyMatch ? bodyMatch[1].trim() : body;
@@ -201,6 +212,7 @@ async function translateAndSave(filename, targetLang, apiKey, fs, model = DEFAUL
 }
 
 module.exports = {
+  DEFAULT_MODEL,
   parseMarkdown,
   extractFields,
   replaceField,
