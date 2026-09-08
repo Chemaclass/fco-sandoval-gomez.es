@@ -5,7 +5,8 @@
 <header class="site-header">
     <div class="container">
         <a href="{{ lang_prefix }}/" class="logo">
-            <img src="{{ get_url(path='images/sando-navbar.jpg') }}" alt="Francisco Sandoval Gómez" class="logo-photo">
+            {% set portrait = resize_image(path="images/sando-navbar.jpg", width=88, height=88, op="fill", format="webp", quality=85) %}
+            <img src="{{ portrait.url }}" alt="Francisco Sandoval Gómez" class="logo-photo" width="44" height="44" decoding="async">
             <span class="site-name">Francisco Sandoval Gómez</span>
         </a>
         <nav id="main-nav" class="main-nav">

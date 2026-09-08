@@ -21,22 +21,26 @@
     {% include "partials/footer.html" %}
 
     <!-- Lightbox Modal -->
-    <div id="lightbox" class="lightbox" onclick="closeLightbox(event)">
+    <dialog id="lightbox" aria-label="{% if lang == 'en' %}Image viewer{% elif lang == 'it' %}Visualizzatore immagini{% else %}Visor de imágenes{% endif %}" class="lightbox" onclick="closeLightbox(event)">
         <button class="lightbox-close" onclick="closeLightbox(event)" aria-label="{% if lang == 'en' %}Close{% elif lang == 'it' %}Chiudi{% else %}Cerrar{% endif %}">&times;</button>
         <button class="lightbox-prev" onclick="navigateLightbox(event, -1)" aria-label="{% if lang == 'en' %}Previous{% elif lang == 'it' %}Precedente{% else %}Anterior{% endif %}">&#10094;</button>
         <div class="lightbox-content">
             <img id="lightbox-img" src="" alt="">
             <div id="lightbox-caption" class="lightbox-caption"></div>
-            <div id="lightbox-counter" class="lightbox-counter"></div>
+            <div id="lightbox-counter" class="lightbox-counter" role="status"></div>
         </div>
         <button class="lightbox-next" onclick="navigateLightbox(event, 1)" aria-label="{% if lang == 'en' %}Next{% elif lang == 'it' %}Successivo{% else %}Siguiente{% endif %}">&#10095;</button>
-    </div>
+    </dialog>
 
     <!-- Help Modal -->
-    <div id="help-modal" class="help-modal" onclick="closeHelpModal(event)">
+    <dialog id="help-modal" aria-labelledby="help-title" class="help-modal" onclick="closeHelpModal(event)">
         <div class="help-modal-content" onclick="event.stopPropagation()">
             <button class="help-modal-close" onclick="closeHelpModal(event)" aria-label="{% if lang == 'en' %}Close{% elif lang == 'it' %}Chiudi{% else %}Cerrar{% endif %}">&times;</button>
-            <h2>{% if lang == 'en' %}Keyboard Shortcuts{% elif lang == 'it' %}Scorciatoie da Tastiera{% else %}Atajos de Teclado{% endif %}</h2>
+            <h2 id="help-title">{% if lang == 'en' %}Keyboard Shortcuts{% elif lang == 'it' %}Scorciatoie da Tastiera{% else %}Atajos de Teclado{% endif %}</h2>
+            <label class="shortcuts-preference">
+                <input type="checkbox" id="enable-shortcuts">
+                {% if lang == 'en' %}Enable single-key shortcuts{% elif lang == 'it' %}Abilita scorciatoie con un solo tasto{% else %}Activar atajos de una sola tecla{% endif %}
+            </label>
             <div class="shortcuts-list">
                 <div class="shortcut-item">
                     <kbd>H</kbd>
@@ -68,7 +72,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </dialog>
 
     <script defer src="{{ get_url(path='js/main.js') }}"></script>
 </body>

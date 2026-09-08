@@ -153,18 +153,10 @@ img {
 .img-skeleton {
     position: relative;
     overflow: hidden;
-    background: linear-gradient(
-        90deg,
-        var(--color-bg-light) 0%,
-        var(--color-border) 50%,
-        var(--color-bg-light) 100%
-    );
-    background-size: 200% 100%;
-    animation: skeleton-pulse 1.5s ease-in-out infinite;
+    background: var(--color-bg-light);
 
     img {
-        opacity: 0;
-        transition: opacity 0.3s ease;
+        opacity: 1;
     }
 
     &.loaded {
@@ -2768,7 +2760,7 @@ blockquote {
         grid-template-columns: 1fr;
     }
 
-    .posts-grid {
+    .posts-grid, .posts-grid[class*="posts-grid--cols-"] {
         grid-template-columns: 1fr;
     }
 
@@ -2925,3 +2917,28 @@ blockquote {
         padding: 0;
     }
 }
+
+// Preserve the established overlays while native dialog owns modality.
+dialog.lightbox, dialog.help-modal {
+    max-width: none;
+    max-height: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    color: var(--color-text);
+}
+.image-trigger {
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: zoom-in;
+    color: inherit;
+}
+.image-trigger:focus-visible { outline-offset: -3px; }
+.shortcuts-preference { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.5rem; }
+.help-toggle { font: inherit; color: var(--color-primary); background: transparent; border: 0; padding: 0.75rem; cursor: pointer; text-decoration: underline; }
+.post-meta { flex-wrap: wrap; }
+.search-status { padding: 0.75rem; color: var(--color-text-light); font-size: 0.9rem; }
+.search-status:empty { display: none; }

@@ -30,6 +30,7 @@
         </div>
         <div class="footer-bottom">
             <p>&copy; {{ now() | date(format="%Y") }} Francisco Sandoval Gómez. {% if lang == "en" %}All rights reserved.{% elif lang == "it" %}Tutti i diritti riservati.{% else %}Todos los derechos reservados.{% endif %}</p>
+            <button type="button" class="help-toggle" aria-haspopup="dialog">{% if lang == "en" %}Keyboard shortcuts{% elif lang == "it" %}Scorciatoie da tastiera{% else %}Atajos de teclado{% endif %}</button>
             <p class="footer-credit">{% if lang == "en" %}Developed by{% elif lang == "it" %}Sviluppato da{% else %}Desarrollado por{% endif %} <a href="https://chemaclass.com" target="_blank" rel="noopener" class="external-link">Chemaclass</a> · <a href="{{ lang_prefix }}/legal/">{% if lang == "en" %}Legal{% elif lang == "it" %}Legale{% else %}Legal{% endif %}</a></p>
         </div>
     </div>

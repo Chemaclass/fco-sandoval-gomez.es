@@ -1,0 +1,33 @@
+name: Check website
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+concurrency:
+  group: check-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4.2.2
+      - uses: taiki-e/install-action@v2
+        with:
+          tool: zola@0.21.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: .github/scripts/package-lock.json
+      - run: npm ci
+        working-directory: .github/scripts
+      - run: npm test -- --runInBand
+        working-directory: .github/scripts
+      - run: zola build
+      - run: python3 .github/scripts/check-metadata.py
+      - run: npx playwright install --with-deps chromium
+        working-directory: .github/scripts
+      - run: npm run test:browser -- ../../public
+        working-directory: .github/scripts

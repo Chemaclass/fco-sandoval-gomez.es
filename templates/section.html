@@ -12,6 +12,7 @@
 {# Artículos: Featured article + grid #}
 <section class="articulos-page">
     <div class="container">
+        <h1>{{ section.title }}</h1>
         {% if pages | length > 0 %}
         {{ cards::article_featured(article=pages | first) }}
         {% endif %}

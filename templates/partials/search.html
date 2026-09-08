@@ -14,12 +14,15 @@
             autocomplete="off"
             aria-label="{% if lang == 'en' %}Search posts{% elif lang == 'it' %}Cerca articoli{% else %}Buscar publicaciones{% endif %}"
         >
-        <div id="search-results" class="search-results" role="listbox" aria-label="{% if lang == 'en' %}Search results{% elif lang == 'it' %}Risultati della ricerca{% else %}Resultados de busqueda{% endif %}"></div>
+        <div id="search-status" class="search-status" role="status"></div>
+        <div id="search-results" class="search-results" role="region" aria-label="{% if lang == 'en' %}Search results{% elif lang == 'it' %}Risultati della ricerca{% else %}Resultados de busqueda{% endif %}"></div>
     </div>
 </div>
 <script>
     window.searchConfig = {
         lang: "{{ lang | default(value='es') }}",
+        loading: "{% if lang == 'en' %}Loading search…{% elif lang == 'it' %}Caricamento ricerca…{% else %}Cargando búsqueda…{% endif %}",
+        loadError: "{% if lang == 'en' %}Search could not load. Close and reopen to retry.{% elif lang == 'it' %}Ricerca non disponibile. Chiudi e riapri per riprovare.{% else %}No se pudo cargar la búsqueda. Cierra y vuelve a abrir para reintentar.{% endif %}",
         noResults: "{% if lang == 'en' %}{{ config.extra.i18n.en.search_no_results }}{% elif lang == 'it' %}{{ config.extra.i18n.it.search_no_results }}{% else %}{{ config.extra.i18n.es.search_no_results }}{% endif %}"
     };
 </script>

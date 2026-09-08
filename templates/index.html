@@ -1,12 +1,13 @@
 {% extends "base.html" %}
 
 {% import "macros/cards.html" as cards %}
+{% import "macros/images.html" as images %}
 {% import "macros/sections.html" as sections %}
 
 {% block content %}
 <section class="hero">
     <div class="hero-background">
-        <img src="{{ get_url(path='images/sando-homepage.jpeg') }}" alt="{% if lang == 'en' %}Architecture{% elif lang == 'it' %}Architettura{% else %}Arquitectura{% endif %}" loading="eager">
+        {{ images::hero_image(url="images/sando-homepage.jpeg", alt="") }}
     </div>
     <div class="hero-content container">
         <p class="hero-tagline">{% if lang == "en" %}ARCHITECTURE · HERITAGE · REFLECTION{% elif lang == "it" %}ARCHITETTURA · PATRIMONIO · RIFLESSIONE{% else %}ARQUITECTURA · PATRIMONIO · REFLEXIÓN{% endif %}</p>

@@ -7,7 +7,7 @@
         {% for img_path in image_list %}
         {% if img_path | trim != "" %}
         <figure class="gallery-item img-skeleton" data-index="{{ loop.index0 }}">
-            {{ images::gallery_image(url=img_path | trim, alt="", onclick="openLightbox('" ~ gallery_id ~ "', " ~ loop.index0 ~ ")") }}
+            {{ images::gallery_image(url=img_path | trim, alt="") }}
         </figure>
         {% endif %}
         {% endfor %}

@@ -23,91 +23,91 @@ document.addEventListener('click', function(e) {
     }
 });
 
-// Lightbox functionality for all article images
-let currentIndex = 0;
-let articleImages = [];
+// Native dialogs provide focus containment and keep the background inert.
+const dialogTriggers = new WeakMap();
+function showDialog(dialog, trigger = document.activeElement) {
+    if (dialog.open) return;
+    dialogTriggers.set(dialog, trigger);
+    dialog.showModal();
+    dialog.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    dialog.querySelector('button')?.focus();
+}
 
-function initArticleLightbox() {
-    const article = document.querySelector('.article-page');
-    if (!article) return;
-
-    // Find all images in the article (body, media blocks, gallery) but exclude hero image
-    articleImages = Array.from(article.querySelectorAll('img')).filter(img => !img.closest('.article-hero'));
-
-    // Make each image clickable
-    articleImages.forEach((img, index) => {
-        img.style.cursor = 'pointer';
-        img.addEventListener('click', (e) => {
-            e.preventDefault();
-            openLightbox(index);
-        });
+for (const dialog of document.querySelectorAll('dialog')) {
+    dialog.addEventListener('close', () => {
+        dialog.classList.remove('active');
+        document.body.style.overflow = mainNav.classList.contains('active') ? 'hidden' : '';
+        dialogTriggers.get(dialog)?.focus();
     });
 }
 
-function openLightbox(index) {
-    if (articleImages.length === 0) return;
+let currentIndex = 0;
+let articleImages = [];
+function initArticleLightbox() {
+    const article = document.querySelector('.article-page');
+    if (!article) return;
+    articleImages = Array.from(article.querySelectorAll('img')).filter(img => !img.closest('.article-hero, a'));
+    const label = { es: 'Ampliar imagen', en: 'Enlarge image', it: 'Ingrandisci immagine' }[document.documentElement.lang] || 'Ampliar imagen';
+    articleImages.forEach((img, index) => {
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'image-trigger';
+        button.setAttribute('aria-label', img.alt ? `${label}: ${img.alt}` : `${label} ${index + 1}`);
+        button.setAttribute('aria-haspopup', 'dialog');
+        img.before(button);
+        button.append(img);
+        button.addEventListener('click', () => openLightbox(index, button));
+    });
+}
 
+function openLightbox(index, trigger) {
+    if (!Number.isInteger(index) || !articleImages[index]) return;
     currentIndex = index;
     updateLightboxImage();
-    document.getElementById('lightbox').classList.add('active');
-    document.body.style.overflow = 'hidden';
+    showDialog(document.getElementById('lightbox'), trigger);
 }
 
 function closeLightbox(event) {
-    if (event.target.classList.contains('lightbox') ||
-        event.target.classList.contains('lightbox-close')) {
-        document.getElementById('lightbox').classList.remove('active');
-        document.body.style.overflow = '';
+    if (!event || event.target.classList.contains('lightbox') || event.target.closest('.lightbox-close')) {
+        document.getElementById('lightbox').close();
     }
 }
 
 function navigateLightbox(event, direction) {
     event.stopPropagation();
-    currentIndex += direction;
-    if (currentIndex < 0) currentIndex = articleImages.length - 1;
-    if (currentIndex >= articleImages.length) currentIndex = 0;
+    event.preventDefault();
+    currentIndex = (currentIndex + direction + articleImages.length) % articleImages.length;
     updateLightboxImage();
 }
 
 function updateLightboxImage() {
     const img = articleImages[currentIndex];
-    document.getElementById('lightbox-img').src = img.src;
-    document.getElementById('lightbox-img').alt = img.alt;
-    document.getElementById('lightbox-counter').textContent =
-        `${currentIndex + 1} / ${articleImages.length}`;
+    const enlarged = document.getElementById('lightbox-img');
+    enlarged.src = img.dataset.fullSrc || img.currentSrc || img.src;
+    enlarged.alt = img.alt;
+    document.getElementById('lightbox-caption').textContent = img.closest('figure')?.querySelector('figcaption')?.textContent || img.alt;
+    document.getElementById('lightbox-counter').textContent = `${currentIndex + 1} / ${articleImages.length}`;
 }
-
-// Initialize lightbox for article images
 initArticleLightbox();
-
-// Keyboard navigation for lightbox
-document.addEventListener('keydown', function(e) {
-    const lightbox = document.getElementById('lightbox');
-    if (!lightbox.classList.contains('active')) return;
-
-    if (e.key === 'Escape') {
-        lightbox.classList.remove('active');
-        document.body.style.overflow = '';
-    } else if (e.key === 'ArrowLeft') {
-        navigateLightbox(e, -1);
-    } else if (e.key === 'ArrowRight') {
-        navigateLightbox(e, 1);
-    }
+document.getElementById('lightbox').addEventListener('keydown', function(e) {
+    if (e.key === 'ArrowLeft') navigateLightbox(e, -1);
+    if (e.key === 'ArrowRight') navigateLightbox(e, 1);
 });
 
-// Help modal functions
-function openHelpModal() {
-    document.getElementById('help-modal').classList.add('active');
-    document.body.style.overflow = 'hidden';
-}
-
+function openHelpModal() { showDialog(document.getElementById('help-modal')); }
 function closeHelpModal(event) {
-    if (!event || event.target.classList.contains('help-modal') ||
-        event.target.classList.contains('help-modal-close')) {
-        document.getElementById('help-modal').classList.remove('active');
-        document.body.style.overflow = '';
+    if (!event || event.target.classList.contains('help-modal') || event.target.closest('.help-modal-close')) {
+        document.getElementById('help-modal').close();
     }
 }
+
+document.querySelector('.help-toggle')?.addEventListener('click', openHelpModal);
+const shortcutsToggle = document.getElementById('enable-shortcuts');
+try { shortcutsToggle.checked = localStorage.getItem('shortcuts') === 'enabled'; } catch { /* Use the accessible default. */ }
+shortcutsToggle.addEventListener('change', () => {
+    try { localStorage.setItem('shortcuts', shortcutsToggle.checked ? 'enabled' : 'disabled'); } catch { /* Current-page preference still works. */ }
+});
 
 // Get home URL based on current language
 function getHomeUrl() {
@@ -120,7 +120,7 @@ function getHomeUrl() {
 // Theme toggle functions
 function toggleTheme() {
     const isDark = document.documentElement.classList.toggle('theme-dark');
-    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    try { localStorage.setItem('theme', isDark ? 'dark' : 'light'); } catch { /* Theme still works without storage. */ }
 }
 
 // Initialize theme toggle button
@@ -144,10 +144,10 @@ document.addEventListener('keydown', function(e) {
     const isSearchOpen = searchBox && searchBox.classList.contains('active');
 
     // If lightbox is open, let its handler deal with it
-    if (lightbox.classList.contains('active')) return;
+    if (lightbox.open) return;
 
     // Handle help modal
-    if (helpModal.classList.contains('active')) {
+    if (helpModal.open) {
         if (e.key === 'Escape') {
             closeHelpModal();
             e.preventDefault();
@@ -157,6 +157,9 @@ document.addEventListener('keydown', function(e) {
 
     // Handle search being open
     if (isSearchOpen) return;
+
+    // Character shortcuts are opt-in and can always be disabled in help.
+    if (!shortcutsToggle.checked) return;
 
     // Global shortcuts
     switch (e.key) {
@@ -212,16 +215,9 @@ function navigatePost(direction) {
 
 // Language switcher: cycle through ES → EN → IT → ES
 function switchLanguage() {
-    const path = window.location.pathname;
-    const basePath = path.replace(/^\/(en|it)\//, '/').replace(/^\/(en|it)$/, '/');
-
-    if (path.startsWith('/en/') || path === '/en') {
-        window.location.href = '/it' + basePath;
-    } else if (path.startsWith('/it/') || path === '/it') {
-        window.location.href = basePath;
-    } else {
-        window.location.href = '/en' + basePath;
-    }
+    const links = Array.from(document.querySelectorAll('.lang-nav--desktop a'));
+    const current = links.findIndex(link => link.classList.contains('active'));
+    if (links.length > 1) window.location.href = links[(current + 1) % links.length].href;
 }
 
 // External links: open in new tab with icon
@@ -229,7 +225,7 @@ document.querySelectorAll('a[href^="http"]').forEach(function(link) {
     // Skip pagination and other internal navigation
     if (link.closest('.pagination')) return;
 
-    if (!link.hostname.includes(window.location.hostname)) {
+    if (link.hostname !== window.location.hostname) {
         link.setAttribute('target', '_blank');
         link.setAttribute('rel', 'noopener noreferrer');
         // Don't add icon to elements that already have one (SVG inside or special card classes)
@@ -260,9 +256,9 @@ function initImageSkeletons() {
                 skeleton.classList.add('loaded');
             } else {
                 // Add onload handler
-                img.addEventListener('load', function() {
-                    skeleton.classList.add('loaded');
-                });
+                img.addEventListener('load', () => skeleton.classList.add('loaded'));
+                img.addEventListener('error', () => skeleton.classList.add('loaded'));
+                if (img.complete) skeleton.classList.add('loaded');
             }
         }
     });
@@ -270,3 +266,13 @@ function initImageSkeletons() {
 
 // Run on DOM ready
 initImageSkeletons();
+
+document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && mainNav.classList.contains('active')) {
+        mainNav.classList.remove('active');
+        menuToggle.classList.remove('active');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+        menuToggle.focus();
+    }
+});

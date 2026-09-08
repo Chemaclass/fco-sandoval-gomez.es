@@ -9,6 +9,8 @@
     var searchToggle, searchBox, searchInput, searchResults;
     var documents = [];
     var debounceTimer = null;
+    var indexState = 'idle';
+    var searchStatus;
 
     var DEBOUNCE_DELAY = 300;
     var MAX_RESULTS = 8;
@@ -42,35 +44,37 @@
         searchBox = document.querySelector('.search-box');
         searchInput = document.getElementById('search-input');
         searchResults = document.getElementById('search-results');
+        searchStatus = document.getElementById('search-status');
 
         if (!searchToggle || !searchInput || !searchResults) {
             return;
         }
 
-        loadSearchIndex();
-
         searchToggle.addEventListener('click', toggleSearch);
         searchInput.addEventListener('input', handleInput);
-        searchInput.addEventListener('keydown', handleKeydown);
+        searchBox.addEventListener('keydown', handleKeydown);
         document.addEventListener('click', handleOutsideClick);
         document.addEventListener('keydown', handleEscape);
     }
 
     function loadSearchIndex() {
-        var indexFile = '/search_index.' + config.lang + '.js';
-
+        if (indexState === 'loading' || indexState === 'ready') return;
+        indexState = 'loading';
+        searchStatus.textContent = config.loading;
         var script = document.createElement('script');
-        script.src = indexFile;
+        script.src = '/search_index.' + config.lang + '.js';
         script.onload = function() {
-            if (typeof window.searchIndex !== 'undefined') {
-                // Extract documents from the index
-                var docs = window.searchIndex.documentStore.docs;
-                for (var id in docs) {
-                    if (docs.hasOwnProperty(id)) {
-                        documents.push(docs[id]);
-                    }
-                }
-            }
+            var docs = window.searchIndex && window.searchIndex.documentStore && window.searchIndex.documentStore.docs;
+            if (!docs) return script.onerror();
+            documents = Object.values(docs);
+            indexState = 'ready';
+            searchStatus.textContent = '';
+            performSearch(searchInput.value.trim());
+        };
+        script.onerror = function() {
+            indexState = 'error';
+            searchStatus.textContent = config.loadError;
+            script.remove();
         };
         document.head.appendChild(script);
     }
@@ -83,6 +87,7 @@
         searchBox.setAttribute('aria-hidden', !isOpen);
 
         if (isOpen) {
+            loadSearchIndex();
             setTimeout(function() {
                 searchInput.focus();
             }, 50);
@@ -100,6 +105,7 @@
     }
 
     function clearSearch() {
+        clearTimeout(debounceTimer);
         searchInput.value = '';
         searchResults.innerHTML = '';
         searchResults.classList.remove('active');
@@ -129,29 +135,30 @@
     }
 
     function performSearch(query) {
-        if (documents.length === 0 || query.length < 2) {
+        if (!searchBox.classList.contains('active')) return;
+        if (indexState !== 'ready' || query.length < 2) {
             searchResults.innerHTML = '';
             searchResults.classList.remove('active');
             return;
         }
 
-        var queryLower = query.toLowerCase();
+        var queryLower = normalize(query);
         var results = [];
 
         for (var i = 0; i < documents.length; i++) {
             var doc = documents[i];
-            var title = (doc.title || '').toLowerCase();
-            var description = (doc.description || '').toLowerCase();
+            var title = normalize(doc.title || '');
+            var description = normalize(doc.description || '');
 
             var titleMatch = title.indexOf(queryLower) !== -1;
             var descMatch = description.indexOf(queryLower) !== -1;
 
             if (titleMatch || descMatch) {
-                var matchScore = titleMatch ? 2 : 1;
+                var matchScore = titleMatch ? 10 : 1;
                 var priorityScore = getSectionPriority(doc.id || '');
                 results.push({
                     doc: doc,
-                    score: priorityScore + matchScore
+                    score: priorityScore / 100 + matchScore
                 });
             }
         }
@@ -194,7 +201,7 @@
             var section = getSectionFromUrl(url);
             var sectionLabel = section ? getSectionLabel(section) : '';
 
-            return '<a href="' + escapeHtml(url) + '" class="search-result-item" role="option">' +
+            return '<a href="' + escapeHtml(url) + '" class="search-result-item">' +
                 (sectionLabel ? '<span class="search-result-type">' + sectionLabel + '</span>' : '') +
                 '<div class="search-result-title">' + title + '</div>' +
                 (description ? '<div class="search-result-description">' + description + '</div>' : '') +
@@ -205,21 +212,16 @@
         searchResults.classList.add('active');
     }
 
+    function normalize(text) {
+        return text.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+    }
+
     function highlightMatch(text, query) {
         if (!text || !query) return escapeHtml(text);
-
-        var escaped = escapeHtml(text);
-        var queryWords = query.toLowerCase().split(/\s+/);
-
-        var result = escaped;
-        queryWords.forEach(function(word) {
-            if (word.length >= 2) {
-                var regex = new RegExp('(' + escapeRegex(word) + ')', 'gi');
-                result = result.replace(regex, '<mark class="search-highlight">$1</mark>');
-            }
-        });
-
-        return result;
+        var start = normalize(text).indexOf(normalize(query));
+        if (start === -1) return escapeHtml(text);
+        var end = start + query.length;
+        return escapeHtml(text.slice(0, start)) + '<mark class="search-highlight">' + escapeHtml(text.slice(start, end)) + '</mark>' + escapeHtml(text.slice(end));
     }
 
     function truncate(text, maxLength) {
@@ -256,6 +258,8 @@
                 e.preventDefault();
                 if (currentIndex > 0) {
                     items[currentIndex - 1].focus();
+                } else {
+                    searchInput.focus();
                 }
                 break;
             case 'Enter':
