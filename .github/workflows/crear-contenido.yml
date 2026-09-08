@@ -15,11 +15,20 @@ env:
 permissions:
   contents: write
   issues: write
-  actions: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: content-writer
+  cancel-in-progress: false
 
 jobs:
   create-content:
     runs-on: ubuntu-latest
+    outputs:
+      revision: ${{ steps.commit.outputs.revision }}
+      content_path: ${{ steps.create.outputs.content_path }}
+      languages: ${{ steps.translate.outputs.languages }}
     if: contains(github.event.issue.labels.*.name, 'nuevo-articulo') || contains(github.event.issue.labels.*.name, 'nueva-investigacion') || contains(github.event.issue.labels.*.name, 'nuevo-trabajo') || contains(github.event.issue.labels.*.name, 'nueva-publicacion')
 
     steps:
@@ -28,10 +37,10 @@ jobs:
         run: |
           AUTHOR="${{ github.event.issue.user.login }}"
           if [[ ",$AUTHORIZED_USERS," == *",$AUTHOR,"* ]]; then
-            echo "authorized=true" >> $GITHUB_OUTPUT
+            echo "authorized=true" >> "$GITHUB_OUTPUT"
             echo "User $AUTHOR is authorized"
           else
-            echo "authorized=false" >> $GITHUB_OUTPUT
+            echo "authorized=false" >> "$GITHUB_OUTPUT"
             echo "User $AUTHOR is NOT authorized"
           fi
 
@@ -57,6 +66,8 @@ jobs:
       - name: Checkout
         if: steps.auth.outputs.authorized == 'true'
         uses: actions/checkout@v4
+        with:
+          ref: main
 
       - name: Parse issue and create content
         id: create
@@ -67,55 +78,49 @@ jobs:
             const { createContent, saveContent } = require('./.github/scripts/content-creator.js');
             const fs = require('fs');
 
-            const issue = context.payload.issue;
+            const { data: issue } = await github.rest.issues.get({ ...context.repo, issue_number: context.issue.number });
             const labels = issue.labels.map(l => l.name);
 
-            const result = createContent(issue.body, labels);
+            const result = createContent(issue.body, labels, { defaultDate: issue.created_at.slice(0, 10), issueNumber: issue.number });
 
             saveContent(result, fs);
             console.log(`Created: ${result.filename}`);
 
             core.setOutput('filename', result.filename);
-            core.setOutput('title', result.title);
+            core.setOutput('content_path', result.filename.replace(/^content\//, '').replace(/\d{4}-\d{2}-\d{2}-/, '').replace(/\.md$/, '/'));
             core.setOutput('content_type', result.contentType);
 
       - name: Translate to EN and IT
+        id: translate
         if: steps.auth.outputs.authorized == 'true'
         env:
+          CONTENT_FILE: ${{ steps.create.outputs.filename }}
           CLAUDE_MODEL: ${{ vars.CLAUDE_MODEL }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         uses: actions/github-script@v7
         with:
           script: |
-            const { translateAndSave, DEFAULT_MODEL } = require('./.github/scripts/translator.js');
+            const { translateAndSave, getTranslatedFilename } = require('./.github/scripts/translator.js');
             const fs = require('fs');
-
-            const filename = '${{ steps.create.outputs.filename }}';
-            const model = DEFAULT_MODEL;
-
-            if (!process.env.ANTHROPIC_API_KEY) {
-              core.warning('ANTHROPIC_API_KEY not set, skipping translations');
-              return;
+            const available = ['es'];
+            for (const lang of ['en', 'it']) {
+              const target = getTranslatedFilename(process.env.CONTENT_FILE, lang);
+              if (fs.existsSync(target)) {
+                available.push(lang);
+                continue;
+              }
+              if (!process.env.ANTHROPIC_API_KEY) {
+                core.warning(`Traducción ${lang} pendiente: falta ANTHROPIC_API_KEY.`);
+                continue;
+              }
+              try {
+                await translateAndSave(process.env.CONTENT_FILE, lang, process.env.ANTHROPIC_API_KEY, fs);
+                available.push(lang);
+              } catch (error) {
+                core.warning(`Traducción ${lang} pendiente: ${error.message}`);
+              }
             }
-
-            console.log(`Translating file: ${filename}`);
-            console.log(`Using model: ${model}`);
-            console.log(`API key present: ${process.env.ANTHROPIC_API_KEY ? 'yes' : 'no'}`);
-
-            try {
-              console.log('Starting EN translation...');
-              await translateAndSave(filename, 'en', process.env.ANTHROPIC_API_KEY, fs, model);
-              console.log('EN translation completed');
-
-              console.log('Starting IT translation...');
-              await translateAndSave(filename, 'it', process.env.ANTHROPIC_API_KEY, fs, model);
-              console.log('IT translation completed');
-
-              console.log('All translations completed successfully');
-            } catch (error) {
-              core.error(`Translation failed: ${error.message}`);
-              console.error('Full error:', error);
-            }
+            core.setOutput('languages', available.join(','));
 
       - name: Install Zola
         if: steps.auth.outputs.authorized == 'true'
@@ -136,47 +141,32 @@ jobs:
           git add content/
           if git diff --staged --quiet; then
             echo "No changes to commit"
-            echo "has_changes=false" >> $GITHUB_OUTPUT
+            echo "has_changes=false" >> "$GITHUB_OUTPUT"
           else
             git commit -m "feat: add new content from issue #${{ github.event.issue.number }}"
             git push
-            echo "has_changes=true" >> $GITHUB_OUTPUT
+            echo "has_changes=true" >> "$GITHUB_OUTPUT"
           fi
+          echo "revision=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
 
-      - name: Trigger build workflow
-        if: steps.auth.outputs.authorized == 'true'
+      - name: Report publication failure
+        if: failure() && steps.auth.outputs.authorized == 'true'
         uses: actions/github-script@v7
         with:
           script: |
-            await github.rest.actions.createWorkflowDispatch({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              workflow_id: 'main.yml',
-              ref: 'main'
-            });
-
-      - name: Close issue with comment
-        if: steps.auth.outputs.authorized == 'true' && steps.commit.outputs.has_changes == 'true'
-        uses: actions/github-script@v7
-        with:
-          script: |
+            const runUrl = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
             await github.rest.issues.createComment({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
+              ...context.repo,
               issue_number: context.issue.number,
-              body: `✅ **Contenido creado correctamente**\n\nEl contenido se ha publicado en ES, EN e IT, y estara disponible en la web en unos minutos.`
+              body: `No se ha publicado el contenido. [Revisa el error](${runUrl}). Corrige el formulario si es necesario y vuelve a ejecutar esta ejecución; no abras otro formulario.`
             });
 
-            await github.rest.issues.update({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: context.issue.number,
-              state: 'closed'
-            });
-
-      - name: Already processed
-        if: steps.auth.outputs.authorized == 'true' && steps.commit.outputs.has_changes == 'false'
-        uses: actions/github-script@v7
-        with:
-          script: |
-            console.log('Issue already processed, no new content to create');
+  publish:
+    needs: create-content
+    if: needs.create-content.outputs.revision != ''
+    uses: ./.github/workflows/main.yml
+    with:
+      revision: ${{ needs.create-content.outputs.revision }}
+      content_path: ${{ needs.create-content.outputs.content_path }}
+      languages: ${{ needs.create-content.outputs.languages }}
+      issue_number: ${{ github.event.issue.number }}

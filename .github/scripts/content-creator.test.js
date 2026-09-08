@@ -305,3 +305,14 @@ describe('publishing safeguards', () => {
     } finally { fs.rmSync(dir, { recursive: true, force: true }); }
   });
 });
+
+test('a rerun of the same issue is safe, but another issue cannot reuse its file', () => {
+  const { saveContent } = require('./content-creator');
+  const body = '### Título\n\nPost\n\n### Descripción\n\nTexto\n\n### Categoría\n\nPatrimonio';
+  const result = createContent(body, ['nuevo-articulo'], { defaultDate: '2026-09-08', issueNumber: 42 });
+  const fs = { writeFileSync: () => { throw Object.assign(new Error(), { code: 'EEXIST' }); }, readFileSync: () => result.content };
+  expect(() => saveContent(result, fs)).not.toThrow();
+  const another = createContent(body, ['nuevo-articulo'], { defaultDate: '2026-09-08', issueNumber: 43 });
+  expect(() => saveContent(another, fs)).toThrow('Ya existe');
+  expect(result.filename).toContain('2026-09-08');
+});

@@ -33,10 +33,13 @@ Haz clic en **Get started** junto al tipo que quieras crear.
 
 ### Paso 4: Esperar
 
-El sistema creara automaticamente el contenido y lo publicara en la web.
-- Tardara 1-2 minutos
-- Recibiras un comentario en el issue confirmando que se ha creado
-- El issue se cerrara automaticamente
+El sistema valida el contenido, prepara las traducciones y despliega la web.
+- Recibirás un comentario con el enlace cuando termine el despliegue.
+- El comentario indica los idiomas realmente disponibles.
+- El issue se cierra cuando la publicación y las tres versiones están completas.
+- Si faltan traducciones, el contenido disponible se publica y el issue permanece abierto.
+- Si aparece un error, sigue el enlace a la ejecución. Corrige el formulario si es necesario y usa **Re-run all jobs** para reintentar. No abras otro formulario.
+- Un reintento conserva las traducciones que ya se guardaron. Si el texto original ya se guardó y necesitas cambiarlo, sigue las instrucciones de edición de archivos de esta guía.
 
 ---
 
@@ -161,7 +164,7 @@ Espera 1-2 minutos. La web se actualiza automaticamente despues de cada cambio. 
 
 ### El issue se cerro pero no veo el contenido
 
-Revisa la pestana **Actions** para ver si hubo algun error. Si hay un error, puedes abrir un nuevo issue con la informacion corregida.
+Revisa la pestana **Actions** para ver si hubo algun error. Si hay un error, revisa su mensaje y reintenta la ejecución original. No abras otro issue para el mismo contenido.
 
 ### Quiero cambiar la imagen de un contenido
 

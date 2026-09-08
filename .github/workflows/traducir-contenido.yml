@@ -15,6 +15,10 @@ permissions:
   contents: write
   actions: write
 
+concurrency:
+  group: content-writer
+  cancel-in-progress: false
+
 jobs:
   translate:
     runs-on: ubuntu-latest
@@ -35,14 +39,14 @@ jobs:
 
           if [ -z "$CHANGED_FILES" ]; then
             echo "No Spanish content files changed"
-            echo "has_files=false" >> $GITHUB_OUTPUT
+            echo "has_files=false" >> "$GITHUB_OUTPUT"
           else
             echo "Changed files:"
             echo "$CHANGED_FILES"
             # Convert to JSON array for the next step
             FILES_JSON=$(echo "$CHANGED_FILES" | jq -R -s -c 'split("\n") | map(select(length > 0))')
-            echo "files=$FILES_JSON" >> $GITHUB_OUTPUT
-            echo "has_files=true" >> $GITHUB_OUTPUT
+            echo "files=$FILES_JSON" >> "$GITHUB_OUTPUT"
+            echo "has_files=true" >> "$GITHUB_OUTPUT"
           fi
 
       - name: Translate changed files
@@ -92,11 +96,11 @@ jobs:
           git add content/
           if git diff --staged --quiet; then
             echo "No translation changes to commit"
-            echo "has_changes=false" >> $GITHUB_OUTPUT
+            echo "has_changes=false" >> "$GITHUB_OUTPUT"
           else
             git commit -m "feat: auto-translate content to EN and IT [skip-translate]"
             git push
-            echo "has_changes=true" >> $GITHUB_OUTPUT
+            echo "has_changes=true" >> "$GITHUB_OUTPUT"
           fi
 
       - name: Trigger build workflow

@@ -43,6 +43,7 @@ function saveContent(result, fs = require('fs')) {
     fs.writeFileSync(result.filename, result.content, { flag: 'wx' });
   } catch (error) {
     if (error.code === 'EEXIST') {
+      if (result.issueNumber && fs.readFileSync(result.filename, 'utf8') === result.content) return;
       throw new Error('Ya existe contenido con este título y fecha. Edita el existente o cambia el título o la fecha.');
     }
     throw error;
@@ -220,7 +221,7 @@ url = ${tomlString(data.url)}
  * @param {string[]} labels - Issue labels
  * @returns {Object} { filename, content, contentType, title }
  */
-function createContent(body, labels) {
+function createContent(body, labels, { defaultDate, issueNumber } = {}) {
   const types = {
     'nuevo-articulo': ['categoria'],
     'nuevo-trabajo': ['categoria', 'ubicacion', 'ano'],
@@ -235,7 +236,7 @@ function createContent(body, labels) {
   }
   if (!slugify(data.titulo)) throw new Error('El título debe contener letras o números.');
   if (!cleanDescription(data.descripcion)) throw new Error('La descripción debe contener texto.');
-  const today = new Date().toISOString().split('T')[0];
+  const today = defaultDate || new Date().toISOString().split('T')[0];
   const date = data.fecha ? formatDate(data.fecha) : today;
   if (!date) throw new Error('Fecha no válida. Usa una fecha real en formato AAAA-MM-DD.');
   for (const field of ['enlace', 'url']) {
@@ -260,7 +261,11 @@ function createContent(body, labels) {
     throw new Error('Unknown content type');
   }
 
-  return { ...result, title: data.titulo };
+  if (issueNumber) {
+    if (!Number.isSafeInteger(issueNumber) || issueNumber < 1) throw new Error('Invalid issue number');
+    result.content = result.content.replace('[extra]\n', `[extra]\nsource_issue = ${issueNumber}\n`);
+  }
+  return { ...result, title: data.titulo, issueNumber };
 }
 
 module.exports = {
