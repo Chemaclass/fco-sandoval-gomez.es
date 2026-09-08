@@ -98,9 +98,9 @@ describe('cleanDescription', () => {
     expect(cleanDescription(text)).toBe('Line 1 Line 2 Line 3');
   });
 
-  it('escapes quotes', () => {
+  it('preserves quotes for the serializer', () => {
     const text = 'He said "hello"';
-    expect(cleanDescription(text)).toBe('He said \\"hello\\"');
+    expect(cleanDescription(text)).toBe(text);
   });
 
   it('collapses multiple spaces', () => {
@@ -267,5 +267,41 @@ https://news.com/article`;
 
   it('throws for unknown content type', () => {
     expect(() => createContent('body', ['unknown-label'])).toThrow('Unknown content type');
+  });
+});
+
+describe('publishing safeguards', () => {
+  const { saveContent, tomlString } = require('./content-creator');
+  const fs = require('fs');
+  const os = require('os');
+  const path = require('path');
+  const form = (date = '2026-09-08') => `### Título\n\nLa casa "Azul"\\Nueva\n\n### Descripción\n\nUna descripción con "comillas"\n\n### Fecha\n\n${date}\n\n### Categoría\n\nPatrimonio\n\n### Contenido\n\nIntroducción\n\n### Historia\n\nTexto histórico\n\n### Título\n\nEste título pertenece al artículo.\n\n\`\`\`md\n### Contenido\n\nEjemplo\n\`\`\``;
+
+  it('preserves the entire body including headings resembling form labels', () => {
+    const result = createContent(form(), ['nuevo-articulo']);
+    expect(result.content.split('+++')[2].trim()).toBe(form().split('### Contenido\n\n').slice(1).join('### Contenido\n\n'));
+    expect(result.content).toContain(`title = ${tomlString('La casa "Azul"\\Nueva')}`);
+    expect(parseIssueBody(form().replace(/\n/g, '\r\n')).contenido).toContain('### Historia');
+  });
+
+  it.each(['2026-02-29', '2026-99-99', '../../escape', '2026-01-32', '0000-01-01'])('rejects invalid date %s', date => {
+    expect(() => createContent(form(date), ['nuevo-articulo'])).toThrow('Fecha no válida');
+  });
+
+  it('accepts a real leap day', () => expect(formatDate('2024-2-29')).toBe('2024-02-29'));
+
+  it('rejects missing required data and ambiguous content types', () => {
+    expect(() => createContent('### Título\n\nSolo título', ['nuevo-articulo'])).toThrow('descripcion');
+    expect(() => createContent(form(), ['nuevo-articulo', 'nuevo-trabajo'])).toThrow('único');
+  });
+
+  it('does not overwrite an existing file', () => {
+    const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'content-save-'));
+    const filename = path.join(dir, 'article.md');
+    try {
+      saveContent({ filename, content: 'Original' });
+      expect(() => saveContent({ filename, content: 'Replacement' })).toThrow('Ya existe');
+      expect(fs.readFileSync(filename, 'utf8')).toBe('Original');
+    } finally { fs.rmSync(dir, { recursive: true, force: true }); }
   });
 });

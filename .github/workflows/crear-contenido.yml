@@ -70,7 +70,7 @@ jobs:
         uses: actions/github-script@v7
         with:
           script: |
-            const { createContent } = require('./.github/scripts/content-creator.js');
+            const { createContent, saveContent } = require('./.github/scripts/content-creator.js');
             const fs = require('fs');
 
             const issue = context.payload.issue;
@@ -78,7 +78,7 @@ jobs:
 
             const result = createContent(issue.body, labels);
 
-            fs.writeFileSync(result.filename, result.content);
+            saveContent(result, fs);
             console.log(`Created: ${result.filename}`);
 
             core.setOutput('filename', result.filename);
@@ -121,6 +121,16 @@ jobs:
               core.error(`Translation failed: ${error.message}`);
               console.error('Full error:', error);
             }
+
+      - name: Install Zola
+        if: steps.auth.outputs.authorized == 'true'
+        uses: taiki-e/install-action@v2
+        with:
+          tool: zola@0.21.0
+
+      - name: Validate generated site before saving
+        if: steps.auth.outputs.authorized == 'true'
+        run: zola build
 
       - name: Commit and push
         id: commit
