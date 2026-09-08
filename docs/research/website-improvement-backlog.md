@@ -70,3 +70,18 @@ Start with PUB-01, PUB-02, LANG-01, PUB-03, SEO-01, and SEO-02. These address co
 For the next investment, choose between author efficiency (PUB-06) and professional presentation (UX-04) using a real task: either observe Francisco editing an article or ask a prospective collaborator to evaluate a project. PERF-01 and UX-03 are bounded improvements that can proceed without settling the longer-term product direction.
 
 Do not start both CMS options, both search approaches, or a framework migration. Previews should become a separate end-to-end slice only after the author demonstrates a need to inspect the rendered result before publishing. A newsletter, project map, topic collections, before/after slider, and printable portfolio are reasonable future discussion topics, but are intentionally outside this actionable list until their audience and maintenance owner are clear.
+
+## Implementation progress
+
+The first implementation pass addresses the six highest-value opportunities from the research summary:
+
+| Opportunity | Result |
+| --- | --- |
+| Protect submitted posts | Complete body preservation, metadata serialization, required-field/date validation, collision protection, and a build before the issue workflow pushes content. |
+| Restore translation | Shared supported-model default and rejection of incomplete responses, with mocked provider tests. Live API behavior still requires the configured secret. |
+| Report real publication status | Deployment-linked confirmation, accurate language reporting, safe same-issue retries, and actionable failure messages. Hosted Actions execution remains to be observed after deployment. |
+| Repair multilingual/share metadata | Actual translation permalinks, page-specific metadata, JSON serialization, accurate local-image dimensions, and generated-output checks. |
+| Improve reader experience | Keyboard search and dialogs, opt-in character shortcuts, mobile card layout, responsive local images, and on-demand search loading. Browser checks cover these outcomes. |
+| Evaluate a browser editor | [Pages CMS assessment and pilot configuration](../editor/evaluation.md). Production editor activation and authenticated save/upload validation remain pending. |
+
+This pass does not mark the entire 32-item backlog complete. In particular, protection of human translation corrections, multi-commit source tracking, scheduling, owned remote-media ingestion, new case studies, and the conditional product features remain future work. The original research is a record of the pre-change findings.

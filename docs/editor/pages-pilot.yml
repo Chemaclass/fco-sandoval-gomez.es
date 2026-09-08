@@ -1,0 +1,71 @@
+# Evaluation configuration. Copy to .pages.yml in an isolated pilot repository.
+# It is intentionally not activated in the production repository.
+media:
+  input: static/images/articulos/uploads
+  output: /images/articulos/uploads
+  extensions: [jpg, jpeg, png, webp]
+  rename: random
+content:
+  - name: articulos-es
+    label: Artículos en español
+    type: collection
+    path: content/articulos
+    format: toml-frontmatter
+    delimiters: '+++'
+    subfolders: false
+    exclude: ['_index.md', '_index.en.md', '_index.it.md', '_draft.md', '*.en.md', '*.it.md']
+    filename:
+      template: '{fields.date}-{primary}.md'
+      field: false
+    operations:
+      create: true
+      rename: false
+      delete: false
+    view:
+      primary: title
+      fields: [title, date, draft]
+      sort: date
+      order: desc
+    fields:
+      - name: title
+        label: Título
+        type: string
+        required: true
+      - name: description
+        label: Resumen
+        type: text
+        required: true
+      - name: date
+        label: Fecha de publicación
+        type: date
+        required: true
+        options:
+          time: false
+          format: yyyy-MM-dd
+      - name: draft
+        label: Borrador (no publicar)
+        type: boolean
+        default: true
+      - name: extra
+        label: Datos del artículo
+        type: object
+        fields:
+          - name: category
+            label: Categoría
+            type: string
+            description: Patrimonio o Reflexiones. Conserva el valor de los artículos existentes.
+            required: true
+          - name: image
+            label: Imagen destacada
+            type: image
+          - name: source_issue
+            label: Formulario de origen
+            type: number
+            hidden: true
+            readonly: true
+      - name: body
+        label: Contenido
+        type: code
+        options:
+          format: markdown
+        description: Puedes usar Markdown y conservar los bloques media existentes.

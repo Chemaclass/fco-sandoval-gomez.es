@@ -10,9 +10,14 @@ class Metadata(HTMLParser):
         super().__init__()
         self.meta, self.alternates, self.blocks = {}, {}, []
         self.in_json = False
+        self.in_h1 = False
+        self.headings = []
 
     def handle_starttag(self, tag, attrs):
         attrs = dict(attrs)
+        if tag == 'h1':
+            self.in_h1 = True
+            self.headings.append('')
         if tag == 'meta':
             self.meta[attrs.get('name', attrs.get('property'))] = attrs.get('content')
         if tag == 'link' and 'hreflang' in attrs:
@@ -22,10 +27,14 @@ class Metadata(HTMLParser):
             self.blocks.append('')
 
     def handle_data(self, data):
+        if self.in_h1:
+            self.headings[-1] += data
         if self.in_json:
             self.blocks[-1] += data
 
     def handle_endtag(self, tag):
+        if tag == 'h1':
+            self.in_h1 = False
         if tag == 'script':
             self.in_json = False
 
@@ -50,8 +59,12 @@ for file, metadata in parsed.items():
             assert metadata.meta['og:url'] in parsed[target_file].alternates.values(), (file, 'non-reciprocal', target)
         checked += 1
 
-article = parsed[root / 'articulos/arquitectura-pluribus/index.html']
-assert article.meta['og:title'] == 'La arquitectura de Pluribus'
-assert 'Pluribus' in article.meta['description']
-assert len({m.meta.get('og:title') for m in parsed.values()}) > 10
+# Content can be renamed or removed by its author. Check page invariants,
+# rather than requiring a particular article or exact editorial wording.
+for file, metadata in parsed.items():
+    if metadata.meta.get('og:type') == 'article':
+        assert metadata.headings, (file, 'missing article heading')
+        assert metadata.meta['og:title'] == metadata.headings[0].strip(), (file, 'generic sharing title')
+        assert metadata.meta['twitter:title'] == metadata.meta['og:title'], (file, 'inconsistent sharing title')
+        assert metadata.meta.get('description'), (file, 'missing description')
 print(f'Checked {len(parsed)} HTML files, JSON-LD, {checked} alternate links and article metadata.')
