@@ -8,7 +8,7 @@ Esta guia explica como crear nuevo contenido en la web usando GitHub.
 
 ### Paso 1: Abrir el formulario
 
-**Enlace directo:** https://github.com/Chemaclass/fco-sandoval-gomez.es/issues/new/choose
+**Enlace directo:** https://github.com/chemasites/fco-sandoval-gomez.es/issues/new/choose
 
 O manualmente:
 1. Abre el repositorio en GitHub

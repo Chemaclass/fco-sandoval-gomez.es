@@ -12,7 +12,7 @@ Portfolio personal de arquitectura y conservación del patrimonio.
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/Chemaclass/fco-sandoval-gomez.es.git
+git clone https://github.com/chemasites/fco-sandoval-gomez.es.git
 cd fco-sandoval-gomez.es
 ```
 
