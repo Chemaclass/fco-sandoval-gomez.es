@@ -2,6 +2,7 @@
 title = "Dinámicas demográficas en el nodo inter-provincial del sureste de la península ibérica: iniciativas y propuestas de actuación"
 description = "La despoblación del medio rural es el principal reto demográfico al que se enfrenta en general toda Europa, y muy particularmente las áreas escasamente pobladas del interior de España."
 date = 2020-10-01
+aliases = ["/en/investigacion/dinamicas-demograficas-sureste/", "/it/investigacion/dinamicas-demograficas-sureste/"]
 [extra]
 category = "Ponencia"
 coauthors = "Víctor Ruiz Álvarez, Javier Martí Talavera, Rubén Giménez García"

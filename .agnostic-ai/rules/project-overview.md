@@ -15,7 +15,7 @@ Personal portfolio site for Francisco Sandoval Gómez (architecture & heritage c
 
 ## Layout
 
-- `config.toml` — site config, multilingual setup (ES default, EN, IT), and all UI translations under `[extra.i18n.*]`
+- `config.toml` — site config, multilingual setup (ES default; EN and IT for static pages and UI only), and all UI translations under `[extra.i18n.*]`
 - `content/` — Markdown content: `articulos/`, `investigacion/`, `trabajos/`, `publicaciones/`, plus top-level pages
 - `templates/` — Tera templates (`base.html`, `section.html`, `page.html`, ...) with `macros/`, `partials/`, `shortcodes/`
 - `sass/style.scss` — single compiled stylesheet

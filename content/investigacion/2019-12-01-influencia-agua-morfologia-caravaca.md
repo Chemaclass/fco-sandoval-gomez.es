@@ -2,6 +2,7 @@
 title = "La influencia del agua en la morfología urbana y arquitectónica de Caravaca de la Cruz (Región de Murcia, sureste de España)"
 description = "Capítulo de libro sobre la influencia del agua en la morfología urbana y arquitectónica de Caravaca de la Cruz."
 date = 2019-12-01
+aliases = ["/en/investigacion/influencia-agua-morfologia-caravaca/", "/it/investigacion/influencia-agua-morfologia-caravaca/"]
 [extra]
 category = "Capítulo de Libro"
 coauthors = "Javier Martí Talavera, Marcos Ruiz Álvarez, Víctor Ruiz Álvarez"

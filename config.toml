@@ -13,14 +13,14 @@ minify_html = true
 # Search index
 build_search_index = true
 
+# Atom feed (top-level keys must precede the first [table])
+generate_feeds = true
+feed_filenames = ["atom.xml"]
+
 [search]
 include_title = true
 include_description = true
 include_content = false
-
-# Generate sitemap
-generate_feeds = true
-feed_filenames = ["atom.xml"]
 
 # Slugify settings
 [slugify]
@@ -32,19 +32,19 @@ anchors = "on"
 theme = "github-dark"
 
 # Multilingual configuration
+# Posts are published in Spanish only. EN and IT translate the static pages and
+# UI; their feed and search reuse the Spanish ones.
 [languages.en]
 title = "Francisco Sandoval Gómez"
 description = "Architecture and heritage conservation. Life is energy: pure creative energy."
-generate_feeds = true
-feed_filenames = ["atom.xml"]
-build_search_index = true
+generate_feeds = false
+build_search_index = false
 
 [languages.it]
 title = "Francisco Sandoval Gómez"
 description = "Architettura e conservazione del patrimonio. La vita è energia: pura energia creativa."
-generate_feeds = true
-feed_filenames = ["atom.xml"]
-build_search_index = true
+generate_feeds = false
+build_search_index = false
 
 [extra]
 author = "Francisco Sandoval Gómez"
@@ -96,6 +96,7 @@ footer_contact = "CONTACTO"
 footer_dev = "Desarrollado por"
 search_placeholder = "Buscar..."
 search_no_results = "No se encontraron resultados"
+spanish_only_note = "Estos contenidos se publican en español."
 
 [extra.i18n.en]
 months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
@@ -131,6 +132,7 @@ footer_contact = "CONTACT"
 footer_dev = "Developed by"
 search_placeholder = "Search..."
 search_no_results = "No results found"
+spanish_only_note = "These entries are published in Spanish."
 
 [extra.i18n.it]
 months = ["gennaio", "febbraio", "marzo", "aprile", "maggio", "giugno", "luglio", "agosto", "settembre", "ottobre", "novembre", "dicembre"]
@@ -166,3 +168,4 @@ footer_contact = "CONTATTO"
 footer_dev = "Sviluppato da"
 search_placeholder = "Cerca..."
 search_no_results = "Nessun risultato trovato"
+spanish_only_note = "Questi contenuti sono pubblicati in spagnolo."

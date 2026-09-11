@@ -11,6 +11,7 @@ alwaysApply: false
 - Reusable pieces go in `templates/partials/` and `templates/macros/`; content-embeddable snippets in `templates/shortcodes/`.
 - Never hardcode user-facing text in templates — read it from `config.extra.i18n` so all three locales stay in sync.
 - Language-aware links must respect the current `lang` (ES at `/`, EN at `/en/`, IT at `/it/`).
+- Posts are Spanish-only. EN/IT listings read the Spanish section (`get_section` without `lang`), and cards carry the post's `lang` attribute.
 
 ## Styles
 

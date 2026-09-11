@@ -15,13 +15,8 @@
     </div>
 </section>
 
-{% if lang == "en" %}
-{% set articulos = get_section(path="articulos/_index.md", lang="en") %}
-{% elif lang == "it" %}
-{% set articulos = get_section(path="articulos/_index.md", lang="it") %}
-{% else %}
+{# Posts are published in Spanish only, so every locale lists them. #}
 {% set articulos = get_section(path="articulos/_index.md") %}
-{% endif %}
 {% if articulos.pages | length > 0 %}
 {% set articles_count = articulos.pages | length %}
 {% if articles_count > 4 %}{% set articles_count = 4 %}{% endif %}
@@ -45,13 +40,7 @@
 
 {{ sections::quote(text=config.extra.i18n[lang].quote_text, author=config.extra.quote.author) }}
 
-{% if lang == "en" %}
-{% set trabajos = get_section(path="trabajos/_index.md", lang="en") %}
-{% elif lang == "it" %}
-{% set trabajos = get_section(path="trabajos/_index.md", lang="it") %}
-{% else %}
 {% set trabajos = get_section(path="trabajos/_index.md") %}
-{% endif %}
 {% if trabajos.pages | length > 0 %}
 <section class="trabajos-section">
     <div class="container">

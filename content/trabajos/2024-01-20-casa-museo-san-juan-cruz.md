@@ -2,6 +2,7 @@
 title = "Casa Museo de San Juan de la Cruz"
 description = "Proyecto de intervención en una vivienda de origen humilde para su conversión en la Casa Museo de San Juan de la Cruz"
 date = 2024-01-20
+aliases = ["/en/trabajos/casa-museo-san-juan-cruz/", "/it/trabajos/casa-museo-san-juan-cruz/"]
 [extra]
 category = "Rehabilitación"
 location = "Caravaca de la Cruz, Murcia"

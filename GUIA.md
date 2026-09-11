@@ -33,13 +33,11 @@ Haz clic en **Get started** junto al tipo que quieras crear.
 
 ### Paso 4: Esperar
 
-El sistema valida el contenido, prepara las traducciones y despliega la web.
+El sistema valida el contenido y despliega la web. El contenido se publica en español, sin traducciones.
 - Recibirás un comentario con el enlace cuando termine el despliegue.
-- El comentario indica los idiomas realmente disponibles.
-- El issue se cierra cuando la publicación y las tres versiones están completas.
-- Si faltan traducciones, el contenido disponible se publica y el issue permanece abierto.
+- El issue se cierra cuando la publicación está confirmada.
 - Si aparece un error, sigue el enlace a la ejecución. Corrige el formulario si es necesario y usa **Re-run all jobs** para reintentar. No abras otro formulario.
-- Un reintento conserva las traducciones que ya se guardaron. Si el texto original ya se guardó y necesitas cambiarlo, sigue las instrucciones de edición de archivos de esta guía.
+- Si el texto ya se guardó y necesitas cambiarlo, sigue las instrucciones de edición de archivos de esta guía.
 
 ---
 
@@ -146,6 +144,8 @@ Cuando escribas contenido, puedes usar estos formatos:
 4. Haz clic en el icono del lapiz (Edit)
 5. Haz los cambios
 6. Haz clic en **Commit changes**
+
+Si ves una línea `aliases = [...]`, no la borres. Mantiene vivos los enlaces antiguos en inglés e italiano.
 
 ### Borrar un contenido
 

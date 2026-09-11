@@ -100,17 +100,32 @@ const server = http.createServer((req, res) => {
     await errorPage.locator('.search-toggle').click();
     await errorPage.waitForFunction(() => document.querySelector('#search-status').textContent.includes('No se pudo'));
 
-    // Locale navigation, dates, pagination, redirects and the shared 404 chrome.
-    for (const [locale, previous, next, month, missing, contact] of [
-      ['en', 'Previous', 'Next', 'February', 'Page not found', 'contact'],
-      ['it', 'Precedente', 'Successivo', 'febbraio', 'Pagina non trovata', 'contatto'],
+    await page.goto(origin + '/publicaciones/', { waitUntil: 'networkidle' });
+    assert((await page.locator('.pagination').textContent()).includes('Siguiente'));
+
+    // Posts are Spanish-only: EN/IT sections list them, old post URLs redirect,
+    // and search uses the Spanish index. Static pages and the 404 stay localized.
+    for (const [locale, note, missing, contact] of [
+      ['en', 'These entries are published in Spanish.', 'Page not found', 'contact'],
+      ['it', 'Questi contenuti sono pubblicati in spagnolo.', 'Pagina non trovata', 'contatto'],
     ]) {
       await page.goto(origin + '/' + locale + '/publicaciones/', { waitUntil: 'networkidle' });
-      assert((await page.locator('.pagination').textContent()).includes(previous));
-      assert((await page.locator('.pagination').textContent()).includes(next));
-      assert(!/Página|Anterior|Siguiente/.test(await page.locator('.pagination').textContent()));
+      assert.equal(await page.locator('.pagination').count(), 0, 'Localized sections list every post on one page');
+      assert(await page.locator('.publicacion-card').count() > 15);
+      assert.equal(await page.locator('.publicacion-card:not([lang="es"])').count(), 0);
+      assert.equal((await page.locator('.language-note').textContent()).trim(), note);
       await page.goto(origin + '/' + locale + '/articulos/', { waitUntil: 'networkidle' });
-      assert((await page.locator('.article-featured .date').textContent()).includes(month));
+      assert.equal(await page.locator('.article-featured').getAttribute('lang'), 'es');
+      assert.match(new URL(await page.locator('.article-featured a').getAttribute('href')).pathname, /^\/articulos\/[^/]+\/$/);
+      await page.goto(origin + '/' + locale + '/articulos/arquitectura-pluribus/');
+      await page.waitForURL(url => url.pathname === '/articulos/arquitectura-pluribus/');
+      assert.equal(await page.locator('html').getAttribute('lang'), 'es');
+      assert.equal(new URL(await page.locator(`.lang-nav--desktop a[hreflang="${locale}"]`).getAttribute('href')).pathname, '/' + locale + '/articulos/');
+      await page.goto(origin + '/' + locale + '/', { waitUntil: 'networkidle' });
+      await page.locator('.search-toggle').click();
+      await page.locator('#search-input').fill('caravaca');
+      await page.waitForFunction(() => document.querySelectorAll('.search-result-item').length > 1);
+      await page.keyboard.press('Escape');
       await page.goto(origin + '/' + locale + '/contacto/', { waitUntil: 'networkidle' });
       await page.waitForURL('**/' + locale + '/sobre-mi/#' + contact);
       assert.equal(await page.locator('#' + contact).count(), 1);
@@ -129,6 +144,6 @@ const server = http.createServer((req, res) => {
       await page.screenshot({ path: path.join(process.env.SCREENSHOT_DIR, 'desktop-dark.png'), fullPage: true });
     }
     assert.deepEqual(errors, [], 'No uncaught browser errors');
-    console.log('Browser checks passed: search, dialogs, shortcuts, mobile, responsive images, no-JS images, loading failure, EN/IT navigation and 404.');
+    console.log('Browser checks passed: search, dialogs, shortcuts, mobile, responsive images, no-JS images, loading failure, Spanish-only posts in EN/IT, retired post URLs and 404.');
   } finally { await browser.close(); }
 })().catch(error => { console.error(error); process.exitCode = 1; }).finally(() => server.close());

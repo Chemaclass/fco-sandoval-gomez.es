@@ -1270,6 +1270,17 @@ main {
     }
 }
 
+// EN/IT section listings: posts are published in Spanish only
+.language-note {
+    font-size: 0.95rem;
+    color: var(--color-text-light);
+    margin: 0.75rem 0 0;
+}
+
+.articulos-page .language-note {
+    margin-bottom: 2rem;
+}
+
 // Investigación Page
 .investigacion-page {
     padding: 4rem 0 5rem;

@@ -1,5 +1,6 @@
 """Check ES/EN/IT coverage and preserved facts/assets (Python 3.11+).
 
+Static pages and section indexes exist in ES, EN and IT. Posts are Spanish-only.
 This checks structural consistency, not the linguistic accuracy of a translation.
 """
 from collections import Counter
@@ -8,6 +9,12 @@ import re
 import tomllib
 
 ROOT = Path(__file__).resolve().parents[2]
+POST_SECTIONS = ('articulos', 'investigacion', 'publicaciones', 'trabajos')
+
+
+def is_post(path):
+    relative = path.relative_to(ROOT / 'content')
+    return len(relative.parts) == 2 and relative.parts[0] in POST_SECTIONS and not relative.name.startswith('_')
 
 
 def read_page(path):
@@ -30,9 +37,15 @@ def check():
         assert all(dictionary.values()), f'{language}: empty UI translation'
         assert len(dictionary['months']) == 12, f'{language}: missing month names'
 
-    count = 0
+    count = posts = 0
     for source in sorted((ROOT / 'content').rglob('*.md')):
         if source.name.endswith(('.en.md', '.it.md')) or source.name == '_draft.md':
+            continue
+        if is_post(source):
+            for language in ('en', 'it'):
+                target = source.with_suffix(f'.{language}.md')
+                assert not target.exists(), f'Posts are Spanish-only: {target}'
+            posts += 1
             continue
         fields, body = read_page(source)
         if fields.get('draft'):
@@ -44,7 +57,8 @@ def check():
             assert not translated.get('draft'), f'{target}: published source has draft translation'
             for field in ('title', 'description'):
                 assert bool(fields.get(field)) == bool(translated.get(field)), f'{target}: missing {field}'
-            for field in ('date', 'updated', 'template', 'sort_by', 'paginate_by', 'in_search_index'):
+            # EN/IT section indexes list the Spanish posts, so they do not sort or paginate.
+            for field in ('date', 'updated', 'template', 'in_search_index'):
                 assert fields.get(field) == translated.get(field), f'{target}: changed {field}'
             for field in ('image', 'year', 'coauthors', 'original_title', 'source', 'url', 'youtube'):
                 assert fields.get('extra', {}).get(field) == translated.get('extra', {}).get(field), f'{target}: changed {field}'
@@ -59,7 +73,7 @@ def check():
         if target.name.endswith(('.en.md', '.it.md')):
             source = target.with_name(target.name[:-6] + '.md')
             assert source.exists(), f'Orphan translation: {target}'
-    print(f'Translation coverage and structural consistency passed: {count} translations, 3 UI dictionaries')
+    print(f'Translation coverage and structural consistency passed: {count} translations, {posts} Spanish-only posts, 3 UI dictionaries')
 
 
 if __name__ == '__main__':

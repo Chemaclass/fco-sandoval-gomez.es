@@ -62,7 +62,8 @@
         indexState = 'loading';
         searchStatus.textContent = config.loading;
         var script = document.createElement('script');
-        script.src = '/search_index.' + config.lang + '.js';
+        // Posts are Spanish-only, so every locale searches the Spanish index.
+        script.src = '/search_index.es.js';
         script.onload = function() {
             var docs = window.searchIndex && window.searchIndex.documentStore && window.searchIndex.documentStore.docs;
             if (!docs) return script.onerror();

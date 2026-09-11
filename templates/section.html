@@ -7,12 +7,20 @@
 
 {% block content %}
 {% set pages = paginator.pages | default(value=section.pages) %}
+{% set note = "" %}
+{% if lang != config.default_language %}
+{# Posts are published in Spanish only. Localized sections list the Spanish entries. #}
+{% set source = get_section(path=section.relative_path | replace(from="_index." ~ lang ~ ".md", to="_index.md")) %}
+{% set pages = source.pages %}
+{% set note = config.extra.i18n[lang].spanish_only_note %}
+{% endif %}
 
 {% if section.path is containing("articulos") %}
 {# Artículos: Featured article + grid #}
 <section class="articulos-page">
     <div class="container">
         <h1>{{ section.title }}</h1>
+        {% if note %}<p class="language-note">{{ note }}</p>{% endif %}
         {% if pages | length > 0 %}
         {{ cards::article_featured(article=pages | first) }}
         {% endif %}
@@ -31,7 +39,7 @@
 {# Trabajos: 2-column grid with large images #}
 <section class="trabajos-page">
     <div class="container">
-        {{ sections::page_header_styled(title=section.title, description=section.description | default(value="")) }}
+        {{ sections::page_header_styled(title=section.title, description=section.description | default(value=""), note=note) }}
         <div class="trabajos-grid">
             {% for page in pages %}
                 {{ cards::trabajo_card(trabajo=page) }}
@@ -44,7 +52,7 @@
 {# Investigación: Horizontal cards with external links #}
 <section class="investigacion-page">
     <div class="container">
-        {{ sections::page_header_styled(title=section.title, description=section.description | default(value="")) }}
+        {{ sections::page_header_styled(title=section.title, description=section.description | default(value=""), note=note) }}
         <div class="investigacion-list">
             {% for page in pages %}
                 {{ cards::investigacion_card(item=page) }}
@@ -57,7 +65,7 @@
 {# Publicaciones externas: Text-only list #}
 <section class="publicaciones-page">
     <div class="container">
-        {{ sections::page_header_styled(title=section.title, description=section.description | default(value="")) }}
+        {{ sections::page_header_styled(title=section.title, description=section.description | default(value=""), note=note) }}
         <div class="publicaciones-list">
             {% for page in pages %}
                 {{ cards::publicacion_card(item=page) }}
@@ -68,7 +76,7 @@
 
 {% else %}
 {# Default: Generic grid #}
-{{ sections::page_header(title=section.title, description=section.description | default(value="")) }}
+{{ sections::page_header(title=section.title, description=section.description | default(value=""), note=note) }}
 <section class="content-section">
     <div class="container">
         <div class="posts-grid">

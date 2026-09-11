@@ -2,6 +2,7 @@
 title = "La arquitectura de Pluribus"
 description = "Un análisis de las decisiones arquitectónicas en la serie Pluribus, donde Vince Gilligan lanza un mensaje acerca de qué tipo de arquitectura domestica rige las distopías futuristas."
 date = 2025-12-26
+aliases = ["/en/articulos/arquitectura-pluribus/", "/it/articulos/arquitectura-pluribus/"]
 [extra]
 category = "REFLEXIONES"
 image = "https://github.com/user-attachments/assets/f911f25c-1acf-4b3c-bd18-6acd5e7aac91"

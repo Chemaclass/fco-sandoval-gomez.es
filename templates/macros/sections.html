@@ -16,22 +16,28 @@
 </section>
 {% endmacro %}
 
-{% macro page_header(title, description="") %}
+{% macro page_header(title, description="", note="") %}
 <section class="page-header">
     <div class="container">
         <h1>{{ title }}</h1>
         {% if description %}
         <p class="page-description">{{ description }}</p>
         {% endif %}
+        {% if note %}
+        <p class="language-note">{{ note }}</p>
+        {% endif %}
     </div>
 </section>
 {% endmacro %}
 
-{% macro page_header_styled(title, description="") %}
+{% macro page_header_styled(title, description="", note="") %}
 <div class="page-header-styled">
     <h1>{{ title }}</h1>
     {% if description %}
     <p class="page-description">{{ description }}</p>
+    {% endif %}
+    {% if note %}
+    <p class="language-note">{{ note }}</p>
     {% endif %}
 </div>
 {% endmacro %}

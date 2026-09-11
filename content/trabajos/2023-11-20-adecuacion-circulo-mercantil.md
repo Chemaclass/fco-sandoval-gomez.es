@@ -2,6 +2,7 @@
 title = "Adecuación del histórico edificio del Círculo Mercantil"
 description = "Proyecto básico de adecuación del edificio del Círculo Mercantil de Caravaca de la Cruz, con motivo del primer centenario de su fundación, para actualizar el inmueble a las necesidades actuales de seguridad y accesibilidad."
 date = 2023-11-20
+aliases = ["/en/trabajos/adecuacion-circulo-mercantil/", "/it/trabajos/adecuacion-circulo-mercantil/"]
 [extra]
 category = "Rehabilitación"
 location = "Caravaca de la Cruz, Murcia"

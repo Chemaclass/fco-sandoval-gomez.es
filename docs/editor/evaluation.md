@@ -12,8 +12,8 @@ This is a configuration-level evaluation, based on documentation accessed on 8 S
 | Upload a cover | Repository media input and public output paths are configurable | Upload a photo, confirm its saved path and deployed responsive variants. |
 | Preserve shortcode syntax | The pilot uses a Markdown code field instead of a rich-text conversion | Save a `media` block and an HTML image, verifying their contents and attributes. |
 | Keep language files separate | The pilot excludes EN/IT files and section/draft templates | Verify the CMS's actual collection matching behavior before use. |
-| Avoid unintended publication | New entries default to `draft = true` | Verify draft exclusion from pages, search, feeds, and translation output. |
-| Protect reviewed translations | This is an automation requirement outside the editor | Existing automatic translation of Spanish edits can still overwrite target files; resolve that before production editor adoption. |
+| Avoid unintended publication | New entries default to `draft = true` | Verify draft exclusion from pages, search, and feeds. |
+| Protect reviewed translations | Resolved outside the editor on 11 September 2026 | Posts are Spanish-only and no workflow translates content. Nothing overwrites target files. |
 
 Pages CMS documents its [collection formats and exclusions](https://pagescms.org/docs/configuration/content/), [filename controls](https://pagescms.org/docs/configuration/content/filename/), [operation controls](https://pagescms.org/docs/configuration/content/operations/), and [media paths](https://pagescms.org/docs/configuration/media/). Its [code field](https://pagescms.org/docs/configuration/fields/code/) supports Markdown highlighting, and its [date field](https://pagescms.org/docs/configuration/fields/date/) supports an explicit `yyyy-MM-dd` output format. These capabilities support the proposed pilot; they do not prove hosted round-trip behavior.
 
@@ -23,19 +23,19 @@ For new files, the filename template uses the chosen article date rather than th
 
 ## Pilot acceptance scenario
 
-Francisco finds a copied Spanish article, corrects a paragraph containing `###` headings, changes a quoted title, retains a `media` shortcode, uploads a replacement cover, and saves it. The generated site displays the complete intended text and cover at the same URL. Existing English and Italian files, other metadata, and source image originals remain intact. He then creates a draft, verifies that it is absent from the public output, and deliberately publishes it.
+Francisco finds a copied Spanish article, corrects a paragraph containing `###` headings, changes a quoted title, retains a `media` shortcode, uploads a replacement cover, and saves it. The generated site displays the complete intended text and cover at the same URL. Other metadata, including the `aliases` for retired English and Italian URLs, and source image originals remain intact. He then creates a draft, verifies that it is absent from the public output, and deliberately publishes it.
 
 The first trial excludes rich-text conversion, galleries as editable nested objects, all other content collections, preview hosting, multiple editor roles, and a generator or hosting migration.
 
 ## Running the trial
 
-1. Use an isolated copy of the repository with production deployment and automatic translation disabled. Copy `pages-pilot.yml` to `.pages.yml` there.
+1. Use an isolated copy of the repository with production deployment disabled. Copy `pages-pilot.yml` to `.pages.yml` there.
 2. Connect that copy to Pages CMS using an account permitted to edit it. Review the actual repository access requested by the service.
 3. Perform the acceptance scenario with copies of both existing articles, a quoted-title fixture, an image, and a new draft. Inspect the saved files and Git diff, including fields outside the form.
 4. Build using Zola 0.21.0 and run the documented metadata/browser checks. Verify all existing page URLs still resolve.
 5. Record where Francisco needs help, whether the editor changes shortcode syntax, and whether all unchanged fields survive. Adopt it only if it improves the real editing task and passes those checks.
 
-Before production adoption, protect manually corrected translations, verify how CMS-authored commits trigger the existing workflows, and decide how failed saves/deployments are surfaced to the editor. The issue workflow's confirmation comments apply to issue-created content; they are not a status interface for CMS saves.
+Before production adoption, verify how CMS-authored commits trigger the existing workflows, and decide how failed saves/deployments are surfaced to the editor. The issue workflow's confirmation comments apply to issue-created content; they are not a status interface for CMS saves.
 
 ## Alternatives and decision
 
@@ -43,4 +43,4 @@ Improved GitHub forms have the lowest migration cost but still leave corrections
 
 A custom admin application would require ownership of authentication, save conflicts, media management, validation, and recovery. The current evidence does not justify that maintenance burden. No subscription price is assumed for either product; select hosted versus self-hosted operation and verify current terms before adoption.
 
-The decision is to trial Pages CMS for one Spanish article collection and keep the current publishing path operational. Live editor validation and translation-edit protection remain outstanding adoption work.
+The decision is to trial Pages CMS for one Spanish article collection and keep the current publishing path operational. Live editor validation remains outstanding adoption work.

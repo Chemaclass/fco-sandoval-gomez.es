@@ -1,5 +1,10 @@
 {% if page %}
     {% set available_languages = page.translations %}
+    {# Posts are Spanish-only. Offer the localized section so visitors can switch back. #}
+    {% if available_languages | length < 2 and page.ancestors | length > 1 %}
+        {% set parent = get_section(path=page.ancestors | last) %}
+        {% set available_languages = parent.translations %}
+    {% endif %}
 {% elif section %}
     {% set available_languages = section.translations %}
 {% else %}
@@ -10,7 +15,9 @@
 {% for translation in available_languages %}
 {% set translation_lang = translation.lang | default(value=config.default_language) %}
 {% if translation_lang == language_code %}
-<a href="{{ translation.permalink }}" lang="{{ translation_lang }}" hreflang="{{ translation_lang }}" {% if translation_lang == lang %}class="active" aria-current="page"{% endif %}>{{ translation_lang | upper }}</a>
+{% set href = translation.permalink %}
+{% if translation_lang == lang and page %}{% set href = page.permalink %}{% endif %}
+<a href="{{ href }}" lang="{{ translation_lang }}" hreflang="{{ translation_lang }}" {% if translation_lang == lang %}class="active" aria-current="page"{% endif %}>{{ translation_lang | upper }}</a>
 {% endif %}
 {% endfor %}
 {% endfor %}

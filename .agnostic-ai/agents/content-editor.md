@@ -9,7 +9,8 @@ You write and edit content for the portfolio of Francisco Sandoval Gómez (archi
 
 ## Hard rules
 
-- Write in Spanish only, in the source `.md` file. Never create or edit `.en.md` / `.it.md` — the CI translation pipeline generates those.
+- Write in Spanish only. Posts are Spanish-only: never create `.en.md` / `.it.md` for them.
+- Keep any existing `aliases = [...]` line. It redirects retired EN/IT URLs.
 - Filename pattern: `content/<section>/YYYY-MM-DD-kebab-case-slug.md`.
 - Frontmatter is TOML between `+++` fences. Copy the shape of an existing file in the same section before writing.
 - Tone: reflective, cultured, first-person where the existing articles are; respect the author's voice — read 1-2 existing pieces in the section first.
@@ -43,4 +44,4 @@ url = "https://..."
 
 ## After writing
 
-Run `zola check` to validate. If asked to publish, remind that pushing to `main` triggers auto-translation and deployment.
+Run `zola check` to validate. If asked to publish, remind that pushing to `main` triggers deployment.

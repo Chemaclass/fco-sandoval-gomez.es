@@ -11,7 +11,9 @@ Pre-push validation for this Zola site.
 
 1. `zola check` — validates content, frontmatter, and internal links.
 2. `zola build` — must succeed; output goes to `public/` (gitignored).
-3. Locale parity:
-   - Every `content/**/name.md` should have matching `name.en.md` and `name.it.md` (missing ones are fine if the file was just created — CI generates them on push).
+3. Locale parity: `python3 .github/scripts/check-translations.py` (Python 3.11+).
+   - Static pages and section `_index.md` files need matching `name.en.md` and `name.it.md`.
+   - Posts (`articulos`, `investigacion`, `trabajos`, `publicaciones`) must have no `.en.md`/`.it.md`.
    - Every key in `config.toml` `[extra.i18n.es]` must exist in `[extra.i18n.en]` and `[extra.i18n.it]`.
-4. Report failures with file paths; do not auto-fix translations by hand — flag them for the CI pipeline instead.
+4. `python3 .github/scripts/check-metadata.py` — generated metadata and hreflang links.
+5. Report failures with file paths.

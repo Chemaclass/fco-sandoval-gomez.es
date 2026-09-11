@@ -11,7 +11,7 @@ Create a new Spanish content file with the right structure for its section.
 
 1. Ask (or infer from the request) the content type: `articulos`, `trabajos`, `investigacion`, or `publicaciones` — and the required fields for that type (see `GUIA.md` for field semantics).
 2. Read one recent `.md` file in the target section and mirror its exact frontmatter shape (TOML between `+++`).
-3. Write `content/<section>/YYYY-MM-DD-kebab-slug.md` — Spanish only, no `.en.md`/`.it.md` (CI generates translations on push).
+3. Write `content/<section>/YYYY-MM-DD-kebab-slug.md` in Spanish. Posts are Spanish-only: never add `.en.md`/`.it.md`.
 4. Validate with `zola check`.
 5. Offer to preview with `zola serve`.
 

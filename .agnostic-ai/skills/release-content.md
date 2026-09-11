@@ -9,16 +9,13 @@ Publish pending content changes to production end-to-end.
 
 ## Steps
 
-1. **Verify** — run the `verify-site` checks: `zola check` and `zola build` must pass.
-2. **Commit** — conventional commit (e.g. `feat: add articulo <slug>`), Spanish source files only. Never commit `.en.md`/`.it.md` by hand unless they carry `[skip-translate]` in the message.
+1. **Verify** — run the `verify-site` checks: `zola check`, `zola build` and `check-translations.py` must pass.
+2. **Commit** — conventional commit (e.g. `feat: add articulo <slug>`). Posts are Spanish-only; never commit `.en.md`/`.it.md` for a post.
 3. **Push** to `main`.
-4. **Watch CI** — two workflows fire:
-   - `Traducir Contenido` (only if a Spanish `content/**/*.md` changed) — generates `.en.md`/`.it.md` and pushes a `[skip-translate]` commit, which re-triggers deploy.
-   - `Build and deploy GH Pages` — deploys the site.
+4. **Watch CI** — `Check website` and `Build and deploy GH Pages` fire on the push.
    Poll with `gh run list --limit 5` / `gh run watch <id>` until both succeed.
-5. **Confirm live** — `git pull` to fetch the translation commit, then check the page exists: `curl -sI https://fco-sandoval-gomez.es/<section>/<slug>/ | head -1` (expect 200). Spot-check `/en/` and `/it/` variants after the translation deploy lands.
+5. **Confirm live** — check the page exists: `curl -sI https://fco-sandoval-gomez.es/<section>/<slug>/ | head -1` (expect 200). Spot-check that `/en/<section>/` and `/it/<section>/` list it.
 
 ## Failure handling
 
-- Translation workflow fails → content is live in Spanish only; report the failed run URL, don't hand-translate.
-- Deploy fails → report the run URL and the failing step; don't retry blindly.
+- Check or deploy fails → report the run URL and the failing step; don't retry blindly.

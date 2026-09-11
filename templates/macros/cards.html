@@ -1,9 +1,11 @@
 {% import "macros/dates.html" as dates %}
 {% import "macros/images.html" as images %}
 
+{# Cards declare their content language: EN/IT listings show Spanish-only posts. #}
+
 {# Blog post card - used in grids on homepage #}
 {% macro post_card(post) %}
-<article class="post-card">
+<article class="post-card" lang="{{ post.lang }}">
     <a href="{{ post.permalink }}">
         {% if post.extra.image %}
         <div class="post-image img-skeleton">
@@ -30,7 +32,7 @@
 
 {# Blog post card horizontal - used in list views #}
 {% macro post_card_horizontal(post) %}
-<article class="post-card post-card--horizontal">
+<article class="post-card post-card--horizontal" lang="{{ post.lang }}">
     <a href="{{ post.permalink }}">
         {% if post.extra.image %}
         <div class="post-image img-skeleton">
@@ -57,7 +59,7 @@
 
 {# Featured article card - larger card for articulos hero #}
 {% macro article_featured(article) %}
-<article class="article-featured">
+<article class="article-featured" lang="{{ article.lang }}">
     <a href="{{ article.permalink }}">
         {% if article.extra.image %}
         <div class="article-featured__image img-skeleton">
@@ -82,7 +84,7 @@
 
 {# Article card for grid below featured #}
 {% macro article_card(article) %}
-<article class="article-card">
+<article class="article-card" lang="{{ article.lang }}">
     <a href="{{ article.permalink }}">
         {% if article.extra.image %}
         <div class="article-card__image img-skeleton">
@@ -107,7 +109,7 @@
 
 {# Trabajo card - grid style with large image #}
 {% macro trabajo_card(trabajo) %}
-<article class="trabajo-card">
+<article class="trabajo-card" lang="{{ trabajo.lang }}">
     <a href="{{ trabajo.permalink }}">
         {% if trabajo.extra.image %}
         <div class="trabajo-card__image img-skeleton">
@@ -131,7 +133,7 @@
 {# Investigacion card - academic publication card #}
 {% macro investigacion_card(item) %}
 {% set first_link = item.extra.links | default(value=[]) | first %}
-<article class="investigacion-card">
+<article class="investigacion-card" lang="{{ item.lang }}">
     <div class="investigacion-card__content">
         <div class="post-meta">
             {% if item.extra.category %}
@@ -175,7 +177,7 @@
 
 {# Publicacion externa card - text only list item #}
 {% macro publicacion_card(item) %}
-<article class="publicacion-card">
+<article class="publicacion-card" lang="{{ item.lang }}">
     <div class="publicacion-card__content">
         <div class="post-meta">
             {% if item.extra.source %}
@@ -195,7 +197,7 @@
 
 {# Generic content card #}
 {% macro content_card(item) %}
-<article class="post-card">
+<article class="post-card" lang="{{ item.lang }}">
     <a href="{{ item.permalink }}">
         {% if item.extra.image %}
         <div class="post-image img-skeleton">

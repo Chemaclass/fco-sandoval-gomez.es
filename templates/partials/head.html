@@ -129,8 +129,8 @@ h1,h2,h3,h4,h5,h6{font-family:'Libre Baskerville',Georgia,serif;font-weight:400;
 {# Search Script #}
 <script defer src="{{ get_url(path='js/search.js') }}"></script>
 
-{# RSS Feed #}
-<link rel="alternate" type="application/atom+xml" title="{{ config.title }}" href="{{ get_url(path='atom.xml', lang=lang) }}">
+{# RSS Feed: posts are Spanish-only, so every locale links the Spanish feed. #}
+<link rel="alternate" type="application/atom+xml" title="{{ config.title }}" href="{{ get_url(path='atom.xml') }}">
 
 {# JSON strings are serialized and '<' escaped for script raw-text safety. #}
 {% if page and page.date %}
